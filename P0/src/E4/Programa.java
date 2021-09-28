@@ -1,8 +1,8 @@
-package ej4;
+package E4;
 
-import ej1.Espectaculo;
-import ej1.Espectaculo.categoria;
-import ej23.Programacion;
+import E1.Espectaculo;
+import E1.Espectaculo.categoria;
+import E23.Programacion;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package ej1;
+package E1;
 import java.util.Date;
 
 public class Espectaculo {

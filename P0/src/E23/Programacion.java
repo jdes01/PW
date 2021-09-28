@@ -1,7 +1,7 @@
-package ej23;
+package E23;
 
-import ej1.Espectaculo;
-import ej1.Espectaculo.categoria;
+import E1.Espectaculo;
+import E1.Espectaculo.categoria;
 
 import java.util.ArrayList;
 import java.util.Date;

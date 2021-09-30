@@ -2,14 +2,14 @@ package E1;
 
 import java.util.ArrayList;
 
-import E1.DTO.User;
+import E1.DTO.Viewer;
 
 import E1.DTO.Score;
 import E1.DTO.UserReview;
 
 public class Review {
 
-    private User user;
+    private Viewer Viewer;
 
     private String title;
 
@@ -20,9 +20,9 @@ public class Review {
     private ArrayList<UserReview> user_reviews;
 
 
-    public Review(User user, String title, Integer score, String review_text){
+    public Review(Viewer viewer, String title, Integer score, String review_text){
 
-        this.user = user;
+        this.viewer = viewer;
         this.title = title;
         this.score = new Score(score);
         this.review_text = review_text;

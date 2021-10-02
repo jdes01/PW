@@ -1,2 +1,2 @@
-module P1 {
+module Model {
 }

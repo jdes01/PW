@@ -1,4 +1,4 @@
-package E1;
+package Model;
 
 /**
  * Viewer

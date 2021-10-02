@@ -1,4 +1,4 @@
-package E1.DTO;
+package Model.DTO;
 
 public class Score {
     

@@ -2,14 +2,12 @@ package E1;
 
 import java.util.ArrayList;
 
-import E1.DTO.Viewer;
-
 import E1.DTO.Score;
 import E1.DTO.UserReview;
 
 public class Review {
 
-    private Viewer Viewer;
+    private Viewer viewer;
 
     private String title;
 

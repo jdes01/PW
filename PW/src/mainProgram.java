@@ -16,7 +16,8 @@ public class mainProgram {
 
         Review review = new Review(viewer, title, score, review_text);
 
-        System.out.println(review.getScore());
-
+        System.out.println(review.getScore());     
+        
+        review.addViewerReview(viewer, score);
     }
   }

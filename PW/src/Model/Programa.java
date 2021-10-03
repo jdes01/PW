@@ -10,7 +10,7 @@ public class Programa {
 
 	public static void main(String [] args) {
 
-		Programacion concierto = new Programacion();
+		Programacion programacion = new Programacion();
 		
 		Espectaculo concierto1 = new Espectaculo();
 		Espectaculo monologo = new Espectaculo();

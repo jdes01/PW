@@ -1,7 +1,6 @@
 package Model.DTO;
 
 import Model.Viewer;
-
 public class ViewerReview {
     
     private Viewer viewer;

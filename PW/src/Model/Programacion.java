@@ -83,7 +83,7 @@ public class Programacion {
 		
 		for(int i = 0; i < this.Espectaculos.size(); i++) {
 
-			if(this.Espectaculos.get(i).getCategoria() == categoria and this.Espectaculos.get(i).getLocalidadesDisponibles() > 0) {
+			if(this.Espectaculos.get(i).getCategoria() == categoria && this.Espectaculos.get(i).getLocalidadesDisponibles() > 0) {
 
 				espectaculosDisponibles.add(this.Espectaculos.get(i));
 			}

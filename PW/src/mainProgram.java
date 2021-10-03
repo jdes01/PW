@@ -1,23 +1,23 @@
 import Model.Review;
 
-import Model.Viewer;
+import Model.User;
 import Model.DTO.Score;
 import Model.Espectaculo;
 
 public class mainProgram {
     public static void main(String[] args){
 
-        Viewer viewer = new Viewer();
+        User user = new User();
  
         String title = "titulo";
         String review_text = "texto";
          
         Score score = new Score(10);
 
-        Review review = new Review(viewer, title, score, review_text);
+        Review review = new Review(user, title, score, review_text);
 
         System.out.println(review.getScore());     
         
-        review.addViewerReview(viewer, score);
+        review.addUserReview(user, score);
     }
   }

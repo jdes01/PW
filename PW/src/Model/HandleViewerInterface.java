@@ -4,11 +4,11 @@ import Model.Viewer;
 
 public interface HandleViewerInterface {
     
-    void createViewer(){}
+    void createViewer();
 
-    void deleteViewer(Viewer viewer){}
+    void deleteViewer(Viewer viewer);
 
-    Viewer getViewer(Integer id){}
+    Viewer getViewer(Integer id);
 
-    void updateViewer(Viewer viewer){}
+    void updateViewer(Viewer viewer);
 }

@@ -3,8 +3,7 @@ package Model;
 import java.util.ArrayList;
 
 import Model.DTO.Score;
-
-import Model.DTO.UserReview;
+//import Model.DTO.ViewerReview;
 
 import Model.Espectaculo;
 
@@ -18,7 +17,7 @@ public class Review {
 
     private String review_text;
 
-    private ArrayList<UserReview> user_reviews;
+    //private ArrayList<ViewerReview> viewerReview;
 
 
     public Review(Viewer viewer, String title, Score score, String review_text){

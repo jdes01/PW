@@ -26,10 +26,6 @@ public class Review {
         this.title = title;
         this.score = new Score(score.getScore());
         this.review_text = review_text;
-
-        UserReview userReview = new UserReview(this.user, this.score);
-    	
-    	this.userReview.add(userReview);
     }
 
     public Integer getScore() {

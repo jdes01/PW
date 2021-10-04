@@ -15,28 +15,41 @@ public class Review {
 
     private Score score;
 
-    private String review_text;
+    private String reviewText;
 
-    private ArrayList<UserReview> userReviews = new ArrayList<UserReview>();
+    private ArrayList<UserReview> usersReviews = new ArrayList<UserReview>();
 
 
-    public Review(User User, String title, Score score, String review_text){
+    public Review(User User, String title, Score score, String reviewText){
 
         this.user = user;
         this.title = title;
         this.score = new Score(score.getScore());
-        this.review_text = review_text;
+        this.reviewText = reviewText;
     }
 
-    public Integer getScore() {
-        return this.score.getScore();
+    public Score getScore() {
+        return this.score;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public String getReviewText() {
+        return this.reviewText;
+    }
+
+    public ArrayList<UserReview> getUsersReviews(){
+
+        return this.usersReviews;
     }
     
     public void addUserReview(User user, Score score) {
     	
     	UserReview userReview = new UserReview(user, score);
     	
-    	this.userReview.add(userReview);
+    	this.usersReviews.add(userReview);
     }
 
 }

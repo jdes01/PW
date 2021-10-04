@@ -17,7 +17,7 @@ public class Review {
 
     private String review_text;
 
-    private ArrayList<UserReview> userReview = new ArrayList<UserReview>();
+    private ArrayList<UserReview> userReviews = new ArrayList<UserReview>();
 
 
     public Review(User User, String title, Score score, String review_text){
@@ -26,6 +26,10 @@ public class Review {
         this.title = title;
         this.score = new Score(score.getScore());
         this.review_text = review_text;
+
+        UserReview userReview = new UserReview(this.user, this.score);
+    	
+    	this.userReview.add(userReview);
     }
 
     public Integer getScore() {

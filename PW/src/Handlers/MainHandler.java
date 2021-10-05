@@ -17,6 +17,9 @@ public class MainHandler extends ReviewHandler, UserHandler {
     public MainHandler(){
 
         //inject repositories
+
+        private UserRepository userRepository;
+        private ReviewRepository reviewRepository;
     }    
 
 
@@ -41,13 +44,26 @@ public class MainHandler extends ReviewHandler, UserHandler {
             String review_text = scanner.nextString();
 
         Review review = new Review(user, title, score, review_text);
+
+        this.reviewRepository.saveReview(review);
     }
 
-    ArrayList<Review> getReviews();
+    ArrayList<Review> getReviews(){
 
-    void deleteReview(Review review);
+        ArrayList<Review> reviews = this.reviewRepository.getReviews();
 
-    void voteReview(Review review, User user, Score score);
+        return reviews;
+    }
+
+    void deleteReview(Review review){
+
+        this.reviewRepository.deleteReview(review);
+    }
+
+    void voteReview(Review review, User user, Score score){
+
+        review.addUserReview(user, score);
+    }
 
 
 
@@ -55,12 +71,58 @@ public class MainHandler extends ReviewHandler, UserHandler {
 
 
 
-    void createUser(String name);
+    void createUser(){
 
-    void deleteUser(User user);
+        Scanner scanner = new Scanner(System.in); 
 
-    User getUser(Integer id);
+        System.out.println("please, write your full name");
 
-    void updateUser(User user);
+            String name = scanner.nextString();
+
+        System.out.println("please, write your nick");
+
+            String nick = scanner.nextString();
+
+        System.out.println("please, write your mail");
+
+            String mail = scanner.nextString();
+
+        User user = new User(name, nick, mail);
+
+        this.userRepository.saveUser(user);        
+    }
+
+    void deleteUser(User user){
+
+        this.userRepository.deleteUser(user);
+    }
+
+    User getUser(String name){
+
+        User user = this.userRepository.getUserByName(name);
+    }
+
+    void updateUser(User user){
+
+        Scanner scanner = new Scanner(System.in); 
+
+        System.out.println("please, write your new full name");
+
+            String name = scanner.nextString();
+
+        System.out.println("please, write your new nick");
+
+            String nick = scanner.nextString();
+
+        System.out.println("please, write your new mail");
+
+            String mail = scanner.nextString();
+
+        user.setName(name);
+        user.setNick(nick);
+        user.setMail(mail);
+
+        this.userRepository.saveUser(user);    
+    }
     
 }

@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 import UserRepository;
 import ReviewRepository;
+import ShowRepository;
 
 public class MainHandler implements ReviewHandler, UserHandler {
 
@@ -19,6 +20,7 @@ public class MainHandler implements ReviewHandler, UserHandler {
 
     private UserRepository userRepository;
     private ReviewRepository reviewRepository;
+    private ShowRepository showRepository;
 
     public getHandler(){
 
@@ -36,13 +38,14 @@ public class MainHandler implements ReviewHandler, UserHandler {
 
         this.userRepository = new UserRepository();
         this.reviewRepository = new ReviewRepository();
+        this.showRepository = new ShowRepository();
     }    
 
 
     //////  HANDLE REVIEWS ///////
 
 
-    void createReview(User user){
+    public void createReview(User user){
 
         Scanner scanner = new Scanner(System.in); 
 
@@ -64,19 +67,19 @@ public class MainHandler implements ReviewHandler, UserHandler {
         this.reviewRepository.saveReview(review);
     }
 
-    ArrayList<Review> getReviews(){
+    public ArrayList<Review> getReviews(){
 
         ArrayList<Review> reviews = this.reviewRepository.getReviews();
 
         return reviews;
     }
 
-    void deleteReview(Review review){
+    public void deleteReview(Review review){
 
         this.reviewRepository.deleteReview(review);
     }
 
-    void voteReview(Review review, User user, Score score){
+    public void voteReview(Review review, User user, Score score){
 
         review.addUserReview(user, score);
     }
@@ -87,7 +90,7 @@ public class MainHandler implements ReviewHandler, UserHandler {
 
 
 
-    void createUser(){
+    public void createUser(){
 
         Scanner scanner = new Scanner(System.in); 
 
@@ -108,17 +111,17 @@ public class MainHandler implements ReviewHandler, UserHandler {
         this.userRepository.saveUser(user);        
     }
 
-    void deleteUser(User user){
+    public void deleteUser(User user){
 
         this.userRepository.deleteUser(user);
     }
 
-    User getUser(String name){
+    public User getUser(String name){
 
         User user = this.userRepository.getUserByName(name);
     }
 
-    void updateUser(User user){
+    public void updateUser(User user){
 
         Scanner scanner = new Scanner(System.in); 
 
@@ -139,6 +142,106 @@ public class MainHandler implements ReviewHandler, UserHandler {
         user.setMail(mail);
 
         this.userRepository.saveUser(user);    
+    }
+
+
+    /////// HANDLE SHOWS //////////
+
+
+    public void createPunctualShow(){
+
+        Scanner scanner = new Scanner(System.in); 
+
+        System.out.println("please, give a title to the show");
+
+            String title = scanner.nextString();
+
+        System.out.println("please, give a cathegory to the show among 'concierto, monologo, obra de teatro'");
+
+            String cathegory = scanner.nextString();
+
+        System.out.println("please, give a description to the show");
+
+            String desccription = scanner.nextString();
+
+        System.out.println("please, give a location capacity");
+
+            Int locationCapacity = scanner.nextInt();
+
+        System.out.println("please, give a date to the show");
+
+            String date = scanner.nextString();
+
+        PunctualShow punctualShow = new PunctualShow(title, cathegory, description, locationCapacity, date);
+
+        this.showRepository.saveShow(punctualShow);
+    }
+
+    
+    public void createSeasonShow(){
+
+        Scanner scanner = new Scanner(System.in); 
+
+        System.out.println("please, give a title to the show");
+
+            String title = scanner.nextString();
+
+        System.out.println("please, give a cathegory to the show among 'concierto, monologo, obra de teatro'");
+
+            String cathegory = scanner.nextString();
+
+        System.out.println("please, give a description to the show");
+
+            String desccription = scanner.nextString();
+
+        System.out.println("please, give a location capacity");
+
+            Int locationCapacity = scanner.nextInt();
+
+        System.out.println("please, give a day of the week to the show");
+
+            String date = scanner.nextString();
+
+        SeasonShow seasonShow = new SeasonShow(title, cathegory, description, locationCapacity, date);
+
+        this.showRepository.saveShow(seasonShow);
+    }
+
+
+    public void createMultiplePassShow(){
+
+        Scanner scanner = new Scanner(System.in); 
+
+        System.out.println("please, give a title to the show");
+
+            String title = scanner.nextString();
+
+        System.out.println("please, give a cathegory to the show among 'concierto, monologo, obra de teatro'");
+
+            String cathegory = scanner.nextString();
+
+        System.out.println("please, give a description to the show");
+
+            String desccription = scanner.nextString();
+
+        System.out.println("please, give a location capacity");
+
+            Int locationCapacity = scanner.nextInt();
+
+        System.out.println("please, give give a first date to the show; you will be able to add dates later");
+
+            String date = scanner.nextString();
+
+        MultiplePassShow multiplePassShow = new MultiplePassShow(title, cathegory, description, locationCapacity, date);
+
+        this.showRepository.saveShow(multiplePassShow);
+    }
+
+    public ArrayList<Show> getShows(){
+
+        ArrayList<Show> shows = this.showRepository.getShows();
+
+        return shows;
     }
     
 }

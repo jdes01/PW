@@ -13,13 +13,29 @@ import ReviewRepository;
 
 public class MainHandler extends ReviewHandler, UserHandler {
 
+    private static final MainHandler mainHandler;
 
-    public MainHandler(){
+    //inject repositories
 
-        //inject repositories
+    private UserRepository userRepository;
+    private ReviewRepository reviewRepository;
 
-        private UserRepository userRepository;
-        private ReviewRepository reviewRepository;
+    public getHandler(){
+
+        if (this.mainHandler == null) {
+ 
+            MainHandler mainHandler = new MainHandler(); 
+            
+            return mainHandler;
+        }
+
+        return this.mainHandler;
+    }
+
+    private MainHandler(){
+
+        this.userRepository = new UserRepository();
+        this.reviewRepository = new ReviewRepository();
     }    
 
 

@@ -11,7 +11,7 @@ import java.util.Scanner;
 import UserRepository;
 import ReviewRepository;
 
-public class MainHandler extends ReviewHandler, UserHandler {
+public class MainHandler implements ReviewHandler, UserHandler {
 
     private static final MainHandler mainHandler;
 

@@ -1,7 +1,14 @@
 package Repository;
 
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import org.json.JSONObject;
@@ -13,33 +20,71 @@ public class UserRepository {
 	
 	
     public void saveUser(User user) throws IOException {
-        JSONObject object = new JSONObject();
-        object.put("nick", user.getNick());
-        object.put("name", user.getName());
-        object.put("mail", user.getMail());
-        
         try {
-	        file = new FileWriter("./users.txt");
-	        file.write(object.toString());
-        } catch(IOException error) {
+        	FileOutputStream file = new FileOutputStream(new File("users.txt"));
+        	ObjectOutputStream output = new ObjectOutputStream(file);
+        	
+        	output.writeObject(user);
+        	
+        	output.close();
+        	file.close();
+        } catch (FileNotFoundException error) {
         	error.printStackTrace();
-        } finally {
-        	try {
-        		file.flush();
-        		file.close();
-        	} catch(IOException error) {
-        		error.printStackTrace();
-        	}
+        } catch (IOException error) {
+        	error.printStackTrace();
         }
     }
     
-    public ArrayList<User> getUsers() {
-    	return null;
+    public ArrayList<User> getUsers() throws EOFException, ClassNotFoundException {
+    	ArrayList<User> users = null;
+    	
+    	try {
+	    	FileInputStream file = new FileInputStream(new File("users.txt"));
+	    	ObjectInputStream input = new ObjectInputStream(file);
+	    	
+	    	while(true) {
+	    		try {
+	    			users.add((User) input.readObject());
+	    		} catch (EOFException error) {
+	    			return users;
+	    		} catch (ClassNotFoundException error) {
+	    			error.printStackTrace();
+	    		}
+	    	}
+    	} catch (FileNotFoundException error) {
+        	error.printStackTrace();
+        } catch (IOException error) {
+        	error.printStackTrace();
+        }
+    	
+    	return users;
 	}
     
     public void deleteUser(User user) {}
     
     public User getUserByName(String name) {
+    	try {
+	    	FileInputStream file = new FileInputStream(new File("users.txt"));
+	    	ObjectInputStream input = new ObjectInputStream(file);
+	    	
+	    	while(true) {
+	    		try {
+	    			User user = (User) input.readObject();
+	    			if(user.getName() == name) {
+	    				return user;
+	    			}
+;	    		} catch (EOFException error) {
+	    			return null;
+	    		} catch (ClassNotFoundException error) {
+	    			error.printStackTrace();
+	    		}
+	    	}
+    	} catch (FileNotFoundException error) {
+        	error.printStackTrace();
+        } catch (IOException error) {
+        	error.printStackTrace();
+        }
+    	
 		return null;
 	}
 }

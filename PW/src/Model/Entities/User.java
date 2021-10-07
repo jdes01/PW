@@ -1,11 +1,11 @@
-package Model;
+package Model.Entities;
 
 /**
  * User
  */
 public class User {
 
-    private String nick
+    private String nick;
 
     private String name;
 

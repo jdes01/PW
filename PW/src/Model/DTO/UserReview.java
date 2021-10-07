@@ -1,6 +1,6 @@
 package Model.DTO;
 
-import Model.User;
+import Model.Entities.User;
 public class UserReview {
     
     private User user;

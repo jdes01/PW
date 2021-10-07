@@ -9,16 +9,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONObject;
 import Model.Entities.User;
 
 public class UserRepository {
     
-	private static FileWriter file;
-	
-	
     public void saveUser(User user) throws IOException {
         try {
         	FileOutputStream file = new FileOutputStream(new File("users.txt"));
@@ -35,7 +34,8 @@ public class UserRepository {
         }
     }
     
-    public ArrayList<User> getUsers() throws EOFException, ClassNotFoundException {
+    @SuppressWarnings("null")
+	public ArrayList<User> getUsers() throws EOFException, ClassNotFoundException {
     	ArrayList<User> users = null;
     	
     	try {
@@ -46,8 +46,12 @@ public class UserRepository {
 	    		try {
 	    			users.add((User) input.readObject());
 	    		} catch (EOFException error) {
+	    			input.close();
+	    			file.close();
 	    			return users;
 	    		} catch (ClassNotFoundException error) {
+	    			input.close();
+	    			file.close();
 	    			error.printStackTrace();
 	    		}
 	    	}
@@ -60,7 +64,17 @@ public class UserRepository {
     	return users;
 	}
     
-    public void deleteUser(User user) {}
+    public void deleteUser(User user) throws ClassNotFoundException, IOException {
+    	ArrayList<User> users = null;
+    	try {
+    		 users = getUsers();
+    	} catch (ClassNotFoundException error) {
+    		error.printStackTrace();
+    	}
+    	
+    	users.remove(user);
+    	writeObjectsToFile("users.txt", users);
+    }
     
     public User getUserByName(String name) {
     	try {
@@ -87,4 +101,21 @@ public class UserRepository {
     	
 		return null;
 	}
+
+	private static void writeObjectsToFile(String filename, ArrayList<User> objects) throws IOException {
+        OutputStream os = null;
+        try {
+          os = new FileOutputStream(filename);
+          @SuppressWarnings("resource")
+		ObjectOutputStream oos = new ObjectOutputStream(os);
+          for (Object object : objects) {
+            oos.writeObject(object);
+          }
+          oos.flush();
+        } finally {
+          if (os != null) {
+            os.close();
+          }
+        }
+      }
 }

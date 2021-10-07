@@ -5,13 +5,18 @@ package Model.Entities;
  */
 public class User {
 
+<<<<<<< HEAD:PW/src/Model/Entities/User.java
     private String nick;
 
+=======
+>>>>>>> 9e7a071c1da576755a950cf8c55e6240f147a90e:PW/src/Model/Entities/User/User.java
     private String name;
+
+    private String nick
 
     private String mail;
 
-    public User(String name){
+    public User(String name, String nick, String mail){
 
         this.name = name;
     }
@@ -24,7 +29,7 @@ public class User {
         return this.name;
     }
 
-    public String getMail() {
+    public String getMail(){
         return this.mail;
     }
 
@@ -36,7 +41,7 @@ public class User {
         this.name = name;
     }
 
-    public void setMail(String mail) {
+    public void setMail(String mail){
         this.mail = mail;
     }
 }

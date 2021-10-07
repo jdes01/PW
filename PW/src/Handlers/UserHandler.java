@@ -1,8 +1,4 @@
-package Model;
-
-import Model.User;
-
-public class UserHandler {
+public interface UserHandler {
     
     void createUser(String name);
 

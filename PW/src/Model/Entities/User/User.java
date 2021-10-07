@@ -1,18 +1,13 @@
-package Model.Entities;
+package Model.Entities.User;
 
 /**
  * User
  */
 public class User {
 
-<<<<<<< HEAD:PW/src/Model/Entities/User.java
-    private String nick;
-
-=======
->>>>>>> 9e7a071c1da576755a950cf8c55e6240f147a90e:PW/src/Model/Entities/User/User.java
     private String name;
 
-    private String nick
+    private String nick;
 
     private String mail;
 

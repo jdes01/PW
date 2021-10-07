@@ -5,16 +5,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.List;
 
-import org.json.JSONObject;
-import Model.Entities.User;
+import Model.Entities.User.User;
 
 public class UserRepository {
     
@@ -79,7 +76,8 @@ public class UserRepository {
     public User getUserByName(String name) {
     	try {
 	    	FileInputStream file = new FileInputStream(new File("users.txt"));
-	    	ObjectInputStream input = new ObjectInputStream(file);
+	    	@SuppressWarnings("resource")
+			ObjectInputStream input = new ObjectInputStream(file);
 	    	
 	    	while(true) {
 	    		try {

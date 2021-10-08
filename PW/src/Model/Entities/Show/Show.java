@@ -1,3 +1,7 @@
+import MultipleDate;
+import PeriodicDate;
+import SingleDate;
+
 public class Show {
     
     private String title;
@@ -9,12 +13,20 @@ public class Show {
     private Int locationCapacity;
 
 
-    public Show(String title, String cathegory, String description, Int locationCapacity){
+    public Show(String title, String cathegory, String description, Int locationCapacity, DateInterface date){
 
-        this.title            = title;
-        this.cathegory        = cathegory;
-        this.description      = description;
-        this.locationCapacity = locationCapacity;
+        if (date instanceof SingleDate){ 
+            
+            PunctualShow punctualShow = new PunctualShow(String title, String cathegory, String description, Int locationCapacity, DateInterface date); 
+        
+        } else if (date instanceof PeriodicDate) {
+
+            SeasonShow seasonShow = new SeasonShow(String title, String cathegory, String description, Int locationCapacity, DateInterface date); 
+        
+        } else if (date instanceof MultipleDate) {
+
+            MultiplePassShow multiplePassShow = new MultiplePassShow(String title, String cathegory, String description, Int locationCapacity, DateInterface date);
+        }
     }
 
 

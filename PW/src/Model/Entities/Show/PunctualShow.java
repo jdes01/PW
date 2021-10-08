@@ -5,7 +5,10 @@ public class PunctualShow {
 
     public PunctualShow(String title, String cathegory, String description, Int locationCapacity, String date){
 
-        super(title, cathegory, description, locationCapacity);
+        this.title            = title;
+        this.cathegory        = cathegory;
+        this.description      = description;
+        this.locationCapacity = locationCapacity;
 
         this.date = date;
     }

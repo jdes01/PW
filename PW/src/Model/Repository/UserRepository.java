@@ -9,22 +9,7 @@ public class UserRepository {
 
     private File userFile = new File("userFile.json");
     
-    public void saveUser(User user){
-
-        JSONObject userList = new JSONObject(); 
-
-        userList.put("name", user.name);
-
-        //todo add all atributes
-
-        userFile.createNewFile();  
-
-        FileWriter fileWriter = new FileWriter(userFile);  
-
-        fileWriter.write(userFile.toJSONString());  
-        fileWriter.flush();  
-        fileWriter.close();  
-    }
+    public void saveUser(User user){}
 
     public ArrayList<User> getUsers(){} //TODO
 

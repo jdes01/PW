@@ -6,7 +6,14 @@ import Model.Programacion;
 
 import java.util.Date;
 
+/**
+ * 
+ * @author kan0
+ *
+ */
+
 public class Programa {
+	
 
 	public static void main(String [] args) {
 

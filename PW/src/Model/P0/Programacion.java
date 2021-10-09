@@ -6,25 +6,48 @@ import Model.Espectaculo.categoria;
 import java.util.ArrayList;
 import java.util.Date;
  
+/**
+ * 
+ * @author kan0
+ *
+ */
 
 public class Programacion {
 
 	private ArrayList<Espectaculo> Espectaculos;
+	
+/**
+ * 	
+ */
 	
 	public Programacion() {
 
 		this.Espectaculos = new ArrayList<Espectaculo>();
 	}
 	
+/**
+ * 	
+ * @param espectaculo
+ */
+	
 	public void programarEspectaculo(Espectaculo espectaculo) {
         
 		this.Espectaculos.add(espectaculo);
 	}
 	
+/**
+ * 	
+ * @return
+ */
+	
 	public ArrayList<Espectaculo> verEspectaculos(){
 
 		return this.Espectaculos;
 	}
+	
+/**
+ * 	
+ */
 	
 	public void imprimirEventos() {
 
@@ -33,6 +56,11 @@ public class Programacion {
 			System.out.println(this.Espectaculos.get(i).toString());			
 		}
 	}
+	
+/**
+ * 	
+ * @return
+ */
 	
 	public ArrayList<String> verTitulos(){
 
@@ -46,6 +74,12 @@ public class Programacion {
 		return titulos;
 	}
 	
+/**
+ * 	
+ * @param titulo
+ * @return
+ */
+	
 	public boolean eliminarEspectaculo(String titulo) {
 
 		for(int i = 0; i < this.Espectaculos.size(); i++) {
@@ -58,6 +92,12 @@ public class Programacion {
 		}
 		return false;
 	}
+	
+/**
+ * 
+ * @param fecha
+ * @return
+ */
 	
 	public ArrayList<Espectaculo> verProximosEspectaculos(Date fecha){
 
@@ -76,6 +116,12 @@ public class Programacion {
 		}
 		return espectaculos;
 	}
+
+/**
+ * 	
+ * @param categoria
+ * @return
+ */
 	
 	public ArrayList<Espectaculo> verEspectaculosDisponibles(categoria categoria){
 

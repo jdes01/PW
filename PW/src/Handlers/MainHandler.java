@@ -12,7 +12,10 @@ import UserRepository;
 import ReviewRepository;
 import ShowRepository;
 
-public class MainHandler implements ReviewHandler, UserHandler {
+import java.text.SimpleDateFormat;  
+import java.util.Date;  
+
+public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface, ShowHandlerInterface {
 
     private static final MainHandler mainHandler;
 
@@ -148,7 +151,7 @@ public class MainHandler implements ReviewHandler, UserHandler {
     /////// HANDLE SHOWS //////////
 
 
-    public void createPunctualShow(){
+    public void createShow(){
 
         Scanner scanner = new Scanner(System.in); 
 
@@ -168,74 +171,44 @@ public class MainHandler implements ReviewHandler, UserHandler {
 
             Int locationCapacity = scanner.nextInt();
 
-        System.out.println("please, give a date to the show");
+        System.out.println("please, type a date (format = dd/MM/yyyy)");
 
-            String date = scanner.nextString();
+            String stringDate = scanner.nextString();
 
-        PunctualShow punctualShow = new PunctualShow(title, cathegory, description, locationCapacity, date);
+            Date date = new SimpleDateFormat("dd/MM/yyyy").parse(stringDate);  
 
-        this.showRepository.saveShow(punctualShow);
+        System.out.println("please, type 1 if you want a single date, 2 if you want a periodic date or 3 if you want a multiple date");
+
+            String option = scanner.nextString();
+
+        if(option === "1"){
+
+            SingleDate singleDate = new SingleDate(date);
+
+            Show show = new Show(title, cathegory, description, locationCapacity, singleDate);
+
+        } else if (option === "2"){
+
+            PeriodicDate periodicDate = new PeriodicDate(date);
+
+            Show show = new Show(title, cathegory, description, locationCapacity, periodicDate);
+
+        } else if (option === "3"){
+
+            MultipleDate multipleDate = new MultipleDate(date);
+
+            Show show = new Show(title, cathegory, description, locationCapacity, multipleDate);
+
+        } else {
+
+            System.out.println("wrong format");
+
+            return 0;
+        }
+
+        this.showRepository.saveShow(show);
     }
 
-    
-    public void createSeasonShow(){
-
-        Scanner scanner = new Scanner(System.in); 
-
-        System.out.println("please, give a title to the show");
-
-            String title = scanner.nextString();
-
-        System.out.println("please, give a cathegory to the show among 'concierto, monologo, obra de teatro'");
-
-            String cathegory = scanner.nextString();
-
-        System.out.println("please, give a description to the show");
-
-            String desccription = scanner.nextString();
-
-        System.out.println("please, give a location capacity");
-
-            Int locationCapacity = scanner.nextInt();
-
-        System.out.println("please, give a day of the week to the show");
-
-            String date = scanner.nextString();
-
-        SeasonShow seasonShow = new SeasonShow(title, cathegory, description, locationCapacity, date);
-
-        this.showRepository.saveShow(seasonShow);
-    }
-
-
-    public void createMultiplePassShow(){
-
-        Scanner scanner = new Scanner(System.in); 
-
-        System.out.println("please, give a title to the show");
-
-            String title = scanner.nextString();
-
-        System.out.println("please, give a cathegory to the show among 'concierto, monologo, obra de teatro'");
-
-            String cathegory = scanner.nextString();
-
-        System.out.println("please, give a description to the show");
-
-            String desccription = scanner.nextString();
-
-        System.out.println("please, give a location capacity");
-
-            Int locationCapacity = scanner.nextInt();
-
-        System.out.println("please, give give a first date to the show; you will be able to add dates later");
-
-            String date = scanner.nextString();
-
-        MultiplePassShow multiplePassShow = new MultiplePassShow(title, cathegory, description, locationCapacity, date);
-
-        this.showRepository.saveShow(multiplePassShow);
-    }
 
     public ArrayList<Show> getShows(){
 

@@ -1,4 +1,4 @@
-public interface ShowHandler {
+public interface ShowHandlerInterface {
     
     void createPunctualShow();
 

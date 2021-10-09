@@ -1,4 +1,4 @@
-public interface ReviewHandler {
+public interface ReviewHandlerInterface {
 
     void createReview(User user);
 

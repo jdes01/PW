@@ -1,19 +1,20 @@
 public class PunctualShow {
+
+    private String title;
     
-    private String date; // single date
+    private String cathegory; // concierto, monologo, obra de teatro
 
+    private String description;
 
-    public PunctualShow(String title, String cathegory, String description, Int locationCapacity, String date){
+    private Int locationCapacity;
+    
+    
+    private SingleDate singleDate;
 
-        this.title            = title;
-        this.cathegory        = cathegory;
-        this.description      = description;
-        this.locationCapacity = locationCapacity;
+    public PunctualShow(String title, String cathegory, String description, Int locationCapacity, SingleDate singleDate){
 
-        this.date = date;
+        super(title, cathegory, description, locationCapacity);
+
+        this.singleDate = singleDate;
     }
-
-    public String getDate(){ return this.date; }
-
-    public void setDate(String date){ this.date = date; }
 }

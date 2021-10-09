@@ -1,16 +1,20 @@
 public class MultiplePassShow {
 
-    private ArrayList<String> dates = new ArrayList<String>(); // multiple dates
+    private String title;
+    
+    private String cathegory; // concierto, monologo, obra de teatro
 
-    public PunctualShow(String title, String cathegory, String description, Int locationCapacity, String date){
+    private String description;
+
+    private Int locationCapacity;
+    
+
+    private MultipleDate multipleDate;
+
+    public PunctualShow(String title, String cathegory, String description, Int locationCapacity, MultipleDate multipleDate){
 
         super(title, cathegory, description, locationCapacity);
 
-        addDate(date);
-    }
-
-    public ArrayList<String> getDates(){ return this.dates; }
-
-    public void addDate(String date){ this.dates.add(date); }
-    
+        this.multipleDate = multipleDate;
+    }    
 }

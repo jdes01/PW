@@ -1,16 +1,20 @@
-public class SeasonShow extends Show {
+public class SeasonShow {
 
-    private String weekDay; // same date every week
+    private String title;
+    
+    private String cathegory; // concierto, monologo, obra de teatro
 
-    public PunctualShow(String title, String cathegory, String description, Int locationCapacity, String weekDay){
+    private String description;
+
+    private Int locationCapacity;
+    
+
+    private PeriodicDate periodicDate;
+
+    public PunctualShow(String title, String cathegory, String description, Int locationCapacity, PeriodicDate periodicDate){
 
         super(title, cathegory, description, locationCapacity);
 
-        this.weekDay = weekDay;
-    }
-
-    public String getWeekDay(){ return this.weekDay; }
-
-    public String setWeekDay(String weekDay){ this.weekDay = weekDay; }
-    
+        this.periodicDate = periodicDate;
+    }    
 }

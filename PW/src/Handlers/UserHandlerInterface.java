@@ -1,4 +1,4 @@
-public interface UserHandler {
+public interface UserHandlerInterface {
     
     void createUser(String name);
 

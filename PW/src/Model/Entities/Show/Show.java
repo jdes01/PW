@@ -4,29 +4,34 @@ import SingleDate;
 
 public class Show {
     
-    private String title;
-    
-    private String cathegory; // concierto, monologo, obra de teatro
+    public Show(String title, String cathegory, String description, Int locationCapacity, SingleDate singleDate){
 
-    private String description;
-
-    private Int locationCapacity;
-
-
-    public Show(String title, String cathegory, String description, Int locationCapacity, DateInterface date){
-
-        if (date instanceof SingleDate){ 
+        this.title            = title;
+        this.cathegory        = cathegory;
+        this.description      = description;
+        this.locationCapacity = locationCapacity;
             
-            PunctualShow punctualShow = new PunctualShow(String title, String cathegory, String description, Int locationCapacity, DateInterface date); 
-        
-        } else if (date instanceof PeriodicDate) {
+        PunctualShow punctualShow = new PunctualShow(String title, String cathegory, String description, Int locationCapacity, SingleDate singleDate); 
+    }
 
-            SeasonShow seasonShow = new SeasonShow(String title, String cathegory, String description, Int locationCapacity, DateInterface date); 
-        
-        } else if (date instanceof MultipleDate) {
+    public Show(String title, String cathegory, String description, Int locationCapacity, PeriodicDate periodicDate){
 
-            MultiplePassShow multiplePassShow = new MultiplePassShow(String title, String cathegory, String description, Int locationCapacity, DateInterface date);
-        }
+        this.title            = title;
+        this.cathegory        = cathegory;
+        this.description      = description;
+        this.locationCapacity = locationCapacity;
+
+        SeasonShow seasonShow = new SeasonShow(String title, String cathegory, String description, Int locationCapacity, PeriodicDate periodicDate); 
+    }
+
+    public Show(String title, String cathegory, String description, Int locationCapacity, MultipleDate multipleDate){
+
+        this.title            = title;
+        this.cathegory        = cathegory;
+        this.description      = description;
+        this.locationCapacity = locationCapacity;
+
+        MultiplePassShow multiplePassShow = new MultiplePassShow(String title, String cathegory, String description, Int locationCapacity, MultipleDate multipleDate);
     }
 
 

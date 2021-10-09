@@ -1,20 +1,17 @@
-public class SeasonShow {
+import Show;
+import PeriodicDate;
 
-    private String title;
-    
-    private String cathegory; // concierto, monologo, obra de teatro
-
-    private String description;
-
-    private Int locationCapacity;
-    
+public class SeasonShow extends Show {
 
     private PeriodicDate periodicDate;
 
-    public PunctualShow(String title, String cathegory, String description, Int locationCapacity, PeriodicDate periodicDate){
+    public PunctualShow(String title, String cathegory, String description, Int capacity, PeriodicDate periodicDate, String firstLocation){
 
-        super(title, cathegory, description, locationCapacity);
+        super(title, cathegory, description, capacity);
+
+        addLocation(firstLocation);
 
         this.periodicDate = periodicDate;
     }    
+
 }

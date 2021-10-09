@@ -1,19 +1,15 @@
-public class PunctualShow {
+import Show;
+import SingleDate;
 
-    private String title;
-    
-    private String cathegory; // concierto, monologo, obra de teatro
+public class PunctualShow extends Show {
 
-    private String description;
-
-    private Int locationCapacity;
-    
-    
     private SingleDate singleDate;
 
-    public PunctualShow(String title, String cathegory, String description, Int locationCapacity, SingleDate singleDate){
+    public PunctualShow(String title, String cathegory, String description, Int capacity, SingleDate singleDate, String firstLocation){
 
-        super(title, cathegory, description, locationCapacity);
+        super(title, cathegory, description, capacity);
+
+        addLocation(firstLocation);
 
         this.singleDate = singleDate;
     }

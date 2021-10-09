@@ -1,39 +1,26 @@
-import MultipleDate;
-import PeriodicDate;
-import SingleDate;
-
 public class Show {
+
+    private String title;
     
-    public Show(String title, String cathegory, String description, Int locationCapacity, SingleDate singleDate){
+    private String cathegory; // concierto, monologo, obra de teatro
 
-        this.title            = title;
-        this.cathegory        = cathegory;
-        this.description      = description;
-        this.locationCapacity = locationCapacity;
-            
-        PunctualShow punctualShow = new PunctualShow(String title, String cathegory, String description, Int locationCapacity, SingleDate singleDate); 
-    }
+    private String description;
 
-    public Show(String title, String cathegory, String description, Int locationCapacity, PeriodicDate periodicDate){
+    private Int capacity;
 
-        this.title            = title;
-        this.cathegory        = cathegory;
-        this.description      = description;
-        this.locationCapacity = locationCapacity;
+    private ArrayList<LocationAndAvailableTickets> locationsAndAvailableTickets = new LocationAndAvailableTickets<>();
 
-        SeasonShow seasonShow = new SeasonShow(String title, String cathegory, String description, Int locationCapacity, PeriodicDate periodicDate); 
-    }
+    private ArrayList<Review> showReviews = new ArrayList<Review>();
 
-    public Show(String title, String cathegory, String description, Int locationCapacity, MultipleDate multipleDate){
 
-        this.title            = title;
-        this.cathegory        = cathegory;
-        this.description      = description;
-        this.locationCapacity = locationCapacity;
+    public Show(String title, String cathegory, String description, Int capacity){
 
-        MultiplePassShow multiplePassShow = new MultiplePassShow(String title, String cathegory, String description, Int locationCapacity, MultipleDate multipleDate);
-    }
-
+        this.title        = title;
+        this.cathegory    = cathegory;
+        this.description  = description;
+        this.capacity     = capacity;
+    }  
+    
 
     public String getTitle(){ return this.title; }
 	
@@ -41,7 +28,9 @@ public class Show {
 	
 	public String getDescription(){ return this.description; }
 
-    public Int getLocationCapacity(){ return this.locationCapacity; }
+    public Int getCapacity(){ return this.capacity; }
+
+    public ArrayList<LocationAndAvailableTickets> getLocationAndAvailableTickets(){ return locationsAndAvailableTickets; }
 	
 	
 	
@@ -51,5 +40,18 @@ public class Show {
 	
 	public void setDescription(String description){ this.description = description; }
 
-    public void setLocationCapacity(Int locationCapacity){ this.locationCapacity = locationCapacity; }
+    public void setCapacity(Int capacity){ this.capacity = capacity; }
+
+    public void addLocation(String location){
+
+        LocationAndAvailableTickets locationAndAbailableTickets = new LocationAndAvailableTickets(location, this.capacity);
+
+        this.locationsAndAvailableTickets.add(locationAndAbailableTickets);
+    }
+
+    public void addShowReview(Review review){
+
+        this.showReviews.add(review);
+    }
+      
 }

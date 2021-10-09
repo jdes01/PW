@@ -1,20 +1,17 @@
-public class MultiplePassShow {
+import Show;
+import MultipleDate;
 
-    private String title;
-    
-    private String cathegory; // concierto, monologo, obra de teatro
-
-    private String description;
-
-    private Int locationCapacity;
-    
+public class MultiplePassShow extends Show {
 
     private MultipleDate multipleDate;
 
-    public PunctualShow(String title, String cathegory, String description, Int locationCapacity, MultipleDate multipleDate){
+    public PunctualShow(String title, String cathegory, String description, Int capacity, MultipleDate multipleDate, String firstLocation){
 
-        super(title, cathegory, description, locationCapacity);
+        super(title, cathegory, description, capacity);
+
+        addLocation(firstLocation);
 
         this.multipleDate = multipleDate;
-    }    
+    }   
+
 }

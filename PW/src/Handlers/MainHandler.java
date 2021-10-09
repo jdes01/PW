@@ -70,6 +70,7 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
         this.reviewRepository.saveReview(review);
     }
 
+
     public ArrayList<Review> getReviews(){
 
         ArrayList<Review> reviews = this.reviewRepository.getReviews();
@@ -77,10 +78,12 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
         return reviews;
     }
 
+
     public void deleteReview(Review review){
 
         this.reviewRepository.deleteReview(review);
     }
+
 
     public void voteReview(Review review, User user, Score score){
 
@@ -114,15 +117,18 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
         this.userRepository.saveUser(user);        
     }
 
+
     public void deleteUser(User user){
 
         this.userRepository.deleteUser(user);
     }
 
+
     public User getUser(String name){
 
         User user = this.userRepository.getUserByName(name);
     }
+    
 
     public void updateUser(User user){
 
@@ -167,15 +173,19 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 
             String desccription = scanner.nextString();
 
-        System.out.println("please, give a location capacity");
+        System.out.println("please, give a capacity");
 
-            Int locationCapacity = scanner.nextInt();
+            Int capacity = scanner.nextInt();
 
         System.out.println("please, type a date (format = dd/MM/yyyy)");
 
             String stringDate = scanner.nextString();
 
             Date date = new SimpleDateFormat("dd/MM/yyyy").parse(stringDate);  
+
+            System.out.println("please, type the first location");
+
+            String firstLocation = scanner.nextString();
 
         System.out.println("please, type 1 if you want a single date, 2 if you want a periodic date or 3 if you want a multiple date");
 
@@ -185,19 +195,19 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 
             SingleDate singleDate = new SingleDate(date);
 
-            Show show = new Show(title, cathegory, description, locationCapacity, singleDate);
+            Show createdShow = ShowFactory.createShow(title, cathegory, description, capacity, singleDate, firstLocation);
 
         } else if (option === "2"){
 
             PeriodicDate periodicDate = new PeriodicDate(date);
 
-            Show show = new Show(title, cathegory, description, locationCapacity, periodicDate);
+            Show createdShow = ShowFactory.createShow(title, cathegory, description, capacity, periodicDate, firstLocation);
 
         } else if (option === "3"){
 
             MultipleDate multipleDate = new MultipleDate(date);
 
-            Show show = new Show(title, cathegory, description, locationCapacity, multipleDate);
+            Show createdShow = ShowFactory.createShow(title, cathegory, description, capacity, multipleDate, firstLocation);
 
         } else {
 
@@ -206,7 +216,7 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
             return 0;
         }
 
-        this.showRepository.saveShow(show);
+        this.showRepository.saveShow(createdShow);
     }
 
 
@@ -216,5 +226,28 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 
         return shows;
     }
+
+
+    void cancelShow(Show show);
+
+    void cancelAllShows();
+
+    void updateShow();
+
+    void showTicketsForShowSesion(Show show, Int sesion); //using dates array (in case of multiple-dates or periodic-date shows), print date, location and tickets
+    
+    void getShowByTitle(String title);
+
+    //Búsqueda de próximos espectáculos con entradas disponibles, indicando o no una categoría específica 
+
+    void reviewAShow(Show show);
+
+    ArrayList<Review> getShowReviewsByName(String name);
+
+    void deleteReview(User user, Show show);
+
+    void rateShowReview(Review review);
+
+
     
 }

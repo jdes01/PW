@@ -6,6 +6,11 @@ import Model.Entities.Review.Review;
 import Model.Entities.Show.Show;
 import Model.Entities.User.User;
 
+/**
+ * Interfaz publica del handler del show
+ * @author Javier De Santiago Palomino
+ *
+ */
 
 public interface ShowHandlerInterface {
     

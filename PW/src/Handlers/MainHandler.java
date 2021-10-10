@@ -124,9 +124,9 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 
 	/**
 	 * Envia la review
-	 * @param review
-	 * @param user
-	 * @param score
+	 * @param review Review
+	 * @param user Usuario
+	 * @param score Score
 	 */
     public void voteReview(Review review, User user, Score score){
 
@@ -172,6 +172,10 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
         }
     }
 
+/**
+ * Funcion publica para borrar usuarios
+ * @param user Usuario
+ */
 
     public void deleteUser(User user){
 
@@ -181,7 +185,12 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 			e.printStackTrace();
 		}
     }
-
+    
+/**
+ * Getter de usuarios
+ * @param name Nombre
+ * @return Retorna el usuario
+ */
 
     public User getUser(String name){
 
@@ -189,7 +198,11 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
         
         return user;
     }
-    
+   
+/**
+ * Funcion publica para actualizar usuarios
+ * @param user Usuarios
+ */
 
     public void updateUser(User user){
 
@@ -229,6 +242,10 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 
     /////// HANDLE SHOWS //////////
 
+/**
+ * Funcion publica para crear shows
+ * @return Retorna el show creado
+ */
 
     public Show createShow(){
 
@@ -332,6 +349,11 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
         this.showRepository.cancelAllShows();
     }
 
+/**
+ * Funcion para actualizar el show
+ * @param show Show
+ */
+    
     void updateShow(Show show){
 
         Scanner scanner = new Scanner(System.in); 
@@ -369,8 +391,20 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
         }
     }
 
+/**
+ * Funcion para enseñar tickets de la sesion del show
+ * @param show Show
+ * @param sesion Sesion
+ */
+    
     void showTicketsForShowSesion(Show show, Integer sesion) {
 	} //using dates array (in case of multiple-dates or periodic-date shows), print date, location and tickets
+    
+/**
+ * Funcion publica para obtener el show por su titulo
+ * @param title Titulo
+ * @return Retorna el titulo
+ */
     
     public Show getShowByTitle(String title){
 
@@ -379,6 +413,12 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 
     //Búsqueda de próximos espectáculos con entradas disponibles, indicando o no una categoría específica 
 
+/**
+ * Funcion pueblica para poner una review al show
+ * @param show Show
+ * @param user Usuario
+ */
+    
     public void reviewAShow(Show show, User user){
 
         Review createdReview = createReview(user);
@@ -386,21 +426,47 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
         show.addShowReview(createdReview);
     }
 
+/**
+ * Funcion publica para obtener reviews de show por su nombre
+ * @param name Nombre
+ */
+    
     public ArrayList<Review> getShowReviewsByName(String name) {
 		return null;
 	}
 
+/**
+ * Funcion publica para borrar reviews
+ * @param user Usuario
+ * @param show Shows
+ */
+    
     public void deleteReview(User user, Show show) {
 	}
 
+/**
+ * Funcion publica para poner una nota al show
+ * @param review Review
+ */
+    
     public void rateShowReview(Review review) {
 	}
 
+/**
+ * Funcion publica para actualizar los shows
+ */
+    
 	@Override
 	public void updateShow() {
 		// TODO Auto-generated method stub
 		
 	}
+	
+/**
+ * Funcion publica para enseñar los tickets de la sesion
+ * @param show Show
+ * @param sesion Sesion
+ */
 
 	@Override
 	public void showTicketsForShowSesion(Show show, int sesion) {
@@ -408,12 +474,22 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 		
 	}
 
+/**
+ * Funcion publica para crear usuarios
+ * @param name Nombre del usuario
+ */
+	
 	@Override
 	public void createUser(String name) {
 		// TODO Auto-generated method stub
 		
 	}
 
+/**
+ * Getter de usuarios
+ * @param id Id del usuario
+ */
+	
 	@Override
 	public User getUser(Integer id) {
 		// TODO Auto-generated method stub

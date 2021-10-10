@@ -6,7 +6,14 @@ import Model.Programacion;
 
 import java.util.Date;
 
+/**
+ * Clase programa 
+ * @author David Salcedo Sanchez
+ *
+ */
+
 public class Programa {
+	
 
 	public static void main(String [] args) {
 

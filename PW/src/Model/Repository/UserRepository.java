@@ -13,8 +13,20 @@ import java.util.ArrayList;
 
 import Model.Entities.User.User;
 
+/**
+ * Clase repositorio de los usuarios
+ * @author Javier De Santiago Palomino
+ *
+ */
+
 public class UserRepository {
-    
+
+/**
+ * 	Funcion publica que guarda el usuario
+ * @param user El Usuario que se guarda
+ * @throws IOException Signals that an I/O of some sort has occured
+ */
+	
     public void saveUser(User user) throws IOException {
         try {
         	FileOutputStream file = new FileOutputStream(new File("users.txt"));
@@ -30,6 +42,17 @@ public class UserRepository {
         	error.printStackTrace();
         }
     }
+
+/**
+ * Getter de usuarios
+ * @return Retorna los usuarios
+ * @throws EOFException Signals that an end of file or end of stream has been reached unexpectedly during input
+ * @throws ClassNotFoundException Thrown when an application tries to load in a class through its string name using:<p>
+
+    The forName method in class Class<p>
+    The findSystemClass method in class ClassLoader<p>
+    The loadClass method in class ClassLoader
+ */
     
     @SuppressWarnings("null")
 	public ArrayList<User> getUsers() throws EOFException, ClassNotFoundException {
@@ -60,7 +83,16 @@ public class UserRepository {
     	
     	return users;
 	}
-    
+/**
+ * Funcion pública que borra el usuario
+ * @param user Usuario
+ * @throws ClassNotFoundException Thrown when an application tries to load in a class through its string name using:<p>
+
+    The forName method in class Class<p>
+    The findSystemClass method in class ClassLoader<p>
+    The loadClass method in class ClassLoader
+ * @throws IOException Signals that an I/O of some sort has occured
+ */
     public void deleteUser(User user) throws ClassNotFoundException, IOException {
     	ArrayList<User> users = null;
     	try {
@@ -72,6 +104,12 @@ public class UserRepository {
     	users.remove(user);
     	writeObjectsToFile("users.txt", users);
     }
+    
+/**
+ * Funcion publica que obtiene el usuario por el nombre
+ * @param name Nombre del usuario
+ * @return null
+ */
     
     public User getUserByName(String name) {
     	try {
@@ -99,6 +137,13 @@ public class UserRepository {
     	
 		return null;
 	}
+
+/**
+ * Funcion privada que reescribe el fichero cuando borra un objeto
+ * @param filename Nombre del fichero
+ * @param objects Objetos
+ * @throws IOException Signals that an I/O of some sort has occured
+ */
 
 	private static void writeObjectsToFile(String filename, ArrayList<User> objects) throws IOException {
         OutputStream os = null;

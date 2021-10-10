@@ -1,9 +1,12 @@
+package Model.DTO;
+
+import java.util.Date;
+
 public class PeriodicDate implements DateInterface{
 
     private Date date;
 
-    public void PeriodicDate(Date newDate){
-
+    public PeriodicDate(Date newDate){
         this.date = newDate;
     }
 

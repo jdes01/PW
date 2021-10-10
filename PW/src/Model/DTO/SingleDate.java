@@ -1,9 +1,12 @@
+package Model.DTO;
+
+import java.util.Date;
+
 public class SingleDate implements DateInterface {
 
     private Date date;
 
-    public void SingleDate(Date newDate){
-
+    public SingleDate(Date newDate) {
         this.date = newDate;
     }
 

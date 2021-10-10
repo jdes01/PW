@@ -1,3 +1,10 @@
+package Model.Entities.Show;
+
+import java.util.ArrayList;
+
+import Model.DTO.LocationAndAvailableTickets;
+import Model.Entities.Review.Review;
+
 public class Show {
 
     private String title;
@@ -6,14 +13,14 @@ public class Show {
 
     private String description;
 
-    private Int capacity;
+    private Integer capacity;
 
-    private ArrayList<LocationAndAvailableTickets> locationsAndAvailableTickets = new LocationAndAvailableTickets<>();
+    private ArrayList<LocationAndAvailableTickets> locationsAndAvailableTickets = new ArrayList<LocationAndAvailableTickets>();
 
     private ArrayList<Review> showReviews = new ArrayList<Review>();
 
 
-    public Show(String title, String cathegory, String description, Int capacity){
+    public Show(String title, String cathegory, String description, Integer capacity){
 
         this.title        = title;
         this.cathegory    = cathegory;
@@ -28,7 +35,7 @@ public class Show {
 	
 	public String getDescription(){ return this.description; }
 
-    public Int getCapacity(){ return this.capacity; }
+    public Integer getCapacity(){ return this.capacity; }
 
     public ArrayList<LocationAndAvailableTickets> getLocationAndAvailableTickets(){ return locationsAndAvailableTickets; }
 	
@@ -40,7 +47,7 @@ public class Show {
 	
 	public void setDescription(String description){ this.description = description; }
 
-    public void setCapacity(Int capacity){ this.capacity = capacity; }
+    public void setCapacity(Integer capacity){ this.capacity = capacity; }
 
     public void addLocation(String location){
 

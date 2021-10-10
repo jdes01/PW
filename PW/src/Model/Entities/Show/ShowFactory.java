@@ -1,23 +1,30 @@
-import MultipleDate;
-import PeriodicDate;
-import SingleDate;
+package Model.Entities.Show;
 
-import Show;
+import Model.DTO.SingleDate;
+import Model.DTO.MultipleDate;
+import Model.DTO.PeriodicDate;
+import Model.Entities.Show.PunctualShow;
 
 public class ShowFactory {
     
-    static public void createShow(String title, String cathegory, String description, Int locationCapacity, SingleDate singleDate, String firstLocation){
+    static public PunctualShow createShow(String title, String cathegory, String description, Integer locationCapacity, SingleDate singleDate, String firstLocation){
             
-        PunctualShow punctualShow = new PunctualShow(String title, String cathegory, String description, Int locationCapacity, SingleDate singleDate, String firstLocation); 
+        PunctualShow punctualShow = new PunctualShow(title, cathegory, description, locationCapacity, singleDate, firstLocation); 
+        
+        return punctualShow;
     }
 
-    static public void createShow(String title, String cathegory, String description, Int locationCapacity, PeriodicDate periodicDate, String firstLocation){
+    static public SeasonShow createShow(String title, String cathegory, String description, Integer locationCapacity, PeriodicDate periodicDate, String firstLocation){
 
-        SeasonShow seasonShow = new SeasonShow(String title, String cathegory, String description, Int locationCapacity, PeriodicDate periodicDate, String firstLocation); 
+        SeasonShow seasonShow = new SeasonShow(title, cathegory, description, locationCapacity, periodicDate, firstLocation); 
+    
+        return seasonShow;
     }
 
-    static public void createShow(String title, String cathegory, String description, Int locationCapacity, MultipleDate multipleDate, String firstLocation){
+    static public MultiplePassShow createShow(String title, String cathegory, String description, Integer locationCapacity, MultipleDate multipleDate, String firstLocation){
 
-        MultiplePassShow multiplePassShow = new MultiplePassShow(String title, String cathegory, String description, Int locationCapacity, MultipleDate multipleDate, String firstLocation);
+        MultiplePassShow multiplePassShow = new MultiplePassShow(title, cathegory, description, locationCapacity, multipleDate, firstLocation);
+    
+        return multiplePassShow;
     }
 }

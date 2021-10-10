@@ -1,11 +1,12 @@
-import Show;
-import PeriodicDate;
+package Model.Entities.Show;
+
+import Model.DTO.PeriodicDate;
 
 public class SeasonShow extends Show {
 
     private PeriodicDate periodicDate;
 
-    public PunctualShow(String title, String cathegory, String description, Int capacity, PeriodicDate periodicDate, String firstLocation){
+    public SeasonShow(String title, String cathegory, String description, Integer capacity, PeriodicDate periodicDate, String firstLocation){
 
         super(title, cathegory, description, capacity);
 

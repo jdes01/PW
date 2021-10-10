@@ -1,11 +1,12 @@
-import Show;
-import SingleDate;
+package Model.Entities.Show;
+
+import Model.DTO.SingleDate;
 
 public class PunctualShow extends Show {
 
     private SingleDate singleDate;
 
-    public PunctualShow(String title, String cathegory, String description, Int capacity, SingleDate singleDate, String firstLocation){
+    public PunctualShow(String title, String cathegory, String description, Integer capacity, SingleDate singleDate, String firstLocation){
 
         super(title, cathegory, description, capacity);
 

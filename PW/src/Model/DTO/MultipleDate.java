@@ -1,9 +1,13 @@
+package Model.DTO;
+
+import java.util.ArrayList;
+import java.util.Date;
+
 public class MultipleDate implements DateInterface {
 
     private ArrayList<Date> dateList = new ArrayList<Date>();
 
-    public void SingleDate(Date newDate){
-
+    public MultipleDate(Date newDate) {
         this.dateList.add(newDate);
     }
 

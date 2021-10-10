@@ -8,7 +8,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 
 import Model.Entities.Show.Show;
@@ -62,8 +61,13 @@ public class ShowRepository {
     	return shows;
     }
 
-    public void cancelShow(Show show);
+    public void cancelShow(Show show) {};
 
-    public void cancelAllShows();
+    public void cancelAllShows() {};
     
+    public Show getShowByTitle(String title) {
+    	Show show = new Show(null, null, null, null);
+    	
+    	return show;
+    }; // TODO
 }

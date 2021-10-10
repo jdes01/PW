@@ -1,3 +1,7 @@
+package Handlers;
+
+import Model.Entities.User.User;
+
 public interface UserHandlerInterface {
     
     void createUser(String name);

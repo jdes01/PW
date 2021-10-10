@@ -1,3 +1,12 @@
+package Handlers;
+
+import java.util.ArrayList;
+
+import Model.Entities.Review.Review;
+import Model.Entities.Show.Show;
+import Model.Entities.User.User;
+
+
 public interface ShowHandlerInterface {
     
     Show createShow();
@@ -10,7 +19,7 @@ public interface ShowHandlerInterface {
 
     void updateShow();
 
-    void showTicketsForShowSesion(Show show, Int sesion); //using dates array (in case of multiple-dates or periodic-date shows), print date, location and tickets
+    void showTicketsForShowSesion(Show show, int sesion); //using dates array (in case of multiple-dates or periodic-date shows), print date, location and tickets
     
     Show getShowByTitle(String title);
 

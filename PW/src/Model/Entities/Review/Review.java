@@ -1,11 +1,10 @@
-package Model;
-
+package Model.Entities.Review;
 import java.util.ArrayList;
 
 import Model.DTO.Score;
 import Model.DTO.UserReview;
 
-import Model.Espectaculo;
+import Model.Entities.User.User;
 
 public class Review {
 
@@ -22,7 +21,7 @@ public class Review {
 
     public Review(User User, String title, Score score, String reviewText){
 
-        this.user = user;
+        this.user = User;
         this.title = title;
         this.score = new Score(score.getScore());
         this.reviewText = reviewText;

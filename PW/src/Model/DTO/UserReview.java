@@ -1,6 +1,6 @@
 package Model.DTO;
 
-import Model.User;
+import Model.Entities.User.User;
 public class UserReview {
     
     private User user;
@@ -19,7 +19,7 @@ public class UserReview {
 
     public void setUser(User User){
 
-        this.user = user;
+        this.user = User;
     }
 
     public Integer getScore(){

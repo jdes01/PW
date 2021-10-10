@@ -1,4 +1,4 @@
-package Model;
+package Model.Entities.User;
 
 /**
  * User
@@ -7,7 +7,7 @@ public class User {
 
     private String name;
 
-    private String nick
+    private String nick;
 
     private String mail;
 

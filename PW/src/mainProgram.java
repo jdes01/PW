@@ -1,13 +1,12 @@
-import Model.Review;
+import Model.Entities.Review.Review;
+import Model.Entities.User.User;
 
-import Model.User;
 import Model.DTO.Score;
-import Model.Espectaculo;
 
 public class mainProgram {
     public static void main(String[] args){
 
-        User user = new User();
+        User user = new User("My Name", "My Nick", "myemail@pw.es");
  
         String title = "titulo";
         String review_text = "texto";

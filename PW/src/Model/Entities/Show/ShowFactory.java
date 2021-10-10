@@ -1,11 +1,14 @@
 package Model.Entities.Show;
 
 import Model.DTO.SingleDate;
+
+import java.io.Serializable;
+
 import Model.DTO.MultipleDate;
 import Model.DTO.PeriodicDate;
 import Model.Entities.Show.PunctualShow;
 
-public class ShowFactory {
+public class ShowFactory implements Serializable {
     
     static public PunctualShow createShow(String title, String cathegory, String description, Integer locationCapacity, SingleDate singleDate, String firstLocation){
             

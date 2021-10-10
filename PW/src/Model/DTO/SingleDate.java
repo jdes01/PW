@@ -1,8 +1,9 @@
 package Model.DTO;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class SingleDate implements DateInterface {
+public class SingleDate implements DateInterface, Serializable {
 
     private Date date;
 

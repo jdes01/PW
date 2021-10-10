@@ -1,8 +1,10 @@
 package Model.Entities.Show;
 
+import java.io.Serializable;
+
 import Model.DTO.SingleDate;
 
-public class PunctualShow extends Show {
+public class PunctualShow extends Show implements Serializable {
 
     private SingleDate singleDate;
 

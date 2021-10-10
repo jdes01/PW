@@ -1,8 +1,10 @@
 package Model.Entities.Show;
 
+import java.io.Serializable;
+
 import Model.DTO.PeriodicDate;
 
-public class SeasonShow extends Show {
+public class SeasonShow extends Show implements Serializable {
 
     private PeriodicDate periodicDate;
 

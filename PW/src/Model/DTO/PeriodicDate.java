@@ -1,8 +1,9 @@
 package Model.DTO;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class PeriodicDate implements DateInterface{
+public class PeriodicDate implements DateInterface, Serializable {
 
     private Date date;
 

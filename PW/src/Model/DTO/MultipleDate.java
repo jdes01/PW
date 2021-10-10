@@ -1,9 +1,10 @@
 package Model.DTO;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class MultipleDate implements DateInterface {
+public class MultipleDate implements DateInterface, Serializable {
 
     private ArrayList<Date> dateList = new ArrayList<Date>();
 

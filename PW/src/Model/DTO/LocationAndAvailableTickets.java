@@ -1,6 +1,8 @@
 package Model.DTO;
 
-public class LocationAndAvailableTickets {
+import java.io.Serializable;
+
+public class LocationAndAvailableTickets implements Serializable {
     
     private String location;
     private Integer tickets;

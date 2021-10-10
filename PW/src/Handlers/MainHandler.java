@@ -253,16 +253,11 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 	        System.out.println("please, give a capacity");
 	
 	            Integer capacity = scanner.nextInt();
+	            scanner.nextLine();
 	
 	        System.out.println("please, type a date (format = dd/MM/yyyy)");
 	
-	            String stringDate = scanner.nextLine();
-	
-				try {
-					date = new SimpleDateFormat("dd/MM/yyyy").parse(stringDate);
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}  
+	        	String stringDate = scanner.nextLine();
 	
 	        System.out.println("please, type the first location");
 	
@@ -270,21 +265,24 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 	
 	        System.out.println("please, type 1 if you want a single date, 2 if you want a periodic date or 3 if you want a multiple date");
 	
-	            String option = scanner.nextLine();
+	            Integer option = scanner.nextInt();
+	            scanner.nextLine();
+	            
+	        date = new SimpleDateFormat("dd/MM/YYYY").parse(stringDate);
 	
-			if(option == "1"){
+			if(option == 1){
 	
 	            SingleDate singleDate = new SingleDate(date);
 	
 	            createdShow = ShowFactory.createShow(title, cathegory, description, capacity, singleDate, firstLocation);
 	
-	        } else if (option == "2"){
+	        } else if (option == 2){
 	
 	            PeriodicDate periodicDate = new PeriodicDate(date);
 	
 	            createdShow = ShowFactory.createShow(title, cathegory, description, capacity, periodicDate, firstLocation);
 	
-	        } else if (option == "3"){
+	        } else if (option == 3){
 	
 	            MultipleDate multipleDate = new MultipleDate(date);
 	
@@ -297,6 +295,9 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 	        }
 	
 	        this.showRepository.saveShow(createdShow);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if(scanner!=null) {
 				scanner.close();
@@ -404,12 +405,6 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 
 	@Override
 	public void showTicketsForShowSesion(Show show, int sesion) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void createUser(String name) {
 		// TODO Auto-generated method stub
 		
 	}

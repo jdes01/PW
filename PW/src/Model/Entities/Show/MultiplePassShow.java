@@ -1,8 +1,10 @@
 package Model.Entities.Show;
 
+import java.io.Serializable;
+
 import Model.DTO.MultipleDate;
 
-public class MultiplePassShow extends Show {
+public class MultiplePassShow extends Show implements Serializable {
 
     private MultipleDate multipleDate;
 

@@ -1,11 +1,12 @@
 package Model.Entities.Show;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import Model.DTO.LocationAndAvailableTickets;
 import Model.Entities.Review.Review;
 
-public class Show {
+public class Show implements Serializable {
 
     private String title;
     

@@ -19,6 +19,10 @@ import Model.Repository.ReviewRepository;
 import Model.Repository.ShowRepository;
 import Model.Repository.UserRepository;  
 
+/**
+ * Clase que usa el patron de diseño singleton para gestionar la app
+ * @author Javier De Santiago Palomino
+ */
 public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface, ShowHandlerInterface {
 
     private static final MainHandler mainHandler = new MainHandler();
@@ -29,6 +33,10 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
     private ReviewRepository reviewRepository;
     private ShowRepository showRepository;
 
+	/**
+	 *  Devuelve la única instancia de MainHandler
+	 *  @return MainHandler
+	 */
     public MainHandler getHandler(){
 
         if (MainHandler.mainHandler == null) {
@@ -40,7 +48,10 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 
         return MainHandler.mainHandler;
     }
-
+    
+	/**
+	 * Constructor de MainHandler
+	 */
     private MainHandler(){
 
         this.userRepository = new UserRepository();
@@ -51,7 +62,10 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 
     //////  HANDLE REVIEWS ///////
 
-
+	/**
+	 * Funcion para crear reviews
+	 * @param user Usuario que crea la review
+	 */
     public Review createReview(User user){
 
         Scanner scanner = new Scanner(System.in); 
@@ -83,8 +97,11 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 
         return review;
     }
-
-
+    
+	/**
+	 * Getter de reviews
+	 * @return Retorna las reviews
+	 */
     public ArrayList<Review> getReviews(){
 
         ArrayList<Review> reviews = this.reviewRepository.getReviews();
@@ -92,7 +109,10 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
         return reviews;
     }
 
-
+	/**
+	 * Funcion para borrar reviews
+	 * @param review Review que se va a borra
+	 */
     public void deleteReview(Review review){
 
         try {
@@ -102,7 +122,12 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 		}
     }
 
-
+	/**
+	 * Envia la review
+	 * @param review
+	 * @param user
+	 * @param score
+	 */
     public void voteReview(Review review, User user, Score score){
 
         review.addUserReview(user, score);
@@ -112,8 +137,9 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 
     ////// HANDLE USERS ////////
 
-
-
+	/**
+	 * Funcion para crear un usuario añadiendo sus datos
+	 */
     public void createUser() throws IOException{
 
         Scanner scanner = new Scanner(System.in); 
@@ -276,7 +302,10 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
         return createdShow;
     }
 
-
+	/**
+	 * Funcion para borrar usuarios
+	 * @param user Usuario que se va a borrar
+	 */
     public ArrayList<Show> getShows(){
 
         ArrayList<Show> shows = this.showRepository.getShows();
@@ -290,6 +319,10 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
         this.showRepository.cancelShow(show);
     }
 
+	/**
+	 * Funcion para actualizar los datos del usuario
+	 * @param user Usuario que se va a actualizar
+	 */
     public void cancelAllShows(){
 
         this.showRepository.cancelAllShows();

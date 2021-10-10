@@ -1,9 +1,9 @@
 package Model.Entities.Review;
-
 import java.util.ArrayList;
 
 import Model.DTO.Score;
 import Model.DTO.UserReview;
+
 import Model.Entities.User.User;
 
 public class Review {

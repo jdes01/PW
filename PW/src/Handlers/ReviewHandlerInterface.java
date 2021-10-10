@@ -1,6 +1,6 @@
-public interface ReviewHandler {
+public interface ReviewHandlerInterface {
 
-    void createReview(User user);
+    Review createReview(User user);
 
     ArrayList<Review> getReviews();
 

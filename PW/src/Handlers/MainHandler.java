@@ -10,8 +10,12 @@ import java.util.Scanner;
 
 import UserRepository;
 import ReviewRepository;
+import ShowRepository;
 
-public class MainHandler extends ReviewHandler, UserHandler {
+import java.text.SimpleDateFormat;  
+import java.util.Date;  
+
+public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface, ShowHandlerInterface {
 
     private static final MainHandler mainHandler;
 
@@ -19,6 +23,7 @@ public class MainHandler extends ReviewHandler, UserHandler {
 
     private UserRepository userRepository;
     private ReviewRepository reviewRepository;
+    private ShowRepository showRepository;
 
     public getHandler(){
 
@@ -36,13 +41,14 @@ public class MainHandler extends ReviewHandler, UserHandler {
 
         this.userRepository = new UserRepository();
         this.reviewRepository = new ReviewRepository();
+        this.showRepository = new ShowRepository();
     }    
 
 
     //////  HANDLE REVIEWS ///////
 
 
-    void createReview(User user){
+    public Review createReview(User user){
 
         Scanner scanner = new Scanner(System.in); 
 
@@ -62,21 +68,26 @@ public class MainHandler extends ReviewHandler, UserHandler {
         Review review = new Review(user, title, score, review_text);
 
         this.reviewRepository.saveReview(review);
+
+        return review;
     }
 
-    ArrayList<Review> getReviews(){
+
+    public ArrayList<Review> getReviews(){
 
         ArrayList<Review> reviews = this.reviewRepository.getReviews();
 
         return reviews;
     }
 
-    void deleteReview(Review review){
+
+    public void deleteReview(Review review){
 
         this.reviewRepository.deleteReview(review);
     }
 
-    void voteReview(Review review, User user, Score score){
+
+    public void voteReview(Review review, User user, Score score){
 
         review.addUserReview(user, score);
     }
@@ -87,7 +98,7 @@ public class MainHandler extends ReviewHandler, UserHandler {
 
 
 
-    void createUser(){
+    public void createUser(){
 
         Scanner scanner = new Scanner(System.in); 
 
@@ -108,17 +119,20 @@ public class MainHandler extends ReviewHandler, UserHandler {
         this.userRepository.saveUser(user);        
     }
 
-    void deleteUser(User user){
+
+    public void deleteUser(User user){
 
         this.userRepository.deleteUser(user);
     }
 
-    User getUser(String name){
+
+    public User getUser(String name){
 
         User user = this.userRepository.getUserByName(name);
     }
+    
 
-    void updateUser(User user){
+    public void updateUser(User user){
 
         Scanner scanner = new Scanner(System.in); 
 
@@ -140,5 +154,143 @@ public class MainHandler extends ReviewHandler, UserHandler {
 
         this.userRepository.saveUser(user);    
     }
+
+
+    /////// HANDLE SHOWS //////////
+
+
+    public Show createShow(){
+
+        Scanner scanner = new Scanner(System.in); 
+
+        System.out.println("please, give a title to the show");
+
+            String title = scanner.nextString();
+
+        System.out.println("please, give a cathegory to the show among 'concierto, monologo, obra de teatro'");
+
+            String cathegory = scanner.nextString();
+
+        System.out.println("please, give a description to the show");
+
+            String desccription = scanner.nextString();
+
+        System.out.println("please, give a capacity");
+
+            Int capacity = scanner.nextInt();
+
+        System.out.println("please, type a date (format = dd/MM/yyyy)");
+
+            String stringDate = scanner.nextString();
+
+            Date date = new SimpleDateFormat("dd/MM/yyyy").parse(stringDate);  
+
+        System.out.println("please, type the first location");
+
+            String firstLocation = scanner.nextString();
+
+        System.out.println("please, type 1 if you want a single date, 2 if you want a periodic date or 3 if you want a multiple date");
+
+            String option = scanner.nextString();
+
+        if(option === "1"){
+
+            SingleDate singleDate = new SingleDate(date);
+
+            Show createdShow = ShowFactory.createShow(title, cathegory, description, capacity, singleDate, firstLocation);
+
+        } else if (option === "2"){
+
+            PeriodicDate periodicDate = new PeriodicDate(date);
+
+            Show createdShow = ShowFactory.createShow(title, cathegory, description, capacity, periodicDate, firstLocation);
+
+        } else if (option === "3"){
+
+            MultipleDate multipleDate = new MultipleDate(date);
+
+            Show createdShow = ShowFactory.createShow(title, cathegory, description, capacity, multipleDate, firstLocation);
+
+        } else {
+
+            System.out.println("wrong format");
+
+            return 0;
+        }
+
+        this.showRepository.saveShow(createdShow);
+
+        return createdShow;
+    }
+
+
+    public ArrayList<Show> getShows(){
+
+        ArrayList<Show> shows = this.showRepository.getShows();
+
+        return shows;
+    }
+
+
+    void cancelShow(Show show){
+
+        this.showRepository.cancelShow(show);
+    }
+
+    void cancelAllShows(){
+
+        this.showRepository.cancelAllShows();
+    }
+
+    void updateShow(Show show){
+
+        Scanner scanner = new Scanner(System.in); 
+
+        System.out.println("please, give a new title to the show");
+
+            String title = scanner.nextString();
+            
+            show.setTitle(title);
+
+        System.out.println("please, give a new cathegory to the show among 'concierto, monologo, obra de teatro'");
+
+            String cathegory = scanner.nextString();
+
+            show.setCathegory(cathegory);
+
+        System.out.println("please, give a new description to the show");
+
+            String description = scanner.nextString();
+
+            show.setDescription(description);
+
+        System.out.println("please, give a new capacity");
+
+            Int capacity = scanner.nextInt();
+
+            show.setCapacity(capacity);
+    }
+
+    void showTicketsForShowSesion(Show show, Int sesion); //using dates array (in case of multiple-dates or periodic-date shows), print date, location and tickets
     
+    Show getShowByTitle(String title){
+
+        return this.showRepository.getShowByTitle(title);
+    }
+
+    //Búsqueda de próximos espectáculos con entradas disponibles, indicando o no una categoría específica 
+
+    void reviewAShow(Show show, User user){
+
+        Review createdReview = createReview(user);
+
+        show.addShowReview(createdReview);
+    }
+
+    ArrayList<Review> getShowReviewsByName(String name);
+
+    void deleteReview(User user, Show show);
+
+    void rateShowReview(Review review);
+ 
 }

@@ -1,11 +1,13 @@
 package Model.Entities.User;
 
+import java.io.Serializable;
+
 /**
  * Clase usuario que tiene todo lo relacionado a los usuarios
  * @author Marcos Rodriguez Moreno
  */
 
-public class User {
+public class User implements Serializable {
 
     private String name;
 

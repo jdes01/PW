@@ -1,22 +1,12 @@
-import Model.Entities.Review.Review;
-import Model.Entities.User.User;
+import java.io.IOException;
 
-import Model.DTO.Score;
+import Handlers.*;
 
 public class mainProgram {
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException{
 
-        User user = new User("My Name", "My Nick", "myemail@pw.es");
- 
-        String title = "titulo";
-        String review_text = "texto";
-         
-        Score score = new Score(10);
-
-        Review review = new Review(user, title, score, review_text);
-
-        System.out.println(review.getScore());     
-        
-        review.addUserReview(user, score);
+    MainHandler handler = MainHandler.getHandler();
+    
+    handler.createUser();
     }
   }

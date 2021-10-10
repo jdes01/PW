@@ -37,7 +37,7 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 	 *  Devuelve la única instancia de MainHandler
 	 *  @return MainHandler
 	 */
-    public MainHandler getHandler(){
+    public static MainHandler getHandler(){
 
         if (MainHandler.mainHandler == null) {
  
@@ -160,7 +160,11 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 	
 	        User user = new User(name, nick, mail);
 	
-	        this.userRepository.saveUser(user);
+	        try {
+				this.userRepository.saveUser(user);
+			} catch (ClassNotFoundException | IOException e) {
+				e.printStackTrace();
+			}
 	        
         } finally {
         	if(scanner!=null)
@@ -211,7 +215,7 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 	
 	        try {
 				this.userRepository.saveUser(user);
-			} catch (IOException e) {
+			} catch (IOException | ClassNotFoundException e) {
 				e.printStackTrace();
 			}    
 	        

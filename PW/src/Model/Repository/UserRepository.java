@@ -27,7 +27,7 @@ public class UserRepository {
  * @throws IOException Signals that an I/O of some sort has occured
  */
 	
-    public void saveUser(User user) throws IOException {
+    public void saveUser(User user) throws IOException, ClassNotFoundException {
         try {
         	FileOutputStream file = new FileOutputStream(new File("users.txt"));
         	ObjectOutputStream output = new ObjectOutputStream(file);

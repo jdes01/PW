@@ -183,7 +183,7 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 
             Date date = new SimpleDateFormat("dd/MM/yyyy").parse(stringDate);  
 
-            System.out.println("please, type the first location");
+        System.out.println("please, type the first location");
 
             String firstLocation = scanner.nextString();
 
@@ -233,9 +233,39 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
         this.showRepository.cancelShow(show);
     }
 
-    void cancelAllShows();
+    void cancelAllShows(){
 
-    void updateShow();
+        this.showRepository.cancelAllShows();
+    }
+
+    void updateShow(Show show){
+
+        Scanner scanner = new Scanner(System.in); 
+
+        System.out.println("please, give a new title to the show");
+
+            String title = scanner.nextString();
+            
+            show.setTitle(title);
+
+        System.out.println("please, give a new cathegory to the show among 'concierto, monologo, obra de teatro'");
+
+            String cathegory = scanner.nextString();
+
+            show.setCathegory(cathegory);
+
+        System.out.println("please, give a new description to the show");
+
+            String description = scanner.nextString();
+
+            show.setDescription(description);
+
+        System.out.println("please, give a new capacity");
+
+            Int capacity = scanner.nextInt();
+
+            show.setCapacity(capacity);
+    }
 
     void showTicketsForShowSesion(Show show, Int sesion); //using dates array (in case of multiple-dates or periodic-date shows), print date, location and tickets
     

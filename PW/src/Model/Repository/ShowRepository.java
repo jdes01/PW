@@ -7,5 +7,9 @@ public class ShowRepository {
     public void saveShow(MultiplePassShow multiplePassShow){} //TODO
 
     public ArrayList<Show> getShows(); //TODO
+
+    public void cancelShow(Show show);
+
+    public void cancelAllShows();
     
 }

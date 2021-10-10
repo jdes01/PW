@@ -13,4 +13,6 @@ public class PunctualShow extends Show {
 
         this.singleDate = singleDate;
     }
+
+    public SingleDate getDate(){ return this.singleDate; }
 }

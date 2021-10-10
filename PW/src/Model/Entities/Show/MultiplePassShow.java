@@ -14,4 +14,6 @@ public class MultiplePassShow extends Show {
         this.multipleDate = multipleDate;
     }   
 
+    public MultipleDate getDate(){ return this.multipleDate; }
+
 }

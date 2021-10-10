@@ -14,4 +14,6 @@ public class SeasonShow extends Show {
         this.periodicDate = periodicDate;
     }    
 
+    public PeriodicDate getDate(){ return this.periodicDate; }
+
 }

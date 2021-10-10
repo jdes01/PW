@@ -228,7 +228,10 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
     }
 
 
-    void cancelShow(Show show);
+    void cancelShow(Show show){
+
+        this.showRepository.cancelShow(show);
+    }
 
     void cancelAllShows();
 

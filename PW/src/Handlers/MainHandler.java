@@ -48,7 +48,7 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
     //////  HANDLE REVIEWS ///////
 
 
-    public void createReview(User user){
+    public Review createReview(User user){
 
         Scanner scanner = new Scanner(System.in); 
 
@@ -68,6 +68,8 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
         Review review = new Review(user, title, score, review_text);
 
         this.reviewRepository.saveReview(review);
+
+        return review;
     }
 
 
@@ -157,7 +159,7 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
     /////// HANDLE SHOWS //////////
 
 
-    public void createShow(){
+    public Show createShow(){
 
         Scanner scanner = new Scanner(System.in); 
 
@@ -217,6 +219,8 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
         }
 
         this.showRepository.saveShow(createdShow);
+
+        return createdShow;
     }
 
 
@@ -269,18 +273,24 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 
     void showTicketsForShowSesion(Show show, Int sesion); //using dates array (in case of multiple-dates or periodic-date shows), print date, location and tickets
     
-    void getShowByTitle(String title);
+    Show getShowByTitle(String title){
+
+        return this.showRepository.getShowByTitle(title);
+    }
 
     //Búsqueda de próximos espectáculos con entradas disponibles, indicando o no una categoría específica 
 
-    void reviewAShow(Show show);
+    void reviewAShow(Show show, User user){
+
+        Review createdReview = createReview(user);
+
+        show.addShowReview(createdReview);
+    }
 
     ArrayList<Review> getShowReviewsByName(String name);
 
     void deleteReview(User user, Show show);
 
     void rateShowReview(Review review);
-
-
-    
+ 
 }

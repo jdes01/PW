@@ -1,6 +1,6 @@
 public interface ShowHandlerInterface {
     
-    void createShow();
+    Show createShow();
 
     ArrayList<Show> getShows();
 
@@ -12,11 +12,11 @@ public interface ShowHandlerInterface {
 
     void showTicketsForShowSesion(Show show, Int sesion); //using dates array (in case of multiple-dates or periodic-date shows), print date, location and tickets
     
-    void getShowByTitle(String title);
+    Show getShowByTitle(String title);
 
     //Búsqueda de próximos espectáculos con entradas disponibles, indicando o no una categoría específica 
 
-    void reviewAShow(Show show);
+    void reviewAShow(Show show, User user);
 
     ArrayList<Review> getShowReviewsByName(String name);
 

@@ -14,6 +14,7 @@ import Model.Entities.Show.PunctualShow;
  *
  */
 public class ShowFactory implements Serializable {
+	/**
      * @param cathegory Categoria
      * @param description Descripcion
      * @param locationCapacity Capacidad

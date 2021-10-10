@@ -3,8 +3,8 @@ package Model.DTO;
 import Model.Entities.User.User;
 
 /**
- * 
- * @author kan0
+ * Clase usuario de la review
+ * @author Alberto Cano Turnes
  *
  */
 
@@ -14,9 +14,9 @@ public class UserReview {
     private Score score;
 
 /**
- * 
- * @param user
- * @param score
+ * Constructor de UserReview
+ * @param user Usuario de la review 
+ * @param score Score de la review
  */
     
     public UserReview(User user, Score score){
@@ -26,8 +26,8 @@ public class UserReview {
     }
     
 /**
- * 
- * @return
+ * Getter de usuarios
+ * @return Retorna el usuario
  */
 
     public User getUser(){
@@ -36,8 +36,8 @@ public class UserReview {
     }
     
 /**
- *     
- * @param User
+ * Setter de usuarios
+ * @param User Usuario de la review
  */
 
     public void setUser(User User){
@@ -46,8 +46,8 @@ public class UserReview {
     }
 
 /**
- *     
- * @return
+ * Getter del score de la review
+ * @return Retorna el score de la review
  */
     
     public Integer getScore(){
@@ -56,8 +56,8 @@ public class UserReview {
     }
 
 /**
- *     
- * @param score
+ * Setter de la review
+ * @param score Score de la review
  */
     
     public void setScore(Integer score){

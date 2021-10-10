@@ -1,7 +1,7 @@
 package Model.DTO;
 
 /**
- * 
+ * Clase score de la review
  * @author David Salcedo Sanchez
  *
  */

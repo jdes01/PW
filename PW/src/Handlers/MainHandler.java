@@ -11,6 +11,11 @@ import java.util.Scanner;
 import UserRepository;
 import ReviewRepository;
 
+/**
+ * Clase que usa el patron de diseño singleton para gestionar la app
+ * @author Javier De Santiago Palomino
+ */
+
 public class MainHandler extends ReviewHandler, UserHandler {
 
     private static final MainHandler mainHandler;
@@ -20,6 +25,10 @@ public class MainHandler extends ReviewHandler, UserHandler {
     private UserRepository userRepository;
     private ReviewRepository reviewRepository;
 
+/**
+ *  
+ */
+    
     public getHandler(){
 
         if (this.mainHandler == null) {
@@ -31,6 +40,10 @@ public class MainHandler extends ReviewHandler, UserHandler {
 
         return this.mainHandler;
     }
+    
+/**
+ * Constructor de MainHandler
+ */
 
     private MainHandler(){
 
@@ -41,7 +54,11 @@ public class MainHandler extends ReviewHandler, UserHandler {
 
     //////  HANDLE REVIEWS ///////
 
-
+/**
+ * Funcion para crear reviews
+ * @param user Usuario que crea la review
+ */
+    
     void createReview(User user){
 
         Scanner scanner = new Scanner(System.in); 
@@ -63,6 +80,11 @@ public class MainHandler extends ReviewHandler, UserHandler {
 
         this.reviewRepository.saveReview(review);
     }
+    
+/**
+ * Getter de reviews
+ * @return Retorna las reviews
+ */
 
     ArrayList<Review> getReviews(){
 
@@ -71,11 +93,23 @@ public class MainHandler extends ReviewHandler, UserHandler {
         return reviews;
     }
 
+/**
+ * Funcion para borrar reviews
+ * @param review Review que se va a borra
+ */
+    
     void deleteReview(Review review){
 
         this.reviewRepository.deleteReview(review);
     }
 
+/**
+ * Funcion 
+ * @param review
+ * @param user
+ * @param score
+ */
+    
     void voteReview(Review review, User user, Score score){
 
         review.addUserReview(user, score);
@@ -85,7 +119,9 @@ public class MainHandler extends ReviewHandler, UserHandler {
 
     ////// HANDLE USERS ////////
 
-
+/**
+ * Funcion para crear un usuario añadiendo sus datos
+ */
 
     void createUser(){
 
@@ -108,6 +144,11 @@ public class MainHandler extends ReviewHandler, UserHandler {
         this.userRepository.saveUser(user);        
     }
 
+/**
+ * Funcion para borrar usuarios
+ * @param user Usuario que se va a borrar
+ */
+    
     void deleteUser(User user){
 
         this.userRepository.deleteUser(user);
@@ -118,6 +159,11 @@ public class MainHandler extends ReviewHandler, UserHandler {
         User user = this.userRepository.getUserByName(name);
     }
 
+/**
+ * Funcion para actualizar los datos del usuario
+ * @param user Usuario que se va a actualizar
+ */
+    
     void updateUser(User user){
 
         Scanner scanner = new Scanner(System.in); 

@@ -1,3 +1,9 @@
+/**
+ * Interfaz publica del handler de review
+ * @author Javier De Santiago Palomino
+ *
+ */
+
 public interface ReviewHandler {
 
     void createReview(User user);

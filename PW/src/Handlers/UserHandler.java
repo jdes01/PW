@@ -1,3 +1,9 @@
+/**
+ * Interfaz publica del handler del user
+ * @author Javier De Santiago Palomino
+ *
+ */
+
 public interface UserHandler {
     
     void createUser(String name);

@@ -38,15 +38,15 @@ public class LocationAndAvailableTickets {
     Integer getTickets(){ return this.tickets; }
 
 /**
- * 
- * @param
+ * Setter de la localizacion
+ * @param location Localizacion
  */
     
     void setLocation(String location){ this.location = location; }
     
 /**
- * 
- * @param
+ * Setter de tickets
+ * @param tickets Tickets
  */
     
     void setTickets(Integer tickets){ this.tickets = tickets; }

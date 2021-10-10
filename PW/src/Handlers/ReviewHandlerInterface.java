@@ -6,6 +6,12 @@ import Model.DTO.Score;
 import Model.Entities.Review.Review;
 import Model.Entities.User.User;
 
+/**
+ * Interfaz publica del handler de review
+ * @author Javier De Santiago Palomino
+ *
+ */
+
 public interface ReviewHandlerInterface {
 
     Review createReview(User user);

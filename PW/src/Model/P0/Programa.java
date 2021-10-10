@@ -7,8 +7,8 @@ import Model.Programacion;
 import java.util.Date;
 
 /**
- * 
- * @author kan0
+ * Clase programa 
+ * @author David Salcedo Sanchez
  *
  */
 

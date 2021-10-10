@@ -15,8 +15,8 @@ import Model.Entities.Review.Review;
 import Model.Entities.User.User;
 
 /**
- * 
- * @author kan0
+ * Clase repositorio de las reviews
+ * @author Marcos Rodriguez Moreno
  *
  */
 

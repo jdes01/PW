@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
  
 /**
- * 
- * @author kan0
+ * Clase programacion que tiene todo lo relacionado a la programacion de los espectaculos
+ * @author Javier De Santiago Palomino
  *
  */
 
@@ -17,7 +17,7 @@ public class Programacion {
 	private ArrayList<Espectaculo> Espectaculos;
 	
 /**
- * 	
+ * 	Constructor de la clase programacion
  */
 	
 	public Programacion() {
@@ -26,8 +26,8 @@ public class Programacion {
 	}
 	
 /**
- * 	
- * @param espectaculo
+ * 	Funcion publica para programar espectaculos
+ * @param espectaculo Espectaculo que se va a programar
  */
 	
 	public void programarEspectaculo(Espectaculo espectaculo) {
@@ -36,8 +36,8 @@ public class Programacion {
 	}
 	
 /**
- * 	
- * @return
+ * 	Funcion publica para ver los espectaculos
+ * @return Retorna los espectaculos
  */
 	
 	public ArrayList<Espectaculo> verEspectaculos(){
@@ -46,7 +46,7 @@ public class Programacion {
 	}
 	
 /**
- * 	
+ * 	Funcion publica que imprime los eventos
  */
 	
 	public void imprimirEventos() {
@@ -58,8 +58,8 @@ public class Programacion {
 	}
 	
 /**
- * 	
- * @return
+ *  Funcion publica para ver los titulos de los espectaculos
+ * @return Retorna los titulos de los espectaculos
  */
 	
 	public ArrayList<String> verTitulos(){
@@ -75,9 +75,9 @@ public class Programacion {
 	}
 	
 /**
- * 	
- * @param titulo
- * @return
+ * 	Funcion publica para eliminar espectaculos
+ * @param titulo Titulo de los espectaculos
+ * @return Retorna false
  */
 	
 	public boolean eliminarEspectaculo(String titulo) {
@@ -94,9 +94,9 @@ public class Programacion {
 	}
 	
 /**
- * 
- * @param fecha
- * @return
+ * Funcion publica para ver los proximos espectaculos
+ * @param fecha Fecha del espectaculo
+ * @return Retorna los espectaculos
  */
 	
 	public ArrayList<Espectaculo> verProximosEspectaculos(Date fecha){
@@ -118,9 +118,9 @@ public class Programacion {
 	}
 
 /**
- * 	
- * @param categoria
- * @return
+ * 	Funcion publica para ver los espectaculos disponibles
+ * @param categoria Categoria del espectaculo
+ * @return Retorna los espectaculos disponibles
  */
 	
 	public ArrayList<Espectaculo> verEspectaculosDisponibles(categoria categoria){

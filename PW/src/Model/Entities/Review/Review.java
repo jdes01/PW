@@ -7,8 +7,8 @@ import Model.DTO.UserReview;
 import Model.Entities.User.User;
 
 /**
- * 
- * @author kan0
+ * Clase review que tiene todo lo relacionado a las reviews
+ * @author Alberto Cano Turnes
  *
  */
 

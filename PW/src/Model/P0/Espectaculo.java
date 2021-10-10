@@ -2,8 +2,8 @@ package Model;
 import java.util.Date;
 
 /**
- * 
- * @author kan0
+ * Clase espectaculo que tiene todo lo referente a los espectaculos
+ * @author Alberto Cano Turnes
  *
  */
 
@@ -23,14 +23,11 @@ public class Espectaculo {
 	private int localidadesDisponibles;
 	private int localidadesVendidas;
 	
-/**
- * 	
- */
 	
 	public Espectaculo() {}
 	
 /**
- * Constructor de espectaculo
+ * Constructor de la clase espectaculo
  * @param titulo Titulo del espectaculo
  * @param categoria Categoria del espectaculo
  * @param descripcion Descripcion del espectaculo

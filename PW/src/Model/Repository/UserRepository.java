@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import Model.Entities.User.User;
 
 /**
- * 
+ * Clase repositorio de los usuarios
  * @author Javier De Santiago Palomino
  *
  */

@@ -1,7 +1,8 @@
 package Model.Entities.User;
 
 /**
- * User
+ * Clase usuario que tiene todo lo relacionado a los usuarios
+ * @author Marcos Rodriguez Moreno
  */
 
 public class User {
@@ -13,10 +14,10 @@ public class User {
     private String mail;
     
    /**
-    * 
-    * @param name
-    * @param nick
-    * @param mail
+    * Constructor de la clase usuario
+    * @param name Nombre del usuario
+    * @param nick NIck del usuario
+    * @param mail Mail del usuario
     */
 
     public User(String name, String nick, String mail){
@@ -25,8 +26,8 @@ public class User {
     }
     
    /**
-    * 
-    * @return
+    * Getter del nick del usuario
+    * @return Retorna el nick del usuario
     */
 
     public String getNick() {
@@ -34,8 +35,8 @@ public class User {
     }
     
 /**
- * 
- * @return
+ * Getter del nombre del usuario
+ * @return Retorna el nombre del usuario
  */
 
     public String getName() {
@@ -43,8 +44,8 @@ public class User {
     }
     
 /**
- *     
- * @return
+ * Getter del mail del usuario
+ * @return Retorna el mail del usuario
  */
 
     public String getMail(){
@@ -52,8 +53,8 @@ public class User {
     }
     
 /**
- *     
- * @param nick
+ * Setter del nick del usuario
+ * @param nick Nick del usuario
  */
 
     public void setNick(String nick) {
@@ -61,8 +62,8 @@ public class User {
     }
     
 /**
- *     
- * @param name
+ * Setter del nombre del usuario
+ * @param name Nombre del usuario
  */
 
     public void setName(String name) {
@@ -70,8 +71,8 @@ public class User {
     }
     
 /**
- *     
- * @param mail
+ * Setter del mail del usuario
+ * @param mail Mail del usuario
  */
 
     public void setMail(String mail){

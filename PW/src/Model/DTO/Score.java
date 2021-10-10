@@ -2,7 +2,7 @@ package Model.DTO;
 
 /**
  * 
- * @author kan0
+ * @author David Salcedo Sanchez
  *
  */
 
@@ -11,8 +11,8 @@ public class Score {
     Integer score;
     
 /**
- * 
- * @param score
+ * Constructor de la clase score
+ * @param score El score de la review
  */
 
     public Score(Integer score){

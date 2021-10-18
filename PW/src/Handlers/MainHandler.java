@@ -177,13 +177,28 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
  * @param user Usuario
  */
 
-    public void deleteUser(User user){
+    public void deleteUser(){
+
+    	Scanner scanner = new Scanner(System.in); 
 
         try {
-			this.userRepository.deleteUser(user);
+        	System.out.println("please, give the name from the user you want to delete");
+        	
+            String name = scanner.nextLine();
+            
+            User user = getUser(name);
+            
+            if(user != null) {
+            	System.out.println("User by name " + user.getName() + " was deleted.");
+            	this.userRepository.deleteUser(user);
+            } else {
+            	System.out.println("Sorry, there is no user with that name.");
+            }
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
 		}
+        
+        scanner.close();
     }
     
 /**
@@ -206,6 +221,8 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
     	System.out.println("please, choose an option:");
 		System.out.println("1. Create User");
 		System.out.println("2. Create Show");
+		System.out.println("3. Delete User");
+		System.out.println("4. Show users");
 
         return scanner.nextInt();
     }
@@ -484,16 +501,6 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 	public void showTicketsForShowSesion(Show show, int sesion) {
 		// TODO Auto-generated method stub
 		
-	}
-
-	/**
-	 * Getter de usuarios
-	 * @param id Id del usuario
-	 */
-	@Override
-	public User getUser(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 	public ArrayList<User> getUsers() throws ClassNotFoundException, IOException {

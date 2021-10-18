@@ -2,12 +2,12 @@ package Model.Repository;
 
 import java.io.EOFException;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import Model.Entities.User.User;
 
@@ -85,10 +85,17 @@ public class UserRepository {
  * @throws IOException Signals that an I/O of some sort has occured
  */
     public void deleteUser(User user) throws ClassNotFoundException, IOException {
-    	ArrayList<User> users = null;
+    	ArrayList<User> users = new ArrayList<User>();
     	users = getUsers();
     	
-    	users.remove(user);
+    	Iterator<User> it = users.iterator();
+    	while(it.hasNext()) {
+    		User tmpuser = (User) it.next();
+    		if(tmpuser.getName().equals(user.getName())) {
+    			it.remove();
+    		}
+    	}
+    	
     	UserRepository.writeObjectsToFile("users.bin", users);
     }
     
@@ -99,34 +106,27 @@ public class UserRepository {
  */
     
     public User getUserByName(String name) {
-    	try {
-	    	FileInputStream file = new FileInputStream("users.bin");
-	    	@SuppressWarnings("resource")
-			ObjectInputStream input = new ObjectInputStream(file);
-	    	
-	    	while(true) {
-	    		try {
-	    			User user = (User) input.readObject();
-	    			if(user.getName() == name) {
-	    				return user;
-	    			}
-;	    		} catch (EOFException error) {
-	    			return null;
-	    		} catch (ClassNotFoundException error) {
-	    			error.printStackTrace();
-	    		}
-	    	}
-    	} catch (FileNotFoundException error) {
-        	error.printStackTrace();
-        } catch (IOException error) {
-        	error.printStackTrace();
-        }
+    	ArrayList<User> users = new ArrayList<User>();
+    	User user = null;
     	
-		return null;
+    	try {
+			users = getUsers();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	
+    	for(User tmpUser : users) {
+    		if(tmpUser.getName().equals(name)) {
+    			user = tmpUser;
+    			break;
+    		}
+    	}
+    	
+		return user;
 	}
 
 /**
- * Funcion privada que reescribe el fichero cuando borra un objeto
+ * Funcion privada que reescribe el fichero cuando inserta o borra un objeto
  * @param filename Nombre del fichero
  * @param objects Objetos
  * @throws IOException Signals that an I/O of some sort has occured
@@ -134,18 +134,20 @@ public class UserRepository {
 
 	private static void writeObjectsToFile(String filename, ArrayList<User> users) throws IOException {
 		try {
-          FileOutputStream file = new FileOutputStream(filename);
-          ObjectOutputStream output = new ObjectOutputStream(file);
-          for(User user : users) {
-        	  output.writeObject(user);
+			
+            FileOutputStream file = new FileOutputStream(filename);
+            ObjectOutputStream output = new ObjectOutputStream(file);
+            
+            for(User user : users) {
+        	    output.writeObject(user);
+            }
+            output.flush();
+            if (output != null) {
+        	    output.close();
+            }
+            file.close();
+          } catch (Exception e) {
+            	e.printStackTrace();
           }
-          output.flush();
-          if (output != null) {
-        	  output.close();
-          }
-          file.close();
-        } catch (Exception e) {
-        	e.printStackTrace();
-        }
-      }
+	}
 }

@@ -1,6 +1,5 @@
 package Model.Repository;
 
-import java.io.File;  //?
 import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -30,16 +29,10 @@ public class UserRepository {
     	ArrayList<User> users = new ArrayList<User>();
     	
     	try {
-    		FileOutputStream file = new FileOutputStream("users.txt");
-    		ObjectOutputStream output = new ObjectOutputStream(file);
     		users = getUsers();
     		
     		users.add(user);
-    		for(User usertmp : users) {
-    			output.writeObject(usertmp);
-    		}
-    		
-    		output.close();
+    		UserRepository.writeObjectsToFile("users.bin", users);
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
@@ -59,12 +52,13 @@ public class UserRepository {
     
 	public ArrayList<User> getUsers() throws IOException {
     	ArrayList<User> users = new ArrayList<User>();
+    	User user = new User(null, null, null);
     	boolean cont = true;
     	try {
-    		FileInputStream file = new FileInputStream("users.txt");
+    		FileInputStream file = new FileInputStream("users.bin");
     		ObjectInputStream input = new ObjectInputStream(file);
     		while(cont) {
-    			User user = (User) input.readObject();
+    			user = (User) input.readObject();
     			if(user != null) {
     				users.add(user);
     			} else {
@@ -72,6 +66,7 @@ public class UserRepository {
     			}
     		}
     		input.close();
+    		file.close();
     	} catch(EOFException e) {
     		return users;
     	} catch (ClassNotFoundException e) {
@@ -94,7 +89,7 @@ public class UserRepository {
     	users = getUsers();
     	
     	users.remove(user);
-    	writeObjectsToFile("users.txt", users);
+    	UserRepository.writeObjectsToFile("users.bin", users);
     }
     
 /**
@@ -105,7 +100,7 @@ public class UserRepository {
     
     public User getUserByName(String name) {
     	try {
-	    	FileInputStream file = new FileInputStream(new File("users.txt"));
+	    	FileInputStream file = new FileInputStream("users.bin");
 	    	@SuppressWarnings("resource")
 			ObjectInputStream input = new ObjectInputStream(file);
 	    	
@@ -139,13 +134,16 @@ public class UserRepository {
 
 	private static void writeObjectsToFile(String filename, ArrayList<User> users) throws IOException {
 		try {
-          FileOutputStream file = new FileOutputStream(filename, true);
+          FileOutputStream file = new FileOutputStream(filename);
           ObjectOutputStream output = new ObjectOutputStream(file);
-          output.writeObject(users);
+          for(User user : users) {
+        	  output.writeObject(user);
+          }
           output.flush();
           if (output != null) {
         	  output.close();
           }
+          file.close();
         } catch (Exception e) {
         	e.printStackTrace();
         }

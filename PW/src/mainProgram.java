@@ -17,7 +17,7 @@ public class mainProgram {
 			try {
 				ArrayList<User> users = handler.getUsers();
 				for(User user : users) {
-					System.out.println(user);
+					System.out.println(user.getName());
 				}
 			} catch (Exception e) {
 				e.printStackTrace();

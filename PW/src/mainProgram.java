@@ -1,26 +1,34 @@
+import java.io.EOFException;
 import java.io.IOException;
-import java.util.Scanner;
+import java.util.ArrayList;
 
 import Handlers.*;
+import Model.Entities.User.User;
 
 public class mainProgram {
-    public static void main(String[] args) throws IOException{
+	public static void main(String[] args) throws IOException {
 
-    MainHandler handler = MainHandler.getHandler();
-    @SuppressWarnings("resource")
-	Scanner scanner = new Scanner(System.in); 
-    
-    while(1==1) {
-        System.out.println("please, choose an option:");
-        System.out.println("1. Create User");
-        System.out.println("2. Create Show");
-        String option = scanner.nextLine();
-        switch(option) {
-        case "1":
-        	handler.createUser();
-        case "2":
-        	handler.createShow();
-        }
-    }
-    }
-  }
+		MainHandler handler = MainHandler.getHandler();
+		Integer option = 1;
+		
+		option = handler.mainMenu();
+		switch(option) {
+		case 1:
+			handler.createUser();
+			try {
+				ArrayList<User> users = handler.getUsers();
+				for(User user : users) {
+					System.out.println(user.getName());
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			break;
+		case 2:
+			handler.createShow();
+			break;
+		default:
+			break;
+		}
+	}
+}

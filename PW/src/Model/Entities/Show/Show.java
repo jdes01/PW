@@ -21,6 +21,10 @@ public class Show implements Serializable {
 
     private ArrayList<Review> showReviews = new ArrayList<Review>();
 
+	private String title;
+
+	private String cathegory;
+
     /**
      * Constructor de Show
      * @param title Titulo

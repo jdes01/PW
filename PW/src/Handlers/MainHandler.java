@@ -199,6 +199,17 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
         return user;
     }
    
+    
+    public Integer mainMenu(){
+    	@SuppressWarnings("resource")
+		Scanner scanner = new Scanner(System.in);
+    	System.out.println("please, choose an option:");
+		System.out.println("1. Create User");
+		System.out.println("2. Create Show");
+
+        return scanner.nextInt();
+    }
+    
 /**
  * Funcion publica para actualizar usuarios
  * @param user Usuarios
@@ -483,6 +494,16 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 	public User getUser(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public ArrayList<User> getUsers() throws ClassNotFoundException, IOException {
+		return this.userRepository.getUsers();
+	}
+
+	@Override
+	public void createUser(String name) {
+		// TODO Auto-generated method stub
+		
 	}
  
 }

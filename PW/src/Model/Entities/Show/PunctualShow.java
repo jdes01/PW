@@ -10,6 +10,7 @@ import Model.DTO.SingleDate;
  *
  */
 public class PunctualShow extends Show implements Serializable {
+	 /*
      * Constructor de PunctualShow
      * @param title Titulo
      * @param cathegory Categoria
@@ -19,7 +20,10 @@ public class PunctualShow extends Show implements Serializable {
      * @param firstLocation Localizacion
      */
 
-    public PunctualShow(String title, String cathegory, String description, Integer capacity, SingleDate singleDate, String firstLocation){
+	private static final long serialVersionUID = 1L;
+	private SingleDate singleDate;
+
+	public PunctualShow(String title, String cathegory, String description, Integer capacity, SingleDate singleDate, String firstLocation){
 
         super(title, cathegory, description, capacity);
 
@@ -33,5 +37,5 @@ public class PunctualShow extends Show implements Serializable {
  * @return Retorna la fecha
  */
     
-    public SingleDate getDate(){ return this.singleDate; }
+    public SingleDate getDate(){ return singleDate; }
 }

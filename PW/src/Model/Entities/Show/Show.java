@@ -13,13 +13,22 @@ import Model.Entities.Review.Review;
  */
 public class Show implements Serializable {
 
-    private String description;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private String description;
 
     private Integer capacity;
 
     private ArrayList<LocationAndAvailableTickets> locationsAndAvailableTickets = new ArrayList<LocationAndAvailableTickets>();
 
     private ArrayList<Review> showReviews = new ArrayList<Review>();
+
+	private String title;
+
+	private String cathegory;
 
     /**
      * Constructor de Show

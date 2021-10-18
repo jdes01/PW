@@ -11,7 +11,11 @@ import java.util.Date;
  */
 public class MultipleDate implements DateInterface, Serializable {
 
-    private ArrayList<Date> dateList = new ArrayList<Date>();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private ArrayList<Date> dateList = new ArrayList<Date>();
 
 /**
  * Constructor de MultipleDate

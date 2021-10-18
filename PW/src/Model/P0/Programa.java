@@ -1,8 +1,8 @@
-package Model;
+package Model.P0;
 
-import Model.Espectaculo;
-import Model.Espectaculo.categoria;
-import Model.Programacion;
+import Model.P0.Espectaculo;
+import Model.P0.Espectaculo.categoria;
+import Model.P0.Programacion;
 
 import java.util.Date;
 

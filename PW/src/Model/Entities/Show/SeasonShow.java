@@ -10,6 +10,13 @@ import Model.DTO.PeriodicDate;
  *
  */
 public class SeasonShow extends Show implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private PeriodicDate periodicDate;
+
+	/**
      * Constructor de SeasonShow
      * @param title Titulo
      * @param cathegory Categoria

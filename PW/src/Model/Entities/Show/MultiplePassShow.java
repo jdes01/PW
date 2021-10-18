@@ -11,7 +11,11 @@ import Model.DTO.MultipleDate;
  */
 public class MultiplePassShow extends Show implements Serializable {
 
-    private MultipleDate multipleDate;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private MultipleDate multipleDate;
     
 /**
  * Constructor de MultiplePassShow

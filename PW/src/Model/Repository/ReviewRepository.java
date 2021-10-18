@@ -12,7 +12,6 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 
 import Model.Entities.Review.Review;
-import Model.Entities.User.User;
 
 /**
  * Clase repositorio de las reviews

@@ -68,6 +68,16 @@ public class Review {
     }
     
 /**
+ * Getter del usuario de la review
+ * @return Retorna el user 
+ */
+
+        public User getUser() {
+            return this.user;
+        }
+        
+    
+/**
  * Getter de la review de los usuarios
  * @return Retorna la review de los usuarios
  */

@@ -20,7 +20,8 @@ public class PunctualShow extends Show implements Serializable {
      * @param firstLocation Localizacion
      */
 
-    private SingleDate singleDate;
+	private static final long serialVersionUID = 1L;
+	private SingleDate singleDate;
 
 	public PunctualShow(String title, String cathegory, String description, Integer capacity, SingleDate singleDate, String firstLocation){
 

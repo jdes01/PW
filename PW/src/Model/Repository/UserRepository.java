@@ -8,7 +8,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 
 import Model.Entities.User.User;
@@ -28,12 +27,18 @@ public class UserRepository {
  */
 	
     public void saveUser(User user) throws IOException, ClassNotFoundException {
+    	ArrayList<User> users = new ArrayList<User>();
     	
     	try {
     		FileOutputStream file = new FileOutputStream("users.txt");
     		ObjectOutputStream output = new ObjectOutputStream(file);
+    		users = getUsers();
     		
-    		output.writeObject(user);
+    		users.add(user);
+    		for(User usertmp : users) {
+    			output.writeObject(usertmp);
+    		}
+    		
     		output.close();
     	} catch (Exception e) {
     		e.printStackTrace();
@@ -59,12 +64,7 @@ public class UserRepository {
     		FileInputStream file = new FileInputStream("users.txt");
     		ObjectInputStream input = new ObjectInputStream(file);
     		while(cont) {
-    			User user = null;
-    			try {
-    				user = (User) input.readObject();
-    			} catch (ClassNotFoundException e) {
-    				e.printStackTrace();
-    			}
+    			User user = (User) input.readObject();
     			if(user != null) {
     				users.add(user);
     			} else {
@@ -74,7 +74,9 @@ public class UserRepository {
     		input.close();
     	} catch(EOFException e) {
     		return users;
-    	}
+    	} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 		return users;
 	}
 /**
@@ -135,18 +137,17 @@ public class UserRepository {
  * @throws IOException Signals that an I/O of some sort has occured
  */
 
-	private static void writeObjectsToFile(String filename, ArrayList<User> objects) throws IOException {
-        OutputStream os = null;
-        try {
-          os = new FileOutputStream(filename);
-          @SuppressWarnings("resource")
-		  ObjectOutputStream oos = new ObjectOutputStream(os);
-          oos.writeObject(objects);
-          oos.flush();
-        } finally {
-          if (os != null) {
-            os.close();
+	private static void writeObjectsToFile(String filename, ArrayList<User> users) throws IOException {
+		try {
+          FileOutputStream file = new FileOutputStream(filename, true);
+          ObjectOutputStream output = new ObjectOutputStream(file);
+          output.writeObject(users);
+          output.flush();
+          if (output != null) {
+        	  output.close();
           }
+        } catch (Exception e) {
+        	e.printStackTrace();
         }
       }
 }

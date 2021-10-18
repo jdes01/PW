@@ -9,7 +9,11 @@ import java.io.Serializable;
  */
 public class LocationAndAvailableTickets implements Serializable {
     
-    private String location;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String location;
     private Integer tickets;
 
 /**

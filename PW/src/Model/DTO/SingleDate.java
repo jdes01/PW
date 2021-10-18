@@ -10,7 +10,11 @@ import java.util.Date;
  */
 public class SingleDate implements DateInterface, Serializable {
 
-    private Date date;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Date date;
 
     /**
      * Constructor de SingleDate

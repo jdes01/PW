@@ -1,4 +1,3 @@
-import java.io.EOFException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -18,7 +17,7 @@ public class mainProgram {
 			try {
 				ArrayList<User> users = handler.getUsers();
 				for(User user : users) {
-					System.out.println(user.getName());
+					System.out.println(user);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();

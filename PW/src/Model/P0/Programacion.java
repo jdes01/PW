@@ -1,10 +1,9 @@
-package Model;
-
-import Model.Espectaculo;
-import Model.Espectaculo.categoria;
+package Model.P0;
 
 import java.util.ArrayList;
 import java.util.Date;
+
+import Model.P0.Espectaculo.categoria;
  
 /**
  * Clase programacion que tiene todo lo relacionado a la programacion de los espectaculos

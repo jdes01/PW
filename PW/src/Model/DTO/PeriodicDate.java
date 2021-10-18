@@ -9,9 +9,16 @@ import java.util.Date;
  *
  */
 public class PeriodicDate implements DateInterface, Serializable {
- * Constructor de PeriodicDate
- * @param newDate Nueva fecha
- */
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Date date;
+
+	/**
+	 * Constructor de PeriodicDate
+	 * @param newDate Nueva fecha
+	 */
     
     public PeriodicDate(Date newDate){
         this.date = newDate;

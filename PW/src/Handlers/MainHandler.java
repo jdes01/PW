@@ -1,6 +1,5 @@
 package Handlers;
 
-import java.io.EOFException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -496,15 +495,15 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public ArrayList<User> getUsers() throws ClassNotFoundException, IOException {
+		return this.userRepository.getUsers();
+	}
 
 	@Override
 	public void createUser(String name) {
 		// TODO Auto-generated method stub
 		
-	}
-	
-	public ArrayList<User> getUsers() throws ClassNotFoundException, IOException {
-		return this.userRepository.getUsers();
 	}
  
 }

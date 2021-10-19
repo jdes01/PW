@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import Model.DTO.Score;
 import Model.DTO.UserReview;
 
-import Model.Entities.User.User;
+import Model.Entities.User;
 
 /**
  * Clase review que tiene todo lo relacionado a las reviews

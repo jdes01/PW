@@ -1,6 +1,8 @@
 package Handlers;
 
-import Model.Entities.User.User;
+import java.io.IOException;
+
+import Model.Entities.User;
 
 /**
  * Interfaz publica del handler del user
@@ -8,7 +10,7 @@ import Model.Entities.User.User;
  */
 public interface UserHandlerInterface {
     
-    void createUser(String name);
+    void createUser();
 
-    void updateUser(User user);
+    void updateUser() throws ClassNotFoundException, IOException;
 }

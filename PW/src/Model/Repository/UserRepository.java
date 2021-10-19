@@ -9,7 +9,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import Model.Entities.User.User;
+import Model.Entities.User;
 
 /**
  * Clase repositorio de los usuarios
@@ -29,7 +29,9 @@ public class UserRepository {
     	ArrayList<User> users = new ArrayList<User>();
     	
     	try {
-    		users = getUsers();
+    		if(getUsers() != null) {
+    			users = getUsers();
+    		}
     		
     		users.add(user);
     		UserRepository.writeObjectsToFile("users.bin", users);
@@ -56,6 +58,10 @@ public class UserRepository {
     	boolean cont = true;
     	try {
     		FileInputStream file = new FileInputStream("users.bin");
+    		if(file.available() == 0) {
+    			file.close();
+    			return null;
+    		}
     		ObjectInputStream input = new ObjectInputStream(file);
     		while(cont) {
     			user = (User) input.readObject();

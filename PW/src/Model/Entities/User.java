@@ -1,4 +1,4 @@
-package Model.Entities.User;
+package Model.Entities;
 
 import java.io.Serializable;
 
@@ -11,11 +11,11 @@ public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-    private String name;
+	private String _fullname;
 
-    private String nick;
+    private String _username;
 
-    private String mail;
+    private String _mail;
     
    /**
     * Constructor de la clase usuario
@@ -26,7 +26,9 @@ public class User implements Serializable {
 
     public User(String name, String nick, String mail){
 
-        this.name = name;
+        this._fullname = name;
+        this._username = nick;
+        this._mail = mail;
     }
     
    /**
@@ -34,8 +36,8 @@ public class User implements Serializable {
     * @return Retorna el nick del usuario
     */
 
-    public String getNick() {
-        return this.nick;
+    public String getUsername() {
+        return this._username;
     }
     
 /**
@@ -44,7 +46,7 @@ public class User implements Serializable {
  */
 
     public String getName() {
-        return this.name;
+        return this._fullname;
     }
     
 /**
@@ -53,7 +55,7 @@ public class User implements Serializable {
  */
 
     public String getMail(){
-        return this.mail;
+        return this._mail;
     }
     
 /**
@@ -61,8 +63,8 @@ public class User implements Serializable {
  * @param nick Nick del usuario
  */
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    public void setUsername(String nick) {
+        this._username = nick;
     }
     
 /**
@@ -71,7 +73,7 @@ public class User implements Serializable {
  */
 
     public void setName(String name) {
-        this.name = name;
+        this._fullname = name;
     }
     
 /**
@@ -80,6 +82,6 @@ public class User implements Serializable {
  */
 
     public void setMail(String mail){
-        this.mail = mail;
+        this._mail = mail;
     }
 }

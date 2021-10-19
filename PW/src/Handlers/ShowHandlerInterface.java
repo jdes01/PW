@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import Model.Entities.Review.Review;
 import Model.Entities.Show.Show;
-import Model.Entities.User.User;
+import Model.Entities.User;
 
 /**
  * Interfaz publica del handler del show

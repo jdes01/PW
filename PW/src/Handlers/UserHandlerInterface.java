@@ -2,7 +2,6 @@ package Handlers;
 
 import java.io.IOException;
 
-import Model.Entities.User;
 
 /**
  * Interfaz publica del handler del user

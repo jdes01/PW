@@ -147,7 +147,7 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 
 		Scanner scanner = new Scanner(System.in);
 		String name = null;
-		String nick = null;
+		String username = null;
 		String mail = null;
 
 		try {
@@ -158,8 +158,8 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 
 			System.out.println("please, write your nick");
 
-			nick = scanner.nextLine();
-			if(nick.contains(" ")) {
+			username = scanner.nextLine();
+			if(username.contains(" ")) {
 				System.out.println("[!] Invalid username. Username should be without whitespaces. ");
 				return;
 			}
@@ -168,7 +168,7 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 
 			mail = scanner.nextLine();
 
-			User user = new User(name, nick, mail);
+			User user = new User(name, username, mail);
 
 			try {
 				this.userRepository.saveUser(user);
@@ -275,14 +275,18 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 
 			System.out.println("please, write your new nick");
 
-			String nick = scanner.nextLine();
+			String username = scanner.nextLine();
+			if(username.contains(" ")) {
+				System.out.println("[!] Invalid username. Username should be without whitespaces. ");
+				return;
+			}
 
 			System.out.println("please, write your new mail");
 
 			String mail = scanner.nextLine();
 
 			user.setName(name);
-			user.setUsername(nick);
+			user.setUsername(username);
 			user.setMail(mail);
 
 			try {

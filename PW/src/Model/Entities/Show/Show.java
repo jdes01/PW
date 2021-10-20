@@ -28,20 +28,20 @@ public class Show implements Serializable {
 
 	private String title;
 
-	private String cathegory;
+	private String category;
 
     /**
      * Constructor de Show
      * @param title Titulo
-     * @param cathegory Categoria
+     * @param category Categoria
      * @param description Descripcion
      * @param capacity Capacidad
      */
     
-    public Show(String title, String cathegory, String description, Integer capacity){
+    public Show(String title, String category, String description, Integer capacity){
 
         this.title        = title;
-        this.cathegory    = cathegory;
+        this.category    = category;
         this.description  = description;
         this.capacity     = capacity;
     }  
@@ -57,7 +57,7 @@ public class Show implements Serializable {
      * @return Retorna la categorria
      */    
     
-	public String getCathegory(){ return this.cathegory; }
+	public String getCategory(){ return this.category; }
 	
 	/**
 	 * Getter de la descripcion
@@ -92,7 +92,7 @@ public class Show implements Serializable {
 	 * @param cathegory Categoria del show
 	 */
 	
-	public void setCathegory(String cathegory){ this.cathegory = cathegory; }
+	public void setCathegory(String cathegory){ this.category = cathegory; }
 
 	/**
 	 * Setter de la descripccion

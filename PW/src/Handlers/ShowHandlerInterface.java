@@ -18,7 +18,7 @@ public interface ShowHandlerInterface {
 
     ArrayList<Show> getShows();
 
-    void cancelShow(Show show);
+    void cancelShow();
 
     void cancelAllShows();
 

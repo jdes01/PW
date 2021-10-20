@@ -60,6 +60,27 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 		this.reviewRepository = new ReviewRepository();
 		this.showRepository = new ShowRepository();
 	}
+	
+	/**
+	 * Imprime en pantalla el menu principal
+	 * @return Integer
+	 */
+	public Integer mainMenu() {
+		@SuppressWarnings("resource")
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("please, choose an option:");
+		System.out.println("1. Create User");
+		System.out.println("2. Create Show");
+		System.out.println("3. Update User");
+		System.out.println("4. Delete User");
+		System.out.println("5. Cancel a Show");
+		System.out.println("6. Cancel all Shows");
+		System.out.println("7. Show users");
+		System.out.println("8. Show shows");
+
+		return scanner.nextInt();
+	}
+
 
 	////// HANDLE REVIEWS ///////
 
@@ -228,19 +249,6 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 		return user;
 	}
 
-	public Integer mainMenu() {
-		@SuppressWarnings("resource")
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("please, choose an option:");
-		System.out.println("1. Create User");
-		System.out.println("2. Create Show");
-		System.out.println("3. Update User");
-		System.out.println("4. Delete User");
-		System.out.println("5. Show users");
-
-		return scanner.nextInt();
-	}
-
 	/**
 	 * Funcion publica para actualizar usuarios
 	 * 
@@ -398,13 +406,21 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 	 */
 	public ArrayList<Show> getShows() {
 
-		ArrayList<Show> shows = this.showRepository.getShows();
+		ArrayList<Show> shows = new ArrayList<Show>();
+		
+		try {
+			shows = this.showRepository.getShows();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		return shows;
 	}
 
-	public void cancelShow(Show show) {
+	public void cancelShow() {
 
+		Show show = new Show(null, null, null, null);
+		
 		this.showRepository.cancelShow(show);
 	}
 
@@ -415,7 +431,11 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 	 */
 	public void cancelAllShows() {
 
-		this.showRepository.cancelAllShows();
+		try {
+			this.showRepository.cancelAllShows();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**

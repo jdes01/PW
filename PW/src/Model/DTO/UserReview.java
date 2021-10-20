@@ -1,6 +1,6 @@
 package Model.DTO;
 
-import Model.Entities.User.User;
+import Model.Entities.User;
 
 /**
  * Clase usuario de la review

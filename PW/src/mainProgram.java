@@ -1,19 +1,17 @@
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import Handlers.*;
-import Model.Entities.User.User;
+import Model.Entities.User;
 
 public class mainProgram {
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
 
 		MainHandler handler = MainHandler.getHandler();
-		Scanner scanner = new Scanner(System.in);
 		Integer option = 1;
-		
+
 		option = handler.mainMenu();
-		switch(option) {
+		switch (option) {
 		case 1:
 			handler.createUser();
 			break;
@@ -21,13 +19,17 @@ public class mainProgram {
 			handler.createShow();
 			break;
 		case 3:
-			handler.deleteUser();
+			handler.updateUser();
 			break;
 		case 4:
+			handler.deleteUser();
+			break;
+		case 5:
 			try {
 				ArrayList<User> users = handler.getUsers();
-				for(User user : users) {
-					System.out.println(user.getName());
+				for (User user : users) {
+					System.out.println(
+							"Username: " + user.getUsername() + "; Name: " + user.getName() + "; Mail: " + user.getMail());
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -36,7 +38,5 @@ public class mainProgram {
 		default:
 			break;
 		}
-		
-		scanner.close();
 	}
 }

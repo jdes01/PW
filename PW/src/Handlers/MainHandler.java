@@ -61,6 +61,28 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 		this.showRepository = new ShowRepository();
 	}
 
+	/**
+	 * Imprime en pantalla el menu principal
+	 * 
+	 * @return Integer
+	 */
+	public Integer mainMenu() {
+		@SuppressWarnings("resource")
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("please, choose an option:");
+		System.out.println("1. Create User");
+		System.out.println("2. Create Show");
+		System.out.println("3. Update User");
+		System.out.println("4. Update Show");
+		System.out.println("5. Delete User");
+		System.out.println("6. Cancel a Show");
+		System.out.println("7. Cancel all Shows");
+		System.out.println("8. Show users");
+		System.out.println("9. Show shows");
+
+		return scanner.nextInt();
+	}
+
 	////// HANDLE REVIEWS ///////
 
 	/**
@@ -159,7 +181,7 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 			System.out.println("please, write your nick");
 
 			username = scanner.nextLine();
-			if(username.contains(" ")) {
+			if (username.contains(" ")) {
 				System.out.println("[!] Invalid username. Username should be without whitespaces. ");
 				return;
 			}
@@ -228,25 +250,12 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 		return user;
 	}
 
-	public Integer mainMenu() {
-		@SuppressWarnings("resource")
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("please, choose an option:");
-		System.out.println("1. Create User");
-		System.out.println("2. Create Show");
-		System.out.println("3. Update User");
-		System.out.println("4. Delete User");
-		System.out.println("5. Show users");
-
-		return scanner.nextInt();
-	}
-
 	/**
 	 * Funcion publica para actualizar usuarios
 	 * 
 	 * @param user Usuarios
-	 * @throws IOException 
-	 * @throws ClassNotFoundException 
+	 * @throws IOException
+	 * @throws ClassNotFoundException
 	 */
 
 	public void updateUser() throws ClassNotFoundException, IOException {
@@ -254,11 +263,11 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 		Scanner scanner = new Scanner(System.in);
 
 		try {
-			
+
 			System.out.println("please, write your full name");
-			
+
 			String oldName = scanner.nextLine();
-			
+
 			User user = getUser(oldName);
 
 			if (user != null) {
@@ -268,7 +277,7 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 				System.out.println("Sorry, there is no user with that name.");
 				return;
 			}
-			
+
 			System.out.println("please, write your new full name");
 
 			String name = scanner.nextLine();
@@ -276,7 +285,7 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 			System.out.println("please, write your new nick");
 
 			String username = scanner.nextLine();
-			if(username.contains(" ")) {
+			if (username.contains(" ")) {
 				System.out.println("[!] Invalid username. Username should be without whitespaces. ");
 				return;
 			}
@@ -398,14 +407,35 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 	 */
 	public ArrayList<Show> getShows() {
 
-		ArrayList<Show> shows = this.showRepository.getShows();
+		ArrayList<Show> shows = new ArrayList<Show>();
+
+		try {
+			shows = this.showRepository.getShows();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		return shows;
 	}
 
-	public void cancelShow(Show show) {
+	public void cancelShow() throws IOException {
 
-		this.showRepository.cancelShow(show);
+		Scanner scanner = new Scanner(System.in);
+
+		System.out.println("please, give the Title of the show");
+
+		String showTitle = scanner.nextLine();
+
+		Show show = getShowByTitle(showTitle);
+
+		if (show != null) {
+			System.out.println("Show by title " + show.getTitle() + " was deleted.");
+			this.showRepository.cancelShow(show);
+		} else {
+			System.out.println("Sorry, there is no show by that title.");
+		}
+
+		scanner.close();
 	}
 
 	/**
@@ -415,7 +445,11 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 	 */
 	public void cancelAllShows() {
 
-		this.showRepository.cancelAllShows();
+		try {
+			this.showRepository.cancelAllShows();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -476,7 +510,7 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 	 * Funcion publica para obtener el show por su titulo
 	 * 
 	 * @param title Titulo
-	 * @return Retorna el titulo
+	 * @return Retorna el show
 	 */
 
 	public Show getShowByTitle(String title) {
@@ -534,12 +568,6 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 	 * Funcion publica para actualizar los shows
 	 */
 
-	@Override
-	public void updateShow() {
-		// TODO Auto-generated method stub
-
-	}
-
 	/**
 	 * Funcion publica para enseñar los tickets de la sesion
 	 * 
@@ -555,6 +583,96 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 
 	public ArrayList<User> getUsers() throws ClassNotFoundException, IOException {
 		return this.userRepository.getUsers();
+	}
+
+	@Override
+	public void updateShow() throws ParseException, IOException {
+		Scanner scanner = new Scanner(System.in);
+
+		try {
+
+			System.out.println("please, write the show's title");
+
+			String oldTitle = scanner.nextLine();
+			Show show = getShowByTitle(oldTitle);
+			Date date = null;
+			Show createdShow = null;
+
+			if (show != null) {
+				System.out.println("Show by title " + show.getTitle() + " was encountered.");
+				this.showRepository.cancelShow(show);
+			} else {
+				System.out.println("Sorry, there is no show with that title.");
+				return;
+			}
+
+			System.out.println("please, give a title to the show");
+
+			String title = scanner.nextLine();
+
+			System.out.println("please, give a cathegory to the show among 'concierto, monologo, obra de teatro'");
+
+			String cathegory = scanner.nextLine();
+
+			System.out.println("please, give a description to the show");
+
+			String description = scanner.nextLine();
+
+			System.out.println("please, give a capacity");
+
+			Integer capacity = scanner.nextInt();
+			scanner.nextLine();
+
+			System.out.println("please, type a date (format = dd/MM/yyyy)");
+
+			String stringDate = scanner.nextLine();
+
+			System.out.println("please, type the first location");
+
+			String firstLocation = scanner.nextLine();
+
+			System.out.println(
+					"please, type 1 if you want a single date, 2 if you want a periodic date or 3 if you want a multiple date");
+
+			Integer option = scanner.nextInt();
+			scanner.nextLine();
+
+			date = new SimpleDateFormat("dd/MM/YYYY").parse(stringDate);
+
+			if (option == 1) {
+
+				SingleDate singleDate = new SingleDate(date);
+
+				createdShow = ShowFactory.createShow(title, cathegory, description, capacity, singleDate,
+						firstLocation);
+
+			} else if (option == 2) {
+
+				PeriodicDate periodicDate = new PeriodicDate(date);
+
+				createdShow = ShowFactory.createShow(title, cathegory, description, capacity, periodicDate,
+						firstLocation);
+
+			} else if (option == 3) {
+
+				MultipleDate multipleDate = new MultipleDate(date);
+
+				createdShow = ShowFactory.createShow(title, cathegory, description, capacity, multipleDate,
+						firstLocation);
+
+			} else {
+
+				System.out.println("wrong format");
+
+			}
+
+			this.showRepository.saveShow(createdShow);
+
+		} finally {
+			if (scanner != null) {
+				scanner.close();
+			}
+		}
 	}
 
 }

@@ -18,6 +18,8 @@ import Model.Entities.User;
  */
 
 public class UserRepository {
+	
+	private String filename = "users.bin";
 
 /**
  * 	Funcion publica que guarda el usuario
@@ -34,7 +36,7 @@ public class UserRepository {
     		}
     		
     		users.add(user);
-    		UserRepository.writeObjectsToFile("users.bin", users);
+    		UserRepository.writeObjectsToFile(filename, users);
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
@@ -57,7 +59,7 @@ public class UserRepository {
     	User user = new User(null, null, null);
     	boolean cont = true;
     	try {
-    		FileInputStream file = new FileInputStream("users.bin");
+    		FileInputStream file = new FileInputStream(filename);
     		if(file.available() == 0) {
     			file.close();
     			return null;
@@ -102,7 +104,7 @@ public class UserRepository {
     		}
     	}
     	
-    	UserRepository.writeObjectsToFile("users.bin", users);
+    	UserRepository.writeObjectsToFile(filename, users);
     }
     
 /**
@@ -144,9 +146,13 @@ public class UserRepository {
             FileOutputStream file = new FileOutputStream(filename);
             ObjectOutputStream output = new ObjectOutputStream(file);
             
-            for(User user : users) {
-        	    output.writeObject(user);
-            }
+            if (users == null) {
+				output.writeObject(null);
+			} else {
+				for (User user : users) {
+					output.writeObject(user);
+				}
+			}
             output.flush();
             if (output != null) {
         	    output.close();

@@ -1,5 +1,7 @@
 package Handlers;
 
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import Model.Entities.Review.Review;
@@ -18,11 +20,11 @@ public interface ShowHandlerInterface {
 
     ArrayList<Show> getShows();
 
-    void cancelShow();
+    void cancelShow() throws IOException;
 
     void cancelAllShows();
 
-    void updateShow();
+    void updateShow() throws ParseException, IOException;
 
     void showTicketsForShowSesion(Show show, int sesion); //using dates array (in case of multiple-dates or periodic-date shows), print date, location and tickets
     

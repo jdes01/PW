@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import Model.Entities.Show.Show;
 
@@ -79,8 +80,22 @@ public class ShowRepository {
 
 	/**
 	 * Funcion publica para cancelar un show
+	 * @throws IOException 
 	 */
-	public void cancelShow(Show show) {
+	public void cancelShow(Show show) throws IOException {
+		ArrayList<Show> shows = new ArrayList<Show>();
+    	shows = getShows();
+    	
+    	Iterator<Show> it = shows.iterator();
+    	while(it.hasNext()) {
+    		Show tmpShow = (Show) it.next();
+    		if(tmpShow.getTitle().equals(show.getTitle())) {
+    			it.remove();
+    		}
+    	}
+    	
+    	ShowRepository.writeObjectsToFile(filename, shows);
+
 	};
 
 	/**
@@ -100,8 +115,22 @@ public class ShowRepository {
 	 */
 
 	public Show getShowByTitle(String title) {
-		Show show = new Show(null, null, null, null);
-
+		ArrayList<Show> shows = new ArrayList<Show>();
+    	Show show = null;
+    	
+    	try {
+			shows = getShows();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	
+    	for(Show tmpShow : shows) {
+    		if(tmpShow.getTitle().equals(title)) {
+    			show = tmpShow;
+    			break;
+    		}
+    	}
+    	
 		return show;
 	}; // TODO
 

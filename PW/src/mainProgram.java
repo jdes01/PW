@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import Handlers.*;
@@ -6,7 +7,7 @@ import Model.Entities.User;
 import Model.Entities.Show.Show;
 
 public class mainProgram {
-	public static void main(String[] args) throws IOException, ClassNotFoundException {
+	public static void main(String[] args) throws IOException, ClassNotFoundException, ParseException {
 
 		MainHandler handler = MainHandler.getHandler();
 		Integer option = 1;
@@ -23,15 +24,18 @@ public class mainProgram {
 			handler.updateUser();
 			break;
 		case 4:
-			handler.deleteUser();
+			handler.updateShow();
 			break;
 		case 5:
-			handler.cancelShow();
+			handler.deleteUser();
 			break;
 		case 6:
-			handler.cancelAllShows();
+			handler.cancelShow();
 			break;
 		case 7:
+			handler.cancelAllShows();
+			break;
+		case 8:
 			try {
 				ArrayList<User> users = handler.getUsers();
 				for (User user : users) {
@@ -42,7 +46,7 @@ public class mainProgram {
 				e.printStackTrace();
 			}
 			break;
-		case 8:
+		case 9:
 			try {
 				ArrayList<Show> shows = handler.getShows();
 				for (Show show : shows) {

@@ -209,7 +209,7 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 	/**
 	 * Funcion publica para borrar usuarios
 	 * 
-	 * @param user Usuario
+	 * @param User Usuario
 	 */
 
 	public void deleteUser() {
@@ -253,7 +253,7 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 	/**
 	 * Funcion publica para actualizar usuarios
 	 * 
-	 * @param user Usuarios
+	 * @param User Usuarios
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
@@ -403,7 +403,7 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 	/**
 	 * Funcion para borrar usuarios
 	 * 
-	 * @param user Usuario que se va a borrar
+	 * @param User Usuario que se va a borrar
 	 */
 	public ArrayList<Show> getShows() {
 
@@ -441,7 +441,7 @@ public class MainHandler implements ReviewHandlerInterface, UserHandlerInterface
 	/**
 	 * Funcion para actualizar los datos del usuario
 	 * 
-	 * @param user Usuario que se va a actualizar
+	 * @param User Usuario que se va a actualizar
 	 */
 	public void cancelAllShows() {
 

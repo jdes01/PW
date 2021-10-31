@@ -69,7 +69,7 @@ public class showTest {
 
     @Test
     void punctualShowTest(){
-        /*
+
         Calendar date = Calendar.getInstance();
         date.set(2001, 6, 8);
 
@@ -77,9 +77,11 @@ public class showTest {
         assertEquals(date.get(Calendar.MONTH), 6);
         assertEquals(date.get(Calendar.DAY_OF_MONTH), 8);
 
-        PunctualShow punctualShow = new PunctualShow("title", "description", "category", date);
+        PunctualShow punctualShow = new PunctualShow("title", "description", "category", 50, date);
 
-        assertEquals(punctualShow.getSesions().get(0).get(Calendar.YEAR), 2001);
-        */
+        assertEquals(punctualShow.getSesions().get(0).getDate().get(Calendar.YEAR), 2001);
+        assertEquals(punctualShow.getSesions().get(0).getDate().get(Calendar.MONTH), 6);
+        assertEquals(punctualShow.getSesions().get(0).getDate().get(Calendar.DAY_OF_MONTH), 8);
+    
     }
 }

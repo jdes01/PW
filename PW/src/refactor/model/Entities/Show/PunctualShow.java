@@ -4,10 +4,11 @@ import java.util.Calendar;
 
 public class PunctualShow extends Show{
 
-    public PunctualShow(String title, String description, String category, Calendar date){
+    public PunctualShow(String title, String description, String category, Integer capacity, Calendar date){
 
-        super("a", "b", "c");
-        super.getSesions().add(date);
+        super(title, description, category, capacity);
+
+        super.addSesion(date, capacity);
     }
     
 }

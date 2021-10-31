@@ -2,12 +2,12 @@ package refactor.model.ValueObjects;
 
 import refactor.model.Entities.User;
 
-public class UserReview {
+public class UserScore {
     
     private User  _user;
     private Score _score;
 
-    public UserReview(User user, Score score){
+    public UserScore(User user, Score score){
 
         this._user = user;
         this._score = score;

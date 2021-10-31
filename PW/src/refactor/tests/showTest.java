@@ -1,20 +1,20 @@
 package refactor.tests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.shadow.com.univocity.parsers.conversions.CalendarConversion;
 
 import refactor.model.Entities.Show.MultiplePassShow;
 import refactor.model.Entities.Show.PunctualShow;
 import refactor.model.Entities.Show.SeasonShow;
 import refactor.model.Entities.Show.Show;
+import refactor.model.Entities.Show.ShowFactory;
 
 public class showTest {
 
@@ -126,6 +126,7 @@ public class showTest {
     }
     
 
+
     @Test
     void SeasonShow(){
 
@@ -143,5 +144,23 @@ public class showTest {
         assertEquals(seasonShow.getSesions().get(1).getDate().get(Calendar.DAY_OF_MONTH), 13);
 
         //TODO: update tests when finishing season show todo
+    }
+
+
+
+    @Test
+    void ShowFactory(){
+
+        Calendar date = Calendar.getInstance();
+        Show punctualShow = ShowFactory.createShow("title", "description", "category", 50, date);
+        assertInstanceOf(PunctualShow.class, punctualShow);
+
+        List<Calendar> dates = new ArrayList<Calendar>();
+        Show multiplePassShow = ShowFactory.createShow("title", "description", "category", 50, dates);
+        assertInstanceOf(MultiplePassShow.class, multiplePassShow);
+
+
+        Show seasonShow = ShowFactory.createShow("title", "description", "category", 50, date, date, 1);
+        assertInstanceOf(SeasonShow.class, seasonShow);
     }
 }

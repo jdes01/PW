@@ -13,6 +13,7 @@ import org.junit.jupiter.params.shadow.com.univocity.parsers.conversions.Calenda
 
 import refactor.model.Entities.Show.MultiplePassShow;
 import refactor.model.Entities.Show.PunctualShow;
+import refactor.model.Entities.Show.SeasonShow;
 import refactor.model.Entities.Show.Show;
 
 public class showTest {
@@ -118,9 +119,29 @@ public class showTest {
 
         assertEquals(multiplePassShow.getSesions().isEmpty(), false);
 
-        assertEquals(multiplePassShow.getSesions().get(0).getDate().get(Calendar.YEAR), 2001);
+        assertEquals(multiplePassShow.getSesions().get(0).getDate().get(Calendar.MONTH), 6);
         assertEquals(multiplePassShow.getSesions().get(1).getDate().get(Calendar.YEAR), 2002);
-        assertEquals(multiplePassShow.getSesions().get(2).getDate().get(Calendar.YEAR), 2003);
+        assertEquals(multiplePassShow.getSesions().get(2).getDate().get(Calendar.DAY_OF_MONTH), 10);
     
+    }
+    
+
+    @Test
+    void SeasonShow(){
+
+        Calendar beginDate = Calendar.getInstance();
+        beginDate.set(2021, 11, 1);
+
+        Calendar endDate = Calendar.getInstance();
+        endDate.set(2021, 12, 13);
+
+        SeasonShow seasonShow = new SeasonShow("title", "description", "category", 50, beginDate, endDate, 1);
+
+        assertEquals(seasonShow.getSesions().isEmpty(), false);
+
+        assertEquals(seasonShow.getSesions().get(0).getDate().get(Calendar.DAY_OF_MONTH), 1);
+        assertEquals(seasonShow.getSesions().get(1).getDate().get(Calendar.DAY_OF_MONTH), 13);
+
+        //TODO: update tests when finishing season show todo
     }
 }

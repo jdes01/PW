@@ -4,11 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.time.Year;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.shadow.com.univocity.parsers.conversions.CalendarConversion;
 
+import refactor.model.Entities.Show.MultiplePassShow;
 import refactor.model.Entities.Show.PunctualShow;
 import refactor.model.Entities.Show.Show;
 
@@ -79,9 +82,45 @@ public class showTest {
 
         PunctualShow punctualShow = new PunctualShow("title", "description", "category", 50, date);
 
+        assertEquals(punctualShow.getSesions().isEmpty(), false);
+
         assertEquals(punctualShow.getSesions().get(0).getDate().get(Calendar.YEAR), 2001);
         assertEquals(punctualShow.getSesions().get(0).getDate().get(Calendar.MONTH), 6);
         assertEquals(punctualShow.getSesions().get(0).getDate().get(Calendar.DAY_OF_MONTH), 8);
+    
+    }
+
+
+
+    @Test
+    void MultiplePassShow(){
+
+        Calendar date1 = Calendar.getInstance();
+        date1.set(2001, 6, 8);
+
+        assertEquals(date1.get(Calendar.YEAR), 2001);
+        assertEquals(date1.get(Calendar.MONTH), 6);
+        assertEquals(date1.get(Calendar.DAY_OF_MONTH), 8);
+
+        Calendar date2 = Calendar.getInstance();
+        date2.set(2002, 7, 9);
+
+        Calendar date3 = Calendar.getInstance();
+        date3.set(2003, 8, 10);
+
+        List<Calendar> dates = new ArrayList<Calendar>();
+        dates.add(date1);
+        dates.add(date2);
+        dates.add(date3);
+
+
+        MultiplePassShow multiplePassShow = new MultiplePassShow("title", "description", "category", 50, dates);
+
+        assertEquals(multiplePassShow.getSesions().isEmpty(), false);
+
+        assertEquals(multiplePassShow.getSesions().get(0).getDate().get(Calendar.YEAR), 2001);
+        assertEquals(multiplePassShow.getSesions().get(1).getDate().get(Calendar.YEAR), 2002);
+        assertEquals(multiplePassShow.getSesions().get(2).getDate().get(Calendar.YEAR), 2003);
     
     }
 }

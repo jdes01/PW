@@ -1,8 +1,11 @@
-package refactor.model.Entities;
+package refactor.model.Entities.Show;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 import java.util.UUID;
 
-import refactor.model.ValueObjects.Score;
+import refactor.model.ValueObjects.ShowSesion;
 
 public class Show {
 
@@ -11,10 +14,12 @@ public class Show {
     private String _title;
     private String _description;
     private String _category;
-    private Score _score;
+    private int    _capacity;
+
+    private List<ShowSesion> _sesions = new ArrayList<ShowSesion>();
 
 
-    public Show(String title, String description, String category, Integer score){
+    public Show(String title, String description, String category, int capacity){
 
         UUID uuid = UUID.randomUUID();
         this._id = uuid;
@@ -22,9 +27,7 @@ public class Show {
         this._title = title;
         this._description = description;
         this._category = category;
-        
-        this._score = new Score(score);
-
+        this._capacity = capacity;
     }
 
 
@@ -37,7 +40,9 @@ public class Show {
 
     public String getCategory(){ return this._category; }
 
-    public Integer getScore(){ return this._score.getScore(); }
+    public int getCapacity(){ return this._capacity; }
+
+    public List<ShowSesion> getSesions(){ return this._sesions; }
 
 
 
@@ -47,6 +52,15 @@ public class Show {
 
     public void setCategory(String category){ this._category = category; }
 
-    public void setScore(Integer score){ this._score.setScore(score); }
+    public void setCapacity(int capacity){ this._capacity = capacity; }
+
+
+
+    public void addSesion(Calendar date, int tickets){
+
+        ShowSesion showSesion = new ShowSesion(date, tickets);
+
+        this._sesions.add(showSesion);
+    }
     
 }

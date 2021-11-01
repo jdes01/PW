@@ -1,4 +1,4 @@
-package refactor.model.Entities;
+package refactor.Model.Entities;
 
 import java.util.UUID;
 

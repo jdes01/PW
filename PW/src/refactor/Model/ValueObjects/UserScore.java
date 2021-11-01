@@ -1,6 +1,6 @@
-package refactor.model.ValueObjects;
+package refactor.Model.ValueObjects;
 
-import refactor.model.Entities.User;
+import refactor.Model.Entities.User;
 
 public class UserScore {
     

@@ -1,4 +1,4 @@
-package refactor.model.Entities.Show;
+package refactor.Model.Entities.Show;
 
 import java.util.Calendar;
 import java.util.List;

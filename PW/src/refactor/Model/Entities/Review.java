@@ -1,12 +1,12 @@
-package refactor.model.Entities;
+package refactor.Model.Entities;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import refactor.model.Entities.Show.Show;
-import refactor.model.ValueObjects.Score;
-import refactor.model.ValueObjects.UserScore;
+import refactor.Model.Entities.Show.Show;
+import refactor.Model.ValueObjects.Score;
+import refactor.Model.ValueObjects.UserScore;
 
 public class Review {
     

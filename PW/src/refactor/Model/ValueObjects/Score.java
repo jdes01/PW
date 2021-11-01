@@ -1,4 +1,4 @@
-package refactor.model.ValueObjects;
+package refactor.Model.ValueObjects;
 
 public class Score {
 

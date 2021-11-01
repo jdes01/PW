@@ -1,11 +1,11 @@
-package refactor.model.Entities.Show;
+package refactor.Model.Entities.Show;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
-import refactor.model.ValueObjects.ShowSesion;
+import refactor.Model.ValueObjects.ShowSesion;
 
 public class Show {
 

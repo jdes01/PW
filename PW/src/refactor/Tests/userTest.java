@@ -1,11 +1,11 @@
-package refactor.tests;
-
-import refactor.model.Entities.User;
+package refactor.Tests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
+
+import refactor.Model.Entities.User;
 
 public class userTest {
 

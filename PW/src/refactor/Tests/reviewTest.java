@@ -1,4 +1,4 @@
-package refactor.tests;
+package refactor.Tests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -6,11 +6,11 @@ import java.util.Calendar;
 
 import org.junit.jupiter.api.Test;
 
-import refactor.model.Entities.Review;
-import refactor.model.Entities.User;
-import refactor.model.Entities.Show.Show;
-import refactor.model.Entities.Show.ShowFactory;
-import refactor.model.ValueObjects.Score;
+import refactor.Model.Entities.Review;
+import refactor.Model.Entities.User;
+import refactor.Model.Entities.Show.Show;
+import refactor.Model.Entities.Show.ShowFactory;
+import refactor.Model.ValueObjects.Score;
 
 
 public class reviewTest {

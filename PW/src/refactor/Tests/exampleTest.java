@@ -1,4 +1,4 @@
-package refactor.tests;
+package refactor.Tests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;

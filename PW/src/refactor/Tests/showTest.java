@@ -1,4 +1,4 @@
-package refactor.tests;
+package refactor.Tests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
@@ -10,11 +10,11 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import refactor.model.Entities.Show.MultiplePassShow;
-import refactor.model.Entities.Show.PunctualShow;
-import refactor.model.Entities.Show.SeasonShow;
-import refactor.model.Entities.Show.Show;
-import refactor.model.Entities.Show.ShowFactory;
+import refactor.Model.Entities.Show.MultiplePassShow;
+import refactor.Model.Entities.Show.PunctualShow;
+import refactor.Model.Entities.Show.SeasonShow;
+import refactor.Model.Entities.Show.Show;
+import refactor.Model.Entities.Show.ShowFactory;
 
 public class showTest {
 

@@ -1,5 +1,6 @@
 package refactor.Repository;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -9,7 +10,7 @@ import refactor.Model.Entities.User;
 
 public class UserRepository {
 
-    private String filename = "/home/jdes01/Dev/college/PW/PW/src/refactor/Repository/users.txt";
+    private String filename = System.getProperty("user.dir") + File.separator + "src/refactor/Repository/users.txt";
 
     public UserRepository(){}
 

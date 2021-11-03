@@ -1,6 +1,7 @@
 package refactor;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import refactor.UseCases.RegisterUserUseCase;
 
@@ -19,7 +20,7 @@ public class MainHandler {
 		return MainHandler.mainHandler;
 	}
 
-    public void registerUser(String name, String lastName, String nickName, String mail) throws IOException{
+    public void registerUser(String name, String lastName, String nickName, String mail) throws IOException, ClassNotFoundException, SQLException{
 
         RegisterUserUseCase.registerUser(name, lastName, nickName, mail);
     }

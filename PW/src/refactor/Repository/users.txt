@@ -1,1 +1,23 @@
-User 86bd12d3-62ee-4612-bae9-6c1ded9c1933 name lastName nickName mail
+User 6e2ac436-a13e-4cbe-9042-f096503f1420 name lastName nickName mail
+User 7f1e0d95-4e64-4c64-ac64-f36630ab216a name lastName nickName mail
+User 544c22aa-917c-4fbe-973a-446c8fda4a86 name lastName nickName mail
+User b0455f2a-20d6-41aa-9716-1bb62d8352e9 name lastName nickName mail
+User 75e2880b-fe47-44b1-b22f-d0eff3f81676 name lastName nickName mail
+User 3101599d-bb3c-4835-aa72-fbfb1282baf0 name lastName nickName mail
+User c349234d-720a-4a7b-85a4-41d665dd44fe name lastName nickName mail
+
+User 981aeaea-8736-4324-9d51-ff77d9a97bb4 name lastName nickName mail
+
+User 750847c2-b91d-4d8b-a3cf-5d7afc4f041b name lastName nickName mail
+/home/jdes01/Dev/college/PW/PW/users.txt
+User 01e19b93-c175-4e69-94a5-8d610ee64caf name lastName nickName mail
+
+User c2d612cd-cf49-4d8a-ac10-f873f2c86935 name lastName nickName mail
+
+User a21f1a25-eb8c-4bd6-9e53-634324312ea1 name lastName nickName mail
+
+User 87eca611-e90d-432c-87fa-c28150739760 name lastName nickName mail
+
+User a8b85331-f5d2-4900-ad1c-64f1c8b67ae0 name lastName nickName mail
+
+User 89abeb04-39a8-4b51-b63e-34ec88d8ecb6 name lastName nickName mail

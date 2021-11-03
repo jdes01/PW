@@ -4,5 +4,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="libraries/junit-platform-console-standalone-1.8.1.jar"/>
 	<classpathentry kind="lib" path="libraries/servlet-api.jar"/>
+	<classpathentry kind="lib" path="libraries/mysql-connector.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

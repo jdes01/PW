@@ -15,6 +15,7 @@ public class exampleTest {
     void test1(){
 
         assertEquals(1, 1);
+
     }
 
     @Test

@@ -38,6 +38,51 @@ public class UserDAO {
         
     }
 
+    public ArrayList<User> read() {    
+        ArrayList<User> userList = new ArrayList<User>();
+        
+        try{
+
+            Connection connection = null;
+
+            Class.forName("com.mysql.jdbc.Driver");
+
+
+            connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
+
+            Statement statement = connection.createStatement();
+            String sqlString = "SELECT * FROM User";
+
+            ResultSet rs = statement.executeQuery(sqlString);
+            int g = 0;
+
+            while (rs.next()) {
+                User user = new User(null, null, null, null);
+
+                user.setID(rs.getString("id"));
+                user.setName(rs.getString("name"));
+                user.setLastName(rs.getString("lastname"));
+                user.setMail(rs.getString("mail"));
+                user.setNickName(rs.getString("nick"));
+                if(rs.getString("role") == "VIEWER") {
+                    user.setRoleViewer();
+                } else if(rs.getString("role") == "ADMIN") {
+                    user.setRoleAdmin();
+                }
+    
+                userList.add(user);
+            }
+    
+            rs.close();
+            return userList;
+        } catch (Exception e){
+
+            System.out.println(e);
+        }
+
+        return null;
+    }
+
     public void update(User user) {
 
         try {
@@ -54,7 +99,7 @@ public class UserDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    } //TODO
 
     public void delete(User user) {
 
@@ -65,9 +110,9 @@ public class UserDAO {
 
             connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
 
-            PreparedStatement ps = connection.prepareStatement("DELETE FROM User WHERE nick = ?");
+            PreparedStatement ps = connection.prepareStatement("DELETE FROM User WHERE id = ?");
 
-            ps.setString(1, user.getNickName());
+            ps.setString(1, user.getUuid().toString());
 
             ps.executeUpdate();
         } catch (Exception e) {

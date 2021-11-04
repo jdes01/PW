@@ -58,6 +58,10 @@ public class User {
 
 
 
+    public void setID(String id) {
+        this._id = UUID.fromString(id);
+    }
+
     public void setName(String name) {
         this._name = name;
     }

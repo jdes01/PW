@@ -2,7 +2,6 @@ package refactor.UseCases;
 
 import java.io.IOException;
 
-import refactor.Model.Entities.User;
 import refactor.Repository.UserRepository;
 
 
@@ -12,9 +11,8 @@ public class LoginUserUseCase {
 
         UserRepository userRepository = new UserRepository();
 
-        User user = user(mail);
-
-        userRepository.userIsLogged(user.getMail());
+        // Este no tengo ni zorra de como plantearlo 
+        // userRepository.userIsLogged(user.getMail());
     }
     
 }

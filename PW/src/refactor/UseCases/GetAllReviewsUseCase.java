@@ -10,27 +10,11 @@ public class GetAllReviewsUseCase {
 
     public static List<Review> GetAllReviews() throws IOException{
 
+         ReviewRepository reviewRepository = new ReviewRepository();
 
-        ArrayList < String > lista = new ArrayList <String> ();
-        lista.add("Pedro");
-        lista.add("Olga");
-        lista.add("Miguel");
-        lista.add("Antonio");
-        lista.add("Pedro"); 
-
-        Iterator < String > it = lista.iterator();
-
-            while (it.hasNext()) {
-
-            System.out.println(it.next());
-
-        }
-
-        // ReviewRepository reviewRepository = new ReviewRepository();
-        //
-        // Review review = new Review(user, title, text, show, score);
-        // 
-        // reviewRepository.saveReview(review);
+         ArrayList < Review > listaReviews = new ArrayList <Review> ();
+        
+         listaReviews=ReviewRepository.GetAllReviews();
         
         }
     

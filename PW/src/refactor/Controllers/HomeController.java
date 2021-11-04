@@ -1,6 +1,7 @@
 package refactor.Controllers;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,7 +23,13 @@ public class HomeController extends HttpServlet{
         String name = request.getParameter("name");  
         String mail = request.getParameter("mail");
 
-        MainHandler.getHandler().registerUser(name, "password", "nickName", mail);
+        try {
+            MainHandler.getHandler().registerUser(name, "password", "nickName", mail);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         RequestDispatcher rd = request.getRequestDispatcher("index.jsp");  
         rd.forward(request, response);  

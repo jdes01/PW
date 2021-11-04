@@ -1,8 +1,0 @@
-
-User dfe42c91-f905-4b9e-aa9f-0b7fcdb4aee4 name lastName nickName mail
-
-User 0ff5a796-8daa-41c0-a278-413691a237f7 name lastName nickName mail
-
-User 00a97d7e-3866-4871-8add-ec6df9b8169c name lastName nickName mail
-
-User 90203a34-0ead-4e28-8701-7da482dec1df name lastName nickName mail

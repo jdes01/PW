@@ -1,28 +1,26 @@
 package refactor.Tests;
 
-import java.util.ArrayList;
+import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import refactor.DAOs.UserDAO;
 import refactor.Model.Entities.User;
+import refactor.Repository.DAOs.UserDAO;
 
 public class userDAOTest {
 
-    User user = new User("name", "lastName", "nickName", "mail");
-    UserDAO userDAO = new UserDAO();
-
     @Test
-    void createUser() {
+    void createUser() throws IOException {
+
+        User user = new User("name", "lastName", "nickName", "mail");
+        UserDAO userDAO = new UserDAO();
         
         userDAO.create(user);
 
     }
 
-    @Test
-    void deleteUser() {
+    /*@Test
+    void deleteUser() throws IOException {
         
         User UsertobeDeleted = new User("User", "to be Deleted", "UsertobeDeleted", "user@deleted.com");
         ArrayList<User> users = new ArrayList<User>();
@@ -40,9 +38,9 @@ public class userDAOTest {
             assertNotEquals(user.getUuid(), UsertobeDeleted.getUuid());
         }
 
-    }
+    }*/
 
-    @Test
+    /*@Test
     void readUsers() {
         
         ArrayList<User> users = userDAO.read();
@@ -51,5 +49,5 @@ public class userDAOTest {
             System.out.println(users.get(i).getName() + " " + users.get(i).getUuid());
         }
 
-    }
+    }*/
 }

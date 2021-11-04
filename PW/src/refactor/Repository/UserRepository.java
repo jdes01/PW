@@ -1,27 +1,33 @@
 package refactor.Repository;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import refactor.DAOs.UserDAO;
 import refactor.Model.Entities.User;
+import refactor.Repository.DAOs.UserDAO;
 
 public class UserRepository {
 
     public UserRepository(){}
 
-    public void saveUser(User user) throws IOException, ClassNotFoundException, SQLException {
+    public void saveUser(String name, String lastName, String nickName, String mail) throws IOException, ClassNotFoundException, SQLException {
+
+        User user = new User(name, lastName, nickName, mail);
+        
+        UserDAO userDAO = new UserDAO();
+        userDAO.create(user);
+    }    
+
+    public Boolean isUserRegistered(String mail){
 
         UserDAO userDAO = new UserDAO();
 
-        userDAO.create(user);
+        if( userDAO.getUserByMail(mail).getUuid() != null ){
 
-    }    
+            return true;
+        }
+
+        return false;
+    }
+
 }

@@ -16,6 +16,7 @@ public class User {
 
     private String _role;
 
+    public User(){}
 
     public User(String name, String lastName, String nickName, String mail){
 

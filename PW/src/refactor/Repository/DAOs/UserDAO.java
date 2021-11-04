@@ -80,7 +80,7 @@ public class UserDAO {
                 user.setMail(resultSet.getString("mail"));
 
                 if(resultSet.getString("role") == "ADMIN"){user.setRoleAdmin();}
-                user.setUUID(resultSet.getString("Id"));
+                user.setID(resultSet.getString("Id"));
 			}
 
             if (statement != null){ 

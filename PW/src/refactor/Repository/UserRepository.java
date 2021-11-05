@@ -18,7 +18,7 @@ public class UserRepository {
         userDAO.create(user);
     }    
 
-    public Boolean isUserRegistered(String mail){
+    public Boolean anyUserWithMail(String mail){
 
         UserDAO userDAO = new UserDAO();
 
@@ -28,6 +28,13 @@ public class UserRepository {
         }
 
         return false;
+    }
+
+    public User getUserByMail(String mail){
+
+        UserDAO userDAO = new UserDAO();
+
+        return userDAO.getUserByMail(mail);
     }
 
 }

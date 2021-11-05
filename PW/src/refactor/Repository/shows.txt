@@ -76,3 +76,27 @@ Show 3219b5c9-af42-4d4b-81e8-abd7dca58de1 title description category 50 Sesions:
 Show 09e133f1-78cf-4700-b91b-888847ce291f title description category 50 Sesions: [2001-07-08 50 ]
 
 Show 05912cc6-edcc-47de-9e3d-d275d1789012 title description category 50 Sesions: [2021-12-01 50 ] [2022-01-13 50 ]
+
+Show c38b72a8-4c93-4f78-9a5e-53c3a8838499 title description category 50 Sesions: [2001-07-08 50 ] [2002-08-09 50 ] [2003-09-10 50 ]
+
+Show 9c4d4b6c-9476-4b8e-8475-2ce27fa6326c title description category 50 Sesions: [2001-07-08 50 ]
+
+Show 81a372e2-df63-4321-8553-24beb6093c84 title description category 50 Sesions: [2021-12-01 50 ] [2022-01-13 50 ]
+
+Show 960f5d90-f42c-4174-8a5e-1715daf8fac5 title description category 50 Sesions: [2001-07-08 50 ] [2002-08-09 50 ] [2003-09-10 50 ]
+
+Show 41177362-f904-4b03-bda9-4a1aad03e555 title description category 50 Sesions: [2001-07-08 50 ]
+
+Show 6f300b58-b3f1-4859-b79d-84ad36a6feb5 title description category 50 Sesions: [2021-12-01 50 ] [2022-01-13 50 ]
+
+Show 7acdc26b-a619-4071-ade3-c85405f3306a title description category 50 Sesions: [2001-07-08 50 ] [2002-08-09 50 ] [2003-09-10 50 ]
+
+Show 51725ef5-4559-47f6-ac59-31f0e53c0429 title description category 50 Sesions: [2001-07-08 50 ]
+
+Show 733bbfcd-f15a-48d3-b317-eafd628cf181 title description category 50 Sesions: [2021-12-01 50 ] [2022-01-13 50 ]
+
+Show f695a50e-ea40-4451-9b10-37029ec6ab94 title description category 50 Sesions: [2001-07-08 50 ] [2002-08-09 50 ] [2003-09-10 50 ]
+
+Show 569260a8-db4e-44ff-ac5f-4fc5fba4d107 title description category 50 Sesions: [2001-07-08 50 ]
+
+Show 01a9ea32-e5fb-4871-9c63-87c4e55de40f title description category 50 Sesions: [2021-12-01 50 ] [2022-01-13 50 ]

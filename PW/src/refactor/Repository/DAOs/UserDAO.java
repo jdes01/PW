@@ -64,34 +64,30 @@ public class UserDAO {
 
     public User getUserById(UUID userId){
 
+        User user = new User();
+
         try{
+
             Connection connection = null;
             Class.forName("com.mysql.jdbc.Driver");
             connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
-            java.sql.Statement statement = connection.createStatement();
-            String query = "SELECT id, name, lastname, nickname, mail, role FROM Users WHERE id = " + userId;
-            ResultSet resultSet = (ResultSet) statement.executeQuery(query);
+            Statement statement = connection.createStatement();
 
-            User user = new User("name", "lastname", "nickName", "mail");
+            String sqlString = "select u.id, u.name, u.lastname, u.nickname, u.mail, u.role from User u where u.id = '" + userId + " '";
+            ResultSet rs = statement.executeQuery(sqlString);
 
-            while (resultSet.next()) {
+            while (rs.next()) {
 
-                user.setName(resultSet.getString("name"));
-                user.setLastName(resultSet.getString("lastname"));
-                user.setNickName(resultSet.getString("nickname"));
-                user.setMail(resultSet.getString("mail"));
-
-                if(resultSet.getString("role") == "ADMIN"){user.setRoleAdmin();}
-                user.setID(resultSet.getString("Id"));
-			}
-
-            if (statement != null){ 
-                statement.close(); 
+                user.setID(rs.getString("u.id"));
+                user.setName(rs.getString("u.name"));
+                user.setLastName(rs.getString("u.lastname"));
+                user.setNickName(rs.getString("u.nickname"));
+                user.setMail(rs.getString("u.mail"));
+                if(rs.getString("u.role")=="ADMIN"){user.setRoleAdmin();}
             }
-            connection.close();
-
+            if (statement != null) statement.close();
             return user;
-
+            
         } catch (Exception e){
             System.out.println(e);
         }
@@ -134,48 +130,37 @@ public class UserDAO {
         return null;
     }
 
-    public ArrayList<User> read() {    
+    public ArrayList<User> getAllUsers() {    
+
         ArrayList<User> userList = new ArrayList<User>();
-        
+
         try{
 
             Connection connection = null;
-
             Class.forName("com.mysql.jdbc.Driver");
-
-
             connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
-
             Statement statement = connection.createStatement();
-            String sqlString = "SELECT * FROM User";
 
+            String sqlString = "SELECT * FROM User u";
             ResultSet rs = statement.executeQuery(sqlString);
-            int g = 0;
 
             while (rs.next()) {
-                User user = new User(null, null, null, null);
 
-                user.setID(rs.getString("id"));
-                user.setName(rs.getString("name"));
-                user.setLastName(rs.getString("lastname"));
-                user.setMail(rs.getString("mail"));
-                user.setNickName(rs.getString("nick"));
-                if(rs.getString("role") == "VIEWER") {
-                    user.setRoleViewer();
-                } else if(rs.getString("role") == "ADMIN") {
-                    user.setRoleAdmin();
-                }
-    
+                User user = new User();
+                user.setID(rs.getString("u.id"));
+                user.setName(rs.getString("u.name"));
+                user.setLastName(rs.getString("u.lastname"));
+                user.setNickName(rs.getString("u.nickname"));
+                user.setMail(rs.getString("u.mail"));
+                if(rs.getString("u.role")=="ADMIN"){user.setRoleAdmin();}
                 userList.add(user);
             }
-    
-            rs.close();
+            if (statement != null) statement.close();
             return userList;
+            
         } catch (Exception e){
-
             System.out.println(e);
         }
-
         return null;
     }
 

@@ -1,10 +1,14 @@
 package refactor.Tests;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
 import refactor.Model.Entities.User;
+import refactor.Repository.UserRepository;
 import refactor.Repository.DAOs.UserDAO;
 
 public class userDAOTest {
@@ -40,14 +44,18 @@ public class userDAOTest {
 
     }*/
 
-    /*@Test
-    void readUsers() {
+    @Test
+    void getAllUsers() throws NullPointerException{
         
-        ArrayList<User> users = userDAO.read();
+        UserDAO userDAO = new UserDAO();
+        ArrayList<User> users = userDAO.getAllUsers();
 
-        for(int i = 0; i < users.size(); i++) {
-            System.out.println(users.get(i).getName() + " " + users.get(i).getUuid());
+        UserRepository userRepository = new UserRepository();
+
+        for(User user: users){
+
+            assertEquals(userRepository.anyUserWithMail(user.getMail()), true);
         }
 
-    }*/
+    }
 }

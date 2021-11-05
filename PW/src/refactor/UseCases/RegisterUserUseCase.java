@@ -11,7 +11,7 @@ public class RegisterUserUseCase {
 
         UserRepository userRepository = new UserRepository();
         
-        if( userRepository.isUserRegistered(mail) ){
+        if( userRepository.anyUserWithMail(mail) == true ){
 
             return;
         

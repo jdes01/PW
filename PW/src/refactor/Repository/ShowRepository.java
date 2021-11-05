@@ -60,7 +60,24 @@ public class ShowRepository {
         ShowDAO showDAO = new ShowDAO();
 
         showDAO.createShow(show);
+        showDAO.createShowSesions(show);
+    }
 
+    public void saveShow(String title, String description, String category, Integer capacity, Calendar date){
+
+        Show show = ShowFactory.createShow(title, description, category, capacity, date);
+        ShowDAO showDAO = new ShowDAO();
+
+        showDAO.createShow(show);
+        showDAO.createShowSesions(show);
+    }
+
+    public void saveShow(String title, String description, String category, Integer capacity, Calendar beginDate, Calendar endDate, int weekDay){
+
+        Show show = ShowFactory.createShow(title, description, category, capacity, beginDate, endDate, weekDay);
+        ShowDAO showDAO = new ShowDAO();
+
+        showDAO.createShow(show);
         showDAO.createShowSesions(show);
     }
 }

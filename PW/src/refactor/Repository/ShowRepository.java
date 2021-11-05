@@ -6,9 +6,13 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.List;
 
 import refactor.Model.Entities.Show.Show;
+import refactor.Model.Entities.Show.ShowFactory;
 import refactor.Model.ValueObjects.ShowSesion;
+import refactor.Repository.DAOs.ShowDAO;
 
 public class ShowRepository {
 
@@ -16,7 +20,7 @@ public class ShowRepository {
     
     public ShowRepository(){}
 
-    public void saveShow(Show show) throws IOException {
+    public void saveShowInTextFile(Show show) throws IOException {
 
         Files.write(Paths.get(path), "\n".getBytes(), StandardOpenOption.APPEND);
 
@@ -47,5 +51,16 @@ public class ShowRepository {
         }
 
         Files.write(Paths.get(path), "\n".getBytes(), StandardOpenOption.APPEND);
+    }
+
+    //MultiplePass Show instance
+    public void saveShow(String title, String description, String category, Integer capacity, List<Calendar> dates){
+
+        Show show = ShowFactory.createShow(title, description, category, capacity, dates);
+        ShowDAO showDAO = new ShowDAO();
+
+        showDAO.createShow(show);
+
+        showDAO.createShowSesions(show);
     }
 }

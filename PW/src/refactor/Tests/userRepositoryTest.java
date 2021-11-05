@@ -47,4 +47,53 @@ public class userRepositoryTest {
 
     }
 
+
+    @Test 
+    void getUserById() throws IOException{
+
+        String randomName = UUID.randomUUID().toString();
+        String randomLastName = UUID.randomUUID().toString();
+        String randomNickName = UUID.randomUUID().toString();
+        String randomMail = UUID.randomUUID().toString();
+
+        User user = new User(randomName, randomLastName, randomNickName, randomMail);
+        UserDAO userDAO = new UserDAO();
+        userDAO.create(user);
+
+        UserRepository userRepository = new UserRepository();
+
+        User returnedUser = userRepository.getUserById(user.getUuid());
+
+        assertEquals(returnedUser.getName(), randomName);
+    }
+
+    @Test 
+    void updateUserDataTest() throws IOException{
+
+        String randomName = UUID.randomUUID().toString();
+        String randomLastName = UUID.randomUUID().toString();
+        String randomNickName = UUID.randomUUID().toString();
+        String randomMail = UUID.randomUUID().toString();
+
+        User user = new User(randomName, randomLastName, randomNickName, randomMail);
+        UserDAO userDAO = new UserDAO();
+        userDAO.create(user);
+
+        String newName = UUID.randomUUID().toString();
+        String newLastName = UUID.randomUUID().toString();
+        String newNickName = UUID.randomUUID().toString();
+        String newMail = UUID.randomUUID().toString();
+
+        UserRepository userRepository = new UserRepository();
+
+        userRepository.updateUserName(user.getUuid(), newName);
+        userRepository.updateUserLastName(user.getUuid(), newLastName);
+        userRepository.updateUserNickName(user.getUuid(), newNickName);
+        userRepository.updateUserMail(user.getUuid(), newMail);
+
+        assertEquals(userRepository.getUserById(user.getUuid()).getName(), newName);
+        assertEquals(userRepository.getUserById(user.getUuid()).getLastName(), newLastName);
+        assertEquals(userRepository.getUserById(user.getUuid()).getNickName(), newNickName);
+        assertEquals(userRepository.getUserById(user.getUuid()).getMail(), newMail);
+    }
 }

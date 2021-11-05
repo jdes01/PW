@@ -73,7 +73,7 @@ public class UserDAO {
             connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
             Statement statement = connection.createStatement();
 
-            String sqlString = "select u.id, u.name, u.lastname, u.nickname, u.mail, u.role from User u where u.id = '" + userId + " '";
+            String sqlString = "select u.id, u.name, u.lastname, u.nickname, u.mail, u.role from User u where u.id = '" + userId + "'";
             ResultSet rs = statement.executeQuery(sqlString);
 
             while (rs.next()) {
@@ -109,7 +109,7 @@ public class UserDAO {
             connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
             Statement statement = connection.createStatement();
 
-            String sqlString = "select u.id, u.name, u.lastname, u.nickname, u.mail, u.role from User u where u.mail = '" + mail + " '";
+            String sqlString = "select u.id, u.name, u.lastname, u.nickname, u.mail, u.role from User u where u.mail = '" + mail + "'";
             ResultSet rs = statement.executeQuery(sqlString);
 
             while (rs.next()) {
@@ -164,24 +164,6 @@ public class UserDAO {
         return null;
     }
 
-    public void update(User user) {
-
-        try {
-            Connection connection = null;
-
-            Class.forName("com.mysql.jdbc.Driver");
-
-            connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
-
-            String sql = "UPDATE User WHERE id = ? SET ";
-            PreparedStatement ps = connection.prepareStatement(sql);
-
-            ps.setString(1,user.getUuid().toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    } //TODO
-
     public void delete(User user) {
 
         try {
@@ -200,4 +182,89 @@ public class UserDAO {
             e.printStackTrace();
         }
     }
+
+    public void updateUserName(UUID id, String newName) {
+
+        try {
+            Connection connection = null;
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
+
+            String sql = "UPDATE User SET name = ? WHERE id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+
+            ps.setString(1, newName);
+            ps.setString(2, id.toString());
+
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateUserLastName(UUID id, String newLastName) {
+
+        try {
+            Connection connection = null;
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
+
+            String sql = "UPDATE User SET lastname = ? WHERE id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+
+            ps.setString(1, newLastName);
+            ps.setString(2, id.toString());
+
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateUserNickName(UUID id, String newNickName) {
+
+        try {
+            Connection connection = null;
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
+
+            String sql = "UPDATE User SET nickname = ? WHERE id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+
+            ps.setString(1, newNickName);
+            ps.setString(2, id.toString());
+
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateUserMail(UUID id, String newMail) {
+
+        try {
+            Connection connection = null;
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
+
+            String sql = "UPDATE User SET mail = ? WHERE id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+
+            ps.setString(1, newMail);
+            ps.setString(2, id.toString());
+
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

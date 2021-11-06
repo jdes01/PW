@@ -11,7 +11,15 @@ public class DeleteUserUseCase {
 
         UserRepository userRepository = new UserRepository();
         
-        // TODO: userRepository.deleteUserByMail(mail);
+        if (userRepository.anyUserWithMail(mail) == true){
+
+            // TODO: userRepository.deleteUserByMail(mail);
+
+        } else {
+
+            return;
+        }
+
     }
     
 }

@@ -124,3 +124,15 @@ Show f1439d18-ec29-4ef6-bcf0-ba2a05f9ad35 title description category 50 Sesions:
 Show 66a13635-7c68-4877-8df3-b926a8129061 title description category 50 Sesions: [2001-07-08 50 ]
 
 Show 264cae9c-91d3-4c1f-96f3-957170ea1236 title description category 50 Sesions: [2021-12-01 50 ] [2022-01-13 50 ]
+
+Show 7b8a6bee-1e7c-4278-a479-7d6b9f2d5e36 title description category 50 Sesions: [2001-07-08 50 ] [2002-08-09 50 ] [2003-09-10 50 ]
+
+Show 16bd4d6e-56c4-4220-aac6-e1eb32799064 title description category 50 Sesions: [2001-07-08 50 ]
+
+Show b54bacff-3ee6-4d89-bfed-9c25a564478f title description category 50 Sesions: [2021-12-01 50 ] [2022-01-13 50 ]
+
+Show cc515fa1-398e-44ae-92eb-48881bc4b00a title description category 50 Sesions: [2001-07-08 50 ] [2002-08-09 50 ] [2003-09-10 50 ]
+
+Show 75b8c92b-dcca-4fd0-8199-b10145a7d3e3 title description category 50 Sesions: [2001-07-08 50 ]
+
+Show c60a2e1e-08a7-42a5-b482-e07bf77076aa title description category 50 Sesions: [2021-12-01 50 ] [2022-01-13 50 ]

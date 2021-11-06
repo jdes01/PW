@@ -80,4 +80,11 @@ public class ShowRepository {
         showDAO.createShow(show);
         showDAO.createShowSesions(show);
     }
+
+    public Show getShowByTitle(String title){
+
+        ShowDAO showDAO = new ShowDAO();
+
+        return showDAO.getShowByTitle(title);
+    }
 }

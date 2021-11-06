@@ -19,6 +19,9 @@ public class Show {
     private List<ShowSesion> _sesions = new ArrayList<ShowSesion>();
 
 
+    
+    public Show() {}
+
     public Show(String title, String description, String category, int capacity){
 
         UUID uuid = UUID.randomUUID();
@@ -45,6 +48,7 @@ public class Show {
     public List<ShowSesion> getSesions(){ return this._sesions; }
 
 
+    public void setID(String id) { this._id = UUID.fromString(id); }
 
     public void setTitle(String title){ this._title = title; }
 

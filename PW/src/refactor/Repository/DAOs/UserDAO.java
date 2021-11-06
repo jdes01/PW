@@ -73,7 +73,7 @@ public class UserDAO {
             connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
             Statement statement = connection.createStatement();
 
-            String sqlString = "select u.id, u.name, u.lastname, u.nickname, u.mail, u.role from User u where u.id = '" + userId + "'";
+            String sqlString = "select u.id, u.name, u.lastname, u.nickname, u.mail, u.role from `User` u where u.id = '" + userId + "'";
             ResultSet rs = statement.executeQuery(sqlString);
 
             while (rs.next()) {
@@ -109,7 +109,7 @@ public class UserDAO {
             connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
             Statement statement = connection.createStatement();
 
-            String sqlString = "select u.id, u.name, u.lastname, u.nickname, u.mail, u.role from User u where u.mail = '" + mail + "'";
+            String sqlString = "select u.id, u.name, u.lastname, u.nickname, u.mail, u.role from `User` u where u.mail = '" + mail + "'";
             ResultSet rs = statement.executeQuery(sqlString);
 
             while (rs.next()) {

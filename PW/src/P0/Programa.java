@@ -1,10 +1,8 @@
-package old.Model.P0;
+package P0;
 
 import java.util.Date;
 
-import old.Model.P0.Espectaculo;
-import old.Model.P0.Programacion;
-import old.Model.P0.Espectaculo.categoria;
+import P0.Espectaculo.categoria;
 
 /**
  * Clase programa 

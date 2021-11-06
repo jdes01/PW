@@ -124,3 +124,9 @@ Show f1439d18-ec29-4ef6-bcf0-ba2a05f9ad35 title description category 50 Sesions:
 Show 66a13635-7c68-4877-8df3-b926a8129061 title description category 50 Sesions: [2001-07-08 50 ]
 
 Show 264cae9c-91d3-4c1f-96f3-957170ea1236 title description category 50 Sesions: [2021-12-01 50 ] [2022-01-13 50 ]
+
+Show ca0d3890-8851-4a68-865f-037f5a924fa2 title description category 50 Sesions: [2001-07-08 50 ] [2002-08-09 50 ] [2003-09-10 50 ]
+
+Show eb6c9aa4-a4b5-4bcc-9923-aa857065ad40 title description category 50 Sesions: [2001-07-08 50 ]
+
+Show 7e5caed5-3f81-4b40-812c-214ff24498df title description category 50 Sesions: [2021-12-01 50 ] [2022-01-13 50 ]

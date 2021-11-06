@@ -2,6 +2,7 @@ package refactor.Tests;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -148,5 +149,15 @@ public class showDAOTest {
 
         assertEquals(formattedDate, formattedDate2);
         
+    }
+
+    @Test
+    void getAllShowsTest() throws NullPointerException {
+
+        ShowDAO showDAO = new ShowDAO();
+
+        ArrayList<Show> shows = showDAO.getAllShows();
+
+        assertFalse(shows.size() == 0);
     }
 }

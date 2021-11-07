@@ -11,9 +11,9 @@ import refactor.Model.ValueObjects.UserScore;
 public class Review {
     
     private UUID   _id;
-    private User   _user;
     private String _title;
     private String _text;
+    private User   _user;
     private Show   _show;
     private Score  _score;
 

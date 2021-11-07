@@ -13,7 +13,7 @@ public class DeleteUserUseCase {
         
         if (userRepository.anyUserWithMail(mail) == true){
 
-            // TODO: userRepository.deleteUserByMail(mail);
+            userRepository.deleteUserByMail(mail);
 
         } else {
 

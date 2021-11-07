@@ -64,4 +64,12 @@ public class UserRepository {
         userDAO.updateUserMail(id, newMail);
     }
 
+    public void deleteUserByMail(String mail){
+
+        UserDAO userDAO = new UserDAO();
+
+        User user = userDAO.getUserByMail(mail);
+
+        userDAO.delete(user);
+    }
 }

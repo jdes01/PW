@@ -58,4 +58,25 @@ public class userDAOTest {
         }
 
     }
+
+    @Test
+    void deleteUserTest() throws NullPointerException, IOException{
+        
+        UserDAO userDAO = new UserDAO();
+
+        User user1 = new User("name", "lastName", "nickName", "mail");
+        User user2 = new User("name", "lastName", "nickName", "mai2");
+        User user3 = new User("name", "lastName", "nickName", "mai3");
+
+        userDAO.create(user1);
+        userDAO.create(user2);
+        userDAO.create(user3);
+
+        userDAO.delete(user2);
+        UserRepository userRepository = new UserRepository();
+        userRepository.deleteUserByMail("mail");
+
+        //should only survive user3
+
+    }
 }

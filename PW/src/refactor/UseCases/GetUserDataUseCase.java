@@ -14,5 +14,6 @@ public class GetUserDataUseCase {
         userRepository.getName();
         userRepository.getLastName();
         userRepository.getNickName();
-        userRepository.getMail();    
+        userRepository.getMail();   
+    } 
 }

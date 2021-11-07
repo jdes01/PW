@@ -1,20 +1,16 @@
 package refactor.Tests;
 
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
 import refactor.Model.Entities.Show.Show;
 import refactor.Model.Entities.Show.ShowFactory;
 import refactor.Repository.ShowRepository;
-import refactor.Repository.DAOs.ShowDAO;
 
 public class showRepositoryTest {
 

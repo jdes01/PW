@@ -11,13 +11,22 @@ public class UserRepository {
 
     public UserRepository(){}
 
-    public void saveUser(String name, String lastName, String nickName, String mail) throws IOException, ClassNotFoundException, SQLException {
+    public void saveViewer(String name, String lastName, String nickName, String mail) throws IOException, ClassNotFoundException, SQLException {
 
         User user = new User(name, lastName, nickName, mail);
         
         UserDAO userDAO = new UserDAO();
         userDAO.create(user);
-    }    
+    }
+    
+    public void saveAdmin(String name, String lastName, String nickName, String mail) throws IOException, ClassNotFoundException, SQLException {
+
+        User user = new User(name, lastName, nickName, mail);
+        user.setRoleAdmin();
+
+        UserDAO userDAO = new UserDAO();
+        userDAO.create(user);
+    } 
 
     public User getUserById(UUID userId){
 

@@ -5,9 +5,9 @@ import java.sql.SQLException;
 
 import refactor.Repository.UserRepository;
 
-public class RegisterUserUseCase { 
+public class RegisterViewerUseCase { 
 
-    public static void registerUser(String name, String lastName, String nickName, String mail) throws IOException, ClassNotFoundException, SQLException{
+    public static void registerViewer(String name, String lastName, String nickName, String mail) throws IOException, ClassNotFoundException, SQLException{
 
         UserRepository userRepository = new UserRepository();
         
@@ -17,7 +17,7 @@ public class RegisterUserUseCase {
         
         } else {
             
-            userRepository.saveUser(name, lastName, nickName, mail);
+            userRepository.saveViewer(name, lastName, nickName, mail);
         }
     }
     

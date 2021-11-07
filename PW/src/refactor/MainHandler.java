@@ -3,7 +3,11 @@ package refactor;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import refactor.UseCases.RegisterUserUseCase;
+import refactor.UseCases.DeleteUserUseCase;
+import refactor.UseCases.LoginUserUseCase;
+import refactor.UseCases.RegisterAdminUseCase;
+import refactor.UseCases.RegisterViewerUseCase;
+import refactor.UseCases.UpdateUserDataUseCase;
 
 public class MainHandler {
 
@@ -20,11 +24,29 @@ public class MainHandler {
 		return MainHandler.mainHandler;
 	}
 
-    public void registerUser(String name, String lastName, String nickName, String mail) throws IOException, ClassNotFoundException, SQLException{
+    public void registerViewer(String name, String lastName, String nickName, String mail) throws IOException, ClassNotFoundException, SQLException{
 
-        RegisterUserUseCase.registerUser(name, lastName, nickName, mail);
+        RegisterViewerUseCase.registerViewer(name, lastName, nickName, mail);
     }
 
+	public void registerAdmin(String name, String lastName, String nickName, String mail) throws IOException, ClassNotFoundException, SQLException{
 
+        RegisterAdminUseCase.registerAdmin(name, lastName, nickName, mail);
+    }
+
+	public void deleteUser(String mail) throws IOException{
+
+		DeleteUserUseCase.deleteUser(mail);
+	}
     
+	public Boolean loginUser(String mail) throws IOException{
+
+		return LoginUserUseCase.loginUser(mail);
+	}
+
+	public void updateUserData(String userMail, String name, String lastName, String nickName, String mail){
+
+		UpdateUserDataUseCase.updateUserData(userMail, name, lastName, nickName, mail);
+	}
+
 }

@@ -165,3 +165,33 @@ Show 8be9ead2-e297-494b-94ea-216da154d25e title description category 50 Sesions:
 Show 66a332ed-04ca-4f19-9e1a-bed75e06d238 title description category 50 Sesions: [2001-07-08 50 ]
 
 Show b5a2bd15-bafb-49e2-8955-848b8fb0449b title description category 50 Sesions: [2021-12-01 50 ] [2022-01-13 50 ]
+
+Show bd966340-12f6-42a1-9126-bcdeb224376a title description category 50 Sesions: [2001-07-08 50 ] [2002-08-09 50 ] [2003-09-10 50 ]
+
+Show 73da21a8-2e72-4bb1-b510-f0bb49422f00 title description category 50 Sesions: [2001-07-08 50 ]
+
+Show 5f80045e-618d-4ef4-bde7-53e6a9cf4e5e title description category 50 Sesions: [2021-12-01 50 ] [2022-01-13 50 ]
+
+Show a8b52ac8-87a1-4369-9e0d-441963edb8d9 title description category 50 Sesions: [2001-07-08 50 ] [2002-08-09 50 ] [2003-09-10 50 ]
+
+Show 8627a822-ac7d-4d2e-8b19-229984017f82 title description category 50 Sesions: [2001-07-08 50 ]
+
+Show 9d08bba9-ead1-4a0f-8e6c-a56b22ce04d4 title description category 50 Sesions: [2021-12-01 50 ] [2022-01-13 50 ]
+
+Show d8640f98-afab-47df-b19c-7316a28ea2aa title description category 50 Sesions: [2001-07-08 50 ] [2002-08-09 50 ] [2003-09-10 50 ]
+
+Show e0ae9a7c-39fa-48f3-a729-9543e9b58961 title description category 50 Sesions: [2001-07-08 50 ]
+
+Show 6fc05e68-f20a-488e-a795-aed3c7552af6 title description category 50 Sesions: [2021-12-01 50 ] [2022-01-13 50 ]
+
+Show e9bb94df-44af-441b-881f-2c493e7fda1c title description category 50 Sesions: [2001-07-08 50 ] [2002-08-09 50 ] [2003-09-10 50 ]
+
+Show d2b78711-b041-42cb-b6d4-1160611e58ee title description category 50 Sesions: [2001-07-08 50 ]
+
+Show fdaf86d7-e8de-4777-a562-ba7301f228cb title description category 50 Sesions: [2021-12-01 50 ] [2022-01-13 50 ]
+
+Show 089c29f6-c324-4097-b27b-099bd372819e title description category 50 Sesions: [2001-07-08 50 ] [2002-08-09 50 ] [2003-09-10 50 ]
+
+Show aee960ef-8d40-46ab-a8e3-83ba3036ca61 title description category 50 Sesions: [2001-07-08 50 ]
+
+Show 9535747f-55a2-4104-b15e-cd548648655b title description category 50 Sesions: [2021-12-01 50 ] [2022-01-13 50 ]

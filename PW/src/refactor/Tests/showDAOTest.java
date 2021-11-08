@@ -143,9 +143,9 @@ public class showDAOTest {
         assertEquals(showDAO.getShowByTitle(titleString).getSesions().isEmpty(), false);
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        String formattedDate = format.format(showDAO.getShowByTitle(titleString).getSesions().get(0).getDate().getTime());
+        String formattedDate = format.format(showDAO.getShowByTitle(titleString).getSesions().get(1).getDate().getTime());
 
-        String formattedDate2 = format.format(date1.getTime());
+        String formattedDate2 = format.format(date2.getTime());
 
         assertEquals(formattedDate, formattedDate2);
         

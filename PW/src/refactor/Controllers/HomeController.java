@@ -24,7 +24,7 @@ public class HomeController extends HttpServlet{
         String mail = request.getParameter("mail");
 
         try {
-            MainHandler.getHandler().registerUser(name, "password", "nickName", mail);
+            MainHandler.getHandler().registerViewer(name, "password", "nickName", mail);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {

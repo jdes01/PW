@@ -14,7 +14,7 @@ public class GetUserReviewsUseCase {
 
         ArrayList < Review > reviewList = new ArrayList <Review> ();
         
-        reviewList=ReviewRepository.getAllReviewsbyUser(userMail);
+        reviewList=ReviewRepository.getAllReviewsByUser(userMail);
 
         return reviewList;
       

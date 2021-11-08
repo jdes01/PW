@@ -7,8 +7,23 @@ import java.sql.PreparedStatement;
 import refactor.Model.Entities.Review;
 import refactor.Model.ValueObjects.UserScore;
 
+/**
+ * DAO encargado de escribir en la base de datos toda la información relacionada con las reviews del sistema.
+ * 
+ * @author Alberto Cano Turnes
+ */
 public class ReviewDAO {
+    
+    /**
+     * Constuctor de la clase ReviewDAO.
+     */
+    public ReviewDAO(){}
 
+    /** 
+     * Función que se encarga de añadir una nueva review en la base de datos.
+     *
+     * @param review Objeto review que se quiere añadir a la base de datos.
+     */
     public void createReview(Review review) {
 
         try{

@@ -14,10 +14,23 @@ import java.util.GregorianCalendar;
 import refactor.Model.Entities.Show.Show;
 import refactor.Model.ValueObjects.ShowSesion;
 
+/**
+ * Clase encargada de escribir en la base de datos toda la información relacionada con los shows del sistema.
+ * 
+ * @author Marcos Rodríguez Moreno
+ */
 public class ShowDAO {
     
+    /**
+     * Constructor de la clase ShowDAO.
+     */
     public ShowDAO(){}
 
+    /** 
+     * Función encargada de añadir a la base de datos un nuevo objeto Show.
+     * 
+     * @param show Objeto Show que se quiere añadir a la base de datos.
+     */
     public void createShow(Show show){
 
         try{
@@ -44,6 +57,11 @@ public class ShowDAO {
         }
     }
 
+    /** 
+     * Descripción de la función...
+     * 
+     * @param show 
+     */
     public void createShowSesions(Show show){
 
         try{
@@ -77,6 +95,13 @@ public class ShowDAO {
         }
     }
 
+    
+    /** 
+     * Función que se encarga de buscar y devolver de la base de datos los shows que coincidan con la el título recibido en la función.
+     * 
+     * @param title Título de la función de la se quieren buscar los shows.
+     * @return Show Objeto show que se devuelve al encontrar relación con el título recibido en la función.
+     */
     public Show getShowByTitle(String title) {
 
         Show show = new Show();
@@ -122,6 +147,12 @@ public class ShowDAO {
         return null;
     }
 
+    
+    /** 
+     * Función que busca y devuelve de la base de datos todos los shows del sistema.
+     * 
+     * @return ArrayList<Show> Lista de shows que se han encontrado en la base de datos.
+     */
     public ArrayList<Show> getAllShows() {
         
         ArrayList<Show> shows = new ArrayList<Show>();

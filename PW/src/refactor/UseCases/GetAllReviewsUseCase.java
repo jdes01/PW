@@ -1,5 +1,6 @@
 package refactor.UseCases;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -8,13 +9,15 @@ import refactor.Model.Entities.Review;
 
 public class GetAllReviewsUseCase {
 
-    public static List<Review> GetAllReviews() throws IOException{
+    public static List<Review> getAllReviews() throws IOException{
 
          ReviewRepository reviewRepository = new ReviewRepository();
 
-         ArrayList < Review > listaReviews = new ArrayList <Review> ();
+         ArrayList < Review > reviewList = new ArrayList <Review> ();
         
-         listaReviews=ReviewRepository.GetAllReviews();
+         reviewList=ReviewRepository.getAllReviews();
+
+         return reviewList;
         
         }
     

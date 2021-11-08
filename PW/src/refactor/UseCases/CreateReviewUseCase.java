@@ -10,13 +10,13 @@ import refactor.Repository.UserRepository;
 
 public class CreateReviewUseCase { 
 
-    public static void CreateReview(User user, String title, String text, Show show, Score score) throws IOException{
+    public static void createReview(User user, String title, String text, Show show, Score score) throws IOException{
 
-    // ReviewRepository reviewRepository = new ReviewRepository();
-    //
-    // Review review = new Review(user, title, text, show, score);
-    // 
-    // reviewRepository.saveReview(review);
+      ReviewRepository reviewRepository = new ReviewRepository();
+     
+      Review review = new Review(user, title, text, show, score);
+      
+      reviewRepository.saveReview(review);
     
     }
     

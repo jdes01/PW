@@ -15,8 +15,20 @@ import java.util.UUID;
 
 import refactor.Model.Entities.User;
 
+/**
+ * Clase que se encarga de gestionar en la base de datos toda la información relacionada con los usuarios.
+ * 
+ * @author Javier De Santiago Palomino
+ */
 public class UserDAO {
 
+    
+    /** 
+     * Función que se encarga de añadir un nuevo usuario que se recibe como parámetro a la base de datos.
+     * 
+     * @param user Objeto User que se quiere introducir a la base de datos.
+     * @throws IOException Signals that an I/O exception of some sort has occurred. This class is the general class of exceptions produced by failed or interrupted I/O operations.
+     */
     public void create(User user) throws IOException {
 
         try{
@@ -62,6 +74,13 @@ public class UserDAO {
         Files.write(Paths.get(path), "\n".getBytes(), StandardOpenOption.APPEND);
     }
 
+    
+    /** 
+     * Función que se encarga de devolver el usuario que coincide con el id que se pasa cómo parámetro.
+     * 
+     * @param userId Id del usuario que se quiere buscar en la base de datos.
+     * @return User Objeto usuario que coincide con el id pasado cómo parámetro. Se devolverá un NULL si no se encuentra.
+     */
     public User getUserById(UUID userId){
 
         User user = new User();
@@ -95,8 +114,10 @@ public class UserDAO {
     }
 
     /**
-	 * 
-	 * @return User instance if found; null if not
+     * Función que se encarga de devolver de la base de datos el usuario asociado al correo que se recibe cómo parámetro.
+     * 
+	 * @param mail Correo del usuario que se quiere buscar en la base de datos.
+	 * @return Instancia de usuario asociada al mail que se recibe cómo párametro. Se devuelve un NULL si no se encuentra.
 	 */
     public User getUserByMail(String mail){
 
@@ -130,6 +151,12 @@ public class UserDAO {
         return null;
     }
 
+    
+    /** 
+     * Función que se encarga de devolver en una lista todos los usuarios que se encuentran en la base de datos.
+     * 
+     * @return ArrayList<User> Lista de usuarios que se ha encontrado en la base de datos.
+     */
     public ArrayList<User> getAllUsers() {    
 
         ArrayList<User> userList = new ArrayList<User>();
@@ -164,6 +191,12 @@ public class UserDAO {
         return null;
     }
 
+    
+    /** 
+     * Función que se encarga de eliminar la instancia de user pasada cómo parámetro de la base de datos.
+     * 
+     * @param user Instancia de user que se quiere eliminar de la base de datos.
+     */
     public void delete(User user) {
 
         try {
@@ -183,6 +216,13 @@ public class UserDAO {
         }
     }
 
+    
+    /** 
+     * Función que se encarga de sustituir en la base de datos el nombre de una instancia de usuario asociada al id pasado cómo parámetro por el de newName.
+     * 
+     * @param id Id del usuario al que se le quiere cambiar el nombre.
+     * @param newName Nuevo nombre que se le quiere poner al usuario con el id especificado cómo parámetro.
+     */
     public void updateUserName(UUID id, String newName) {
 
         try {
@@ -204,6 +244,13 @@ public class UserDAO {
         }
     }
 
+    
+    /** 
+     * Función que se encarga de sustituir en la base de datos el apellido de una instancia de usuario asociada al id pasado cómo parámetro por el de newLastName.
+     * 
+     * @param id Id asociada a la instancia de usuario al que se le quiere cambiar el apellido.
+     * @param newLastName Nuevo apellido que se le quiere atribuir a la instancia de usuario especificada en el id.
+     */
     public void updateUserLastName(UUID id, String newLastName) {
 
         try {
@@ -225,6 +272,13 @@ public class UserDAO {
         }
     }
 
+    
+    /** 
+     * Función que se encarga de sustituir en la base de datos el apodo de una instancia de usuario asociada al id pasado cómo parámetro por el de newNickName.
+     * 
+     * @param id Id asociada a la instancia de usuario al que se le quiere cambiar el apodo.
+     * @param newNickName Nuevo apodo que se le quiere atribuir a la instancia de usuario especificada en el id.
+     */
     public void updateUserNickName(UUID id, String newNickName) {
 
         try {
@@ -246,6 +300,13 @@ public class UserDAO {
         }
     }
 
+    
+    /** 
+     * Función que se encarga de sustituir en la base de datos el correo de una instancia de usuario asociada al id pasado cómo parámetro por el de newMail.
+     * 
+     * @param id Id asociada a la instancia de usuario al que se le quiere cambiar el apodo.
+     * @param newMail Nuevo correo que se le quiere atribuir a la instancia de usuario especificada en el id.
+     */
     public void updateUserMail(UUID id, String newMail) {
 
         try {

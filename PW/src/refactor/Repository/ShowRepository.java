@@ -15,12 +15,25 @@ import refactor.Model.Entities.Show.ShowFactory;
 import refactor.Model.ValueObjects.ShowSesion;
 import refactor.Repository.DAOs.ShowDAO;
 
+/**
+ * Clase repositorio de los shows
+ * 
+ * @author Alberto Cano Turnes
+ */
+
 public class ShowRepository {
 
     private String path = System.getProperty("user.dir") + File.separator + "src/refactor/Repository/shows.txt";
     
     public ShowRepository(){}
 
+    
+    /** 
+     * Funcion que guarda los shows en un fichero de texto
+     * 
+     * @param show Show
+     * @throws IOException Signals that an I/O exception of some sort has occurred. This class is the general class of exceptions produced by failed or interrupted I/O operations.
+     */
     public void saveShowInTextFile(Show show) throws IOException {
 
         Files.write(Paths.get(path), "\n".getBytes(), StandardOpenOption.APPEND);
@@ -54,6 +67,16 @@ public class ShowRepository {
         Files.write(Paths.get(path), "\n".getBytes(), StandardOpenOption.APPEND);
     }
 
+    
+    /** 
+     * Funcion para guardar shows
+     * 
+     * @param title Titulo del show
+     * @param description Descripcion del show
+     * @param category Categoria del show
+     * @param capacity Capacidad del show
+     * @param dates Fechas del show
+     */
     //MultiplePass Show instance
     public void saveShow(String title, String description, String category, Integer capacity, List<Calendar> dates){
 
@@ -64,6 +87,17 @@ public class ShowRepository {
         showDAO.createShowSesions(show);
     }
 
+    
+    /** 
+     * Funcion para guardar shows
+     * 
+     * @param title Titulo del show
+     * @param description Descripcion del show
+     * @param category Categoria del show
+     * @param capacity Capacidad del show
+     * @param dates Fechas del show
+     */
+
     public void saveShow(String title, String description, String category, Integer capacity, Calendar date){
 
         Show show = ShowFactory.createShow(title, description, category, capacity, date);
@@ -73,6 +107,18 @@ public class ShowRepository {
         showDAO.createShowSesions(show);
     }
 
+    
+    /** 
+     * Funcion para guardar el show
+     * 
+     * @param title Titulo del show
+     * @param description Descripcion del show
+     * @param category Categoria del show
+     * @param capacity Capacidad del show
+     * @param beginDate Fecha de inicio del show
+     * @param endDate Fecha de finalizacion del show
+     * @param weekDay Dia de la semana del show
+     */
     public void saveShow(String title, String description, String category, Integer capacity, Calendar beginDate, Calendar endDate, int weekDay){
 
         Show show = ShowFactory.createShow(title, description, category, capacity, beginDate, endDate, weekDay);
@@ -82,12 +128,28 @@ public class ShowRepository {
         showDAO.createShowSesions(show);
     }
 
+    
+    
+    /** 
+     * Getter del show a partir del titulo
+     * 
+     * @param title Titulo del show
+     * @return Show
+     */
+
     public Show getShowByTitle(String title){
 
         ShowDAO showDAO = new ShowDAO();
 
         return showDAO.getShowByTitle(title);
     }
+
+    
+    /** 
+     * Getter de todos los shows
+     * 
+     * @return ArrayList<Show>
+     */
 
     public ArrayList<Show> getAllShows(){
 

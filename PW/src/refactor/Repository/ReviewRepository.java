@@ -6,7 +6,19 @@ import refactor.Model.Entities.Show.Show;
 import refactor.Model.ValueObjects.Score;
 import refactor.Repository.DAOs.ReviewDAO;
 
+/**
+ * Clase repositorio de las reviews
+ * 
+ * @author Marcos Rodriguez Moreno
+ */
+
 public class ReviewRepository {
+
+/**
+ * Funcion publica que guarda las reviews
+ * 
+ * @param review La review que se va a guardar
+ */
 
     public void saveReview(User user, String title, String text, Show show, Score score){
 

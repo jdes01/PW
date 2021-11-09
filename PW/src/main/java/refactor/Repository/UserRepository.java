@@ -2,6 +2,10 @@ package refactor.Repository;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.TimeZone;
 import java.util.UUID;
 
 import refactor.Model.Entities.User;
@@ -41,6 +45,10 @@ public class UserRepository {
     public void saveViewer(String name, String lastName, String nickName, String mail) throws IOException, ClassNotFoundException, SQLException {
 
         User user = new User(name, lastName, nickName, mail);
+
+        Calendar c = Calendar.getInstance();
+        user.setRegiserDate(c);
+        user.setLastLoginDate(c);
         
         UserDAO userDAO = new UserDAO();
         userDAO.create(user);
@@ -67,6 +75,10 @@ public class UserRepository {
 
         User user = new User(name, lastName, nickName, mail);
         user.setRoleAdmin();
+
+        Calendar c = Calendar.getInstance();
+        user.setRegiserDate(c);
+        user.setLastLoginDate(c);
 
         UserDAO userDAO = new UserDAO();
         userDAO.create(user);
@@ -187,5 +199,42 @@ public class UserRepository {
         User user = userDAO.getUserByMail(mail);
 
         userDAO.delete(user);
+    }
+
+
+    public void updateLastLoginDateByMail(String mail){
+
+        UserDAO userDAO = new UserDAO();
+
+        userDAO.updateLastLoginDateByMail(mail);
+    }
+
+
+    public ArrayList<String> getAllUsersMails() {
+
+        UserDAO userDAO = new UserDAO();
+
+        ArrayList<String> allUsers = new ArrayList<>();
+
+        for(User user: userDAO.getAllUsers()){
+
+            allUsers.add(user.getMail());
+        }
+
+        return allUsers;
+    }
+
+    public ArrayList<String> getAllNickNames() {
+
+        UserDAO userDAO = new UserDAO();
+
+        ArrayList<String> allNickNames = new ArrayList<>();
+
+        for(User user: userDAO.getAllUsers()){
+
+            allNickNames.add(user.getNickName());
+        }
+
+        return allNickNames;
     }
 }

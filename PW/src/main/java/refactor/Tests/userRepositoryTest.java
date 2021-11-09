@@ -96,4 +96,5 @@ public class userRepositoryTest {
         assertEquals(userRepository.getUserById(user.getUuid()).getNickName(), newNickName);
         assertEquals(userRepository.getUserById(user.getUuid()).getMail(), newMail);
     }
+
 }

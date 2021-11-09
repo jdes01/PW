@@ -22,6 +22,12 @@ public class LoginUserUseCase {
 
         UserRepository userRepository = new UserRepository();
 
-        return userRepository.anyUserWithMail(mail);
+        if( userRepository.anyUserWithMail(mail) == true ){
+
+            userRepository.updateLastLoginDateByMail(mail);
+            return true;
+        }
+
+        return false;
     }    
 }

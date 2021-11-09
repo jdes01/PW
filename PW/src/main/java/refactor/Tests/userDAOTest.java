@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,6 +18,8 @@ public class userDAOTest {
     void createUser() throws IOException {
 
         User user = new User("name", "lastName", "nickName", "mail");
+        user.setRegiserDate(Calendar.getInstance());
+        user.setLastLoginDate(Calendar.getInstance());
         UserDAO userDAO = new UserDAO();
         
         userDAO.create(user);

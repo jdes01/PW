@@ -1,5 +1,6 @@
 package refactor.Model.Entities;
 
+import java.util.Calendar;
 import java.util.UUID;
 
 /**
@@ -21,6 +22,9 @@ public class User {
     private String _mail;
 
     private String _role;
+
+    private Calendar _registerDate = Calendar.getInstance();
+    private Calendar _lastLoginDate = Calendar.getInstance();
 
     public User(){}
 
@@ -108,6 +112,14 @@ public class User {
         return this._role;
     }
 
+    public Calendar getRegisterDate(){
+        return this._registerDate;
+    }
+
+    public Calendar getLastLoginDate(){
+        return this._lastLoginDate;
+    }
+
 
 
     
@@ -176,4 +188,17 @@ public class User {
         this._role = this.viewer;
     }
 
+<<<<<<< HEAD:PW/src/main/java/refactor/Model/Entities/User.java
 }
+=======
+    public void setRegiserDate(Calendar registerDate){
+        this._registerDate = registerDate;
+    }
+
+    public void setLastLoginDate(Calendar lastLoginDate){
+        this._lastLoginDate = lastLoginDate;
+    }
+
+}
+
+>>>>>>> MAIN_WORKING:PW/src/refactor/Model/Entities/User.java

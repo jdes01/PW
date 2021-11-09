@@ -10,7 +10,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.UUID;
 
 import refactor.Model.Entities.User;
@@ -35,7 +38,7 @@ public class UserDAO {
             Connection connection = null;
             Class.forName("com.mysql.jdbc.Driver");
             connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
-            PreparedStatement ps = connection.prepareStatement("INSERT INTO User values(?,?,?,?,?,?)");
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO User values(?,?,?,?,?,?,?,?)");
 
                 ps.setString(1,user.getUuid().toString());
                 ps.setString(2,user.getName());
@@ -43,6 +46,13 @@ public class UserDAO {
                 ps.setString(4,user.getNickName());
                 ps.setString(5,user.getMail());
                 ps.setString(6,user.getRole());
+
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                String formattedRegisterDate = format.format(user.getRegisterDate().getTime());
+                String formattedLastLoginDate = format.format(user.getLastLoginDate().getTime());
+
+                ps.setString(7, formattedRegisterDate);
+                ps.setString(8, formattedLastLoginDate);
 
                 ps.executeUpdate();
 
@@ -55,7 +65,7 @@ public class UserDAO {
             System.out.println(e);
         }
 
-        String path = System.getProperty("user.dir") + File.separator + "src/refactor/Repository/users.txt";
+        /*String path = System.getProperty("user.dir") + File.separator + "src/refactor/Repository/users.txt";
 
         Files.write(Paths.get(path), "\n".getBytes(), StandardOpenOption.APPEND);
 
@@ -71,7 +81,7 @@ public class UserDAO {
         Files.write(Paths.get(path), " ".getBytes(), StandardOpenOption.APPEND);
         Files.write(Paths.get(path), user.getMail().getBytes(), StandardOpenOption.APPEND);
 
-        Files.write(Paths.get(path), "\n".getBytes(), StandardOpenOption.APPEND);
+        Files.write(Paths.get(path), "\n".getBytes(), StandardOpenOption.APPEND);*/
     }
 
     
@@ -92,7 +102,7 @@ public class UserDAO {
             connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
             Statement statement = connection.createStatement();
 
-            String sqlString = "select u.id, u.name, u.lastname, u.nickname, u.mail, u.role from `User` u where u.id = '" + userId + "'";
+            String sqlString = "select u.id, u.name, u.lastname, u.nickname, u.mail, u.role, u.registerDate, u.lastLoginDate from `User` u where u.id = '" + userId + "'";
             ResultSet rs = statement.executeQuery(sqlString);
 
             while (rs.next()) {
@@ -103,6 +113,14 @@ public class UserDAO {
                 user.setNickName(rs.getString("u.nickname"));
                 user.setMail(rs.getString("u.mail"));
                 if(rs.getString("u.role")=="ADMIN"){user.setRoleAdmin();}
+
+                Calendar c1 = Calendar.getInstance();
+                c1.setTime(rs.getDate("u.registerDate"));
+                user.setRegiserDate( c1 );
+
+                Calendar c2 = Calendar.getInstance();
+                c2.setTime(rs.getDate("u.lastLoginDate"));
+                user.setLastLoginDate( c2 );
             }
             if (statement != null) statement.close();
             return user;
@@ -130,7 +148,7 @@ public class UserDAO {
             connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
             Statement statement = connection.createStatement();
 
-            String sqlString = "select u.id, u.name, u.lastname, u.nickname, u.mail, u.role from `User` u where u.mail = '" + mail + "'";
+            String sqlString = "select u.id, u.name, u.lastname, u.nickname, u.mail, u.role, u.registerDate, u.lastLoginDate from `User` u where u.mail = '" + mail + "'";
             ResultSet rs = statement.executeQuery(sqlString);
 
             while (rs.next()) {
@@ -141,6 +159,14 @@ public class UserDAO {
                 user.setNickName(rs.getString("u.nickname"));
                 user.setMail(rs.getString("u.mail"));
                 if(rs.getString("u.role")=="ADMIN"){user.setRoleAdmin();}
+
+                Calendar c1 = Calendar.getInstance();
+                c1.setTime(rs.getDate("u.registerDate"));
+                user.setRegiserDate( c1 );
+
+                Calendar c2 = Calendar.getInstance();
+                c2.setTime(rs.getDate("u.lastLoginDate"));
+                user.setLastLoginDate( c2 );
             }
             if (statement != null) statement.close();
             return user;
@@ -180,6 +206,15 @@ public class UserDAO {
                 user.setNickName(rs.getString("u.nickname"));
                 user.setMail(rs.getString("u.mail"));
                 if(rs.getString("u.role")=="ADMIN"){user.setRoleAdmin();}
+
+                Calendar c1 = Calendar.getInstance();
+                c1.setTime(rs.getDate("u.registerDate"));
+                user.setRegiserDate( c1 );
+
+                Calendar c2 = Calendar.getInstance();
+                c2.setTime(rs.getDate("u.lastLoginDate"));
+                user.setLastLoginDate( c2 );
+
                 userList.add(user);
             }
             if (statement != null) statement.close();
@@ -319,6 +354,32 @@ public class UserDAO {
 
             ps.setString(1, newMail);
             ps.setString(2, id.toString());
+
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void updateLastLoginDateByMail(String mail) {
+
+        try {
+            Connection connection = null;
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
+
+            String sql = "UPDATE User SET lastLoginDate = ? WHERE mail = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+
+            Calendar c = Calendar.getInstance();
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            String lastLoginDate = format.format(c.getTime());
+
+            ps.setString(1, lastLoginDate);
+            ps.setString(2, mail);
 
             ps.executeUpdate();
             ps.close();

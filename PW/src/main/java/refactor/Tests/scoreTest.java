@@ -27,14 +27,14 @@ public class scoreTest {
     void scoreAsserts(){
 
         try { 
-            Score wrongScore = new Score(11);
+            new Score(11);
 
           } catch ( Exception e ) {
             assertEquals(e.getMessage(), "wrong number");
           }
 
           try { 
-            Score wrongScore = new Score(-1);
+            new Score(-1);
           } catch ( Exception e ) {
             assertEquals(e.getMessage(), "wrong number");
           }

@@ -1,7 +1,6 @@
 package refactor.Tests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -10,7 +9,6 @@ import java.util.UUID;
 import org.junit.jupiter.api.Test;
 
 import refactor.MainHandler;
-import refactor.Repository.UserRepository;
 import refactor.Repository.DAOs.UserDAO;
 
 public class mainHandlerTest {

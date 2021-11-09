@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.UUID;
 
 import refactor.Model.Entities.User;
@@ -326,6 +327,32 @@ public class UserDAO {
             PreparedStatement ps = connection.prepareStatement(sql);
 
             ps.setString(1, newMail);
+            ps.setString(2, id.toString());
+
+            ps.executeUpdate();
+            ps.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void updateLastLoginDate(UUID id) {
+
+        try {
+            Connection connection = null;
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
+
+            String sql = "UPDATE User SET lastLoginDate = ? WHERE id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+
+            Calendar c = Calendar.getInstance();
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            String lastLoginDate = format.format(c);
+
+            ps.setString(1, lastLoginDate);
             ps.setString(2, id.toString());
 
             ps.executeUpdate();

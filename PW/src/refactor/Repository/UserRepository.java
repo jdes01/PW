@@ -199,4 +199,12 @@ public class UserRepository {
 
         userDAO.delete(user);
     }
+
+
+    public void updateLastLoginDate(UUID id){
+
+        UserDAO userDAO = new UserDAO();
+
+        userDAO.updateLastLoginDate(id);
+    }
 }

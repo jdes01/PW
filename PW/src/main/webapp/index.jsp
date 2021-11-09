@@ -9,13 +9,26 @@
 <title>PW</title>
 </head>
 <body>
-	<%
-		String name = "name";
-		String mail = "rodriguezmoreno.marcos@gmail.com";
-		
-		User user = new User(name, "lastName", "nickName", mail);
+	<% 
+		User user = new User("name", "lastName", "nick", "somthn@uco.es");
 	%>
-	<jsp:setProperty property="mail" value="<%=mail%>" name="User"/>
+	<jsp:setProperty property="mail" value="<%=user.getMail()%>" name="User"/>
+	<%
+		if(request.getParameter("disconnect") != null) {
+	%>
+	<jsp:setProperty property="mail" value="" name="User"/>
+	<%
+		}
+		if(User.getMail() == "") {
+	%>
+		<a href="/PW/mvc/controllers/loginController.jsp">Login</a>
+	<%
+		} else {
+	%>
 	¡Bienvenido <jsp:getProperty property="mail" name="User"/>!
+	<a href="/PW/mvc/controllers/disconnectController.jsp">Disconnect</a>
+	<%
+		}
+	%>
 </body>
 </html>

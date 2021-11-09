@@ -2,8 +2,11 @@ package refactor;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import refactor.Repository.UserRepository;
 import refactor.UseCases.DeleteUserUseCase;
+import refactor.UseCases.GetAllUsersMailsUseCase;
 import refactor.UseCases.LoginUserUseCase;
 import refactor.UseCases.RegisterAdminUseCase;
 import refactor.UseCases.RegisterViewerUseCase;
@@ -119,4 +122,9 @@ public class MainHandler {
 		UpdateUserDataUseCase.updateUserData(userMail, name, lastName, nickName, mail);
 	}
 
+
+	public ArrayList<String> getAllUsersMails(){
+
+		return GetAllUsersMailsUseCase.getAllUsersMails();
+	}
 }

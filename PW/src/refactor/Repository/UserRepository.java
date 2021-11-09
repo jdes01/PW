@@ -2,6 +2,7 @@ package refactor.Repository;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
@@ -201,10 +202,39 @@ public class UserRepository {
     }
 
 
-    public void updateLastLoginDate(UUID id){
+    public void updateLastLoginDateByMail(String mail){
 
         UserDAO userDAO = new UserDAO();
 
-        userDAO.updateLastLoginDate(id);
+        userDAO.updateLastLoginDateByMail(mail);
+    }
+
+
+    public ArrayList<String> getAllUsersMails() {
+
+        UserDAO userDAO = new UserDAO();
+
+        ArrayList<String> allUsers = new ArrayList<>();
+
+        for(User user: userDAO.getAllUsers()){
+
+            allUsers.add(user.getMail());
+        }
+
+        return allUsers;
+    }
+
+    public ArrayList<String> getAllNickNames() {
+
+        UserDAO userDAO = new UserDAO();
+
+        ArrayList<String> allNickNames = new ArrayList<>();
+
+        for(User user: userDAO.getAllUsers()){
+
+            allNickNames.add(user.getNickName());
+        }
+
+        return allNickNames;
     }
 }

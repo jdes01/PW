@@ -17,8 +17,8 @@ public class User {
 
     private String _role;
 
-    private Calendar _registerDate;
-    private Calendar _lastLoginDate;
+    private Calendar _registerDate = Calendar.getInstance();
+    private Calendar _lastLoginDate = Calendar.getInstance();
 
     public User(){}
 

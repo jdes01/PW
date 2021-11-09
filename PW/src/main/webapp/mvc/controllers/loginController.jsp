@@ -11,7 +11,7 @@
 <body>
 	<%
 		String nextPage = "../views/login.jsp";
-		String nextPageMessage = "error";
+		String nextPageMessage = null;
 		
 		String mail = request.getParameter("email");
 	
@@ -22,10 +22,29 @@
 	%>
 	<jsp:setProperty property="mail" value="<%=mail	%>" name="User"/>
 	<%
+		} else if(mail != null) { 
+			nextPageMessage = "error";
+	%>
+	
+	<%
+		} else {
+	%>
+	<jsp:setProperty property="mail" value="" name="User"/>
+	<%
 		}
 	%>
 </body>
 </html>
+<%
+	if(mail != null) {
+%>
 <jsp:forward page="<%=nextPage%>">
 	    <jsp:param name="error" value="<%=nextPageMessage%>"/>
 </jsp:forward>
+<%
+	} else {
+%>
+<jsp:forward page="<%=nextPage%>" />
+<% 
+	}
+%>

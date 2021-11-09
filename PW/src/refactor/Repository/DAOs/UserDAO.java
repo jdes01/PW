@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -35,7 +36,7 @@ public class UserDAO {
             Connection connection = null;
             Class.forName("com.mysql.jdbc.Driver");
             connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
-            PreparedStatement ps = connection.prepareStatement("INSERT INTO User values(?,?,?,?,?,?)");
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO User values(?,?,?,?,?,?,?,?)");
 
                 ps.setString(1,user.getUuid().toString());
                 ps.setString(2,user.getName());
@@ -43,6 +44,13 @@ public class UserDAO {
                 ps.setString(4,user.getNickName());
                 ps.setString(5,user.getMail());
                 ps.setString(6,user.getRole());
+
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                String formattedRegisterDate = format.format(user.getRegisterDate());
+                String formattedLastLoginDate = format.format(user.getLastLoginDate());
+
+                ps.setString(7, formattedRegisterDate);
+                ps.setString(8, formattedLastLoginDate);
 
                 ps.executeUpdate();
 

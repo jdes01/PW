@@ -149,7 +149,7 @@ public class UserRepository {
 
     
     /** 
-     * Funcion para actualziar el nick del usuario
+     * Funcion para actualizar el nick del usuario
      * 
      * @param id ID del usuario
      * @param newNickName Nuevo nick del usuario

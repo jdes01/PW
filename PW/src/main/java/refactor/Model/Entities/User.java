@@ -188,9 +188,6 @@ public class User {
         this._role = this.viewer;
     }
 
-<<<<<<< HEAD:PW/src/main/java/refactor/Model/Entities/User.java
-}
-=======
     public void setRegiserDate(Calendar registerDate){
         this._registerDate = registerDate;
     }
@@ -200,5 +197,3 @@ public class User {
     }
 
 }
-
->>>>>>> MAIN_WORKING:PW/src/refactor/Model/Entities/User.java

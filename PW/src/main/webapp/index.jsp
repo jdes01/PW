@@ -9,10 +9,6 @@
 <title>PW</title>
 </head>
 <body>
-	<% 
-		User user = new User("name", "lastName", "nick", "somthn@uco.es");
-	%>
-	<jsp:setProperty property="mail" value="<%=user.getMail()%>" name="User"/>
 	<%
 		if(request.getParameter("disconnect") != null) {
 	%>

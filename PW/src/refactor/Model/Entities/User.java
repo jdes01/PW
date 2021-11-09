@@ -1,5 +1,6 @@
 package refactor.Model.Entities;
 
+import java.util.Calendar;
 import java.util.UUID;
 
 public class User {
@@ -15,6 +16,9 @@ public class User {
     private String _mail;
 
     private String _role;
+
+    private Calendar _registerDate;
+    private Calendar _lastLoginDate;
 
     public User(){}
 
@@ -57,6 +61,14 @@ public class User {
         return this._role;
     }
 
+    public Calendar getRegisterDate(){
+        return this._registerDate;
+    }
+
+    public Calendar getLastLoginDate(){
+        return this._lastLoginDate;
+    }
+
 
 
     public void setID(String id) {
@@ -85,6 +97,14 @@ public class User {
 
     public void setRoleViewer(){
         this._role = this.viewer;
+    }
+
+    public void setRegiserDate(Calendar registerDate){
+        this._registerDate = registerDate;
+    }
+
+    public void setLastLoginDate(Calendar lastLoginDate){
+        this._lastLoginDate = lastLoginDate;
     }
 
 }

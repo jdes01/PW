@@ -55,7 +55,7 @@ public class UserDAO {
             System.out.println(e);
         }
 
-        String path = System.getProperty("user.dir") + File.separator + "src/refactor/Repository/users.txt";
+        /*String path = System.getProperty("user.dir") + File.separator + "src/refactor/Repository/users.txt";
 
         Files.write(Paths.get(path), "\n".getBytes(), StandardOpenOption.APPEND);
 
@@ -71,7 +71,7 @@ public class UserDAO {
         Files.write(Paths.get(path), " ".getBytes(), StandardOpenOption.APPEND);
         Files.write(Paths.get(path), user.getMail().getBytes(), StandardOpenOption.APPEND);
 
-        Files.write(Paths.get(path), "\n".getBytes(), StandardOpenOption.APPEND);
+        Files.write(Paths.get(path), "\n".getBytes(), StandardOpenOption.APPEND);*/
     }
 
     

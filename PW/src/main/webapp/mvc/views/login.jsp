@@ -9,7 +9,7 @@
 </style>
 <head>
 <meta charset="UTF-8">
-<title>Login</title>
+<title>Acceder</title>
 </head>
 <body>
 	<%
@@ -23,7 +23,7 @@
 		<label for="email">Email: </label>
 		<input type="text" name="email" value="">	
 		<br/>
-		<input type="submit" value="Login">
+		<input type="submit" value="Acceder">
 	</form>
 </body>
 </html>

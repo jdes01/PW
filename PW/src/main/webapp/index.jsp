@@ -20,7 +20,8 @@
 		}
 		if(User.getMail() == "" || User.getMail() == null) {
 	%>
-		<a href="/PW/mvc/controllers/loginController.jsp">Login</a>
+		<p><a href="/PW/mvc/controllers/loginController.jsp">Acceder</a></p>
+		<p><a href="/PW/mvc/controllers/registerController.jsp">Registrarse</a></p>
 	<%
 		} else {
 			UserRepository userRepo = new UserRepository();
@@ -33,12 +34,12 @@
 	<p>¡Bienvenido <%out.println(user.getName()); %>!</p>
 	<p>Hoy es <%out.println(formattedNowDate); %></p>
 	<p>Ud. se registró el día <%out.println(formattedRegisterDate); %></p>
-	<a href="/PW/mvc/controllers/disconnectController.jsp">Disconnect</a>
+	<a href="/PW/mvc/controllers/disconnectController.jsp">Desconectar</a>
 	<%
 			} else if(user.getRole() == "ADMIN") {
 	%>
 	¡ADMIN: <jsp:getProperty property="mail" name="User"/>!
-	<a href="/PW/mvc/controllers/disconnectController.jsp">Disconnect</a>
+	<a href="/PW/mvc/controllers/disconnectController.jsp">Desconectar</a>
 	<%
 			} else {
 				%>

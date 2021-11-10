@@ -3,11 +3,15 @@ package refactor;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import refactor.Model.Entities.Review;
 import refactor.Model.ValueObjects.Score;
 import refactor.Repository.UserRepository;
+import refactor.UseCases.CreateMultiplePassShowUseCase;
 import refactor.UseCases.CreateReviewUseCase;
+import refactor.UseCases.CreateSeasonShowUseCase;
+import refactor.UseCases.CreatePunctualShowUseCase;
 import refactor.UseCases.DeleteUserUseCase;
 import refactor.UseCases.GetAllReviewsUseCase;
 import refactor.UseCases.GetAllUsersMailsUseCase;
@@ -139,11 +143,28 @@ public class MainHandler {
 		CreateReviewUseCase.createReview(userMail, title, text, show, score);
 	}
 
+
 	public ArrayList<Review> getAllReviews() throws IOException{
 
 		return GetAllReviewsUseCase.getAllReviews();
 	}
 
 
+    public void createPunctualShow(String title, String description, String category, Integer capacity, Calendar date) {
+    
+		CreatePunctualShowUseCase.createPunctualShow(title, description, category, capacity, date);
+	}
+
+
+	public void createMultipleDateShow(String title, String description, String category, Integer capacity, ArrayList<Calendar> dates) {
+    
+		CreateMultiplePassShowUseCase.createMultiplePassShow(title, description, category, capacity, dates);
+	}
+
+
+	public void createSeasonPassDateShow(String title, String description, String category, Integer capacity, Calendar beginDate, Calendar endDate, Integer weekDay) {
+    
+		CreateSeasonShowUseCase.createSeasonShow(title, description, category, capacity, beginDate, endDate, weekDay);
+	}
 	
 }

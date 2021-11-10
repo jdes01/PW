@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.NoSuchFileException;
 import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 import refactor.MainHandler;
@@ -30,6 +33,8 @@ public class Main {
         System.out.print("########  [ 4 ] Create Review                 #########\n");
         System.out.print("########                                      #########\n");
         System.out.print("########  [ 5 ] Display all Reviews           #########\n");
+        System.out.print("########                                      #########\n");
+        System.out.print("########  [ 6 ] Create a Single Date Show     #########\n");
         System.out.print("########                                      #########\n");
         System.out.print("#######################################################\n");
         System.out.print("########  -> ");
@@ -142,6 +147,33 @@ public class Main {
                     System.out.print(" ");
                     System.out.print(" ########\n");
                 }
+            }
+
+            if(option == 6){
+
+                System.out.print("########  Introduzca el titulo :              #########\n");
+                System.out.print("######## -> ");
+                String inputTitle = br.readLine();
+                System.out.print("########  Introduzca la descripcion :         #########\n");
+                System.out.print("######## -> ");
+                String inputDescription = br.readLine();
+                System.out.print("########  Introduzca la categoria :           #########\n");
+                System.out.print("######## -> ");
+                String inputCategory = br.readLine();
+                System.out.print("########  Introduzca la fecha ( YY/mm/dd ) :  #########\n");
+                System.out.print("######## -> ");
+                String inputDate = br.readLine();
+                System.out.print("########  Introduzca la capacidad :           #########\n");
+                System.out.print("######## -> ");
+                Integer inputCapacity = Integer.parseInt(br.readLine());
+                System.out.print("########                                      #########");
+
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                Date date = sdf.parse(inputDate);
+                Calendar formattedCalendar = Calendar.getInstance();
+                formattedCalendar.setTime(date);
+
+                MainHandler.getHandler().createSingleDateShow(inputTitle, inputDescription, inputCategory, inputCapacity, formattedCalendar);
             }
         }
 

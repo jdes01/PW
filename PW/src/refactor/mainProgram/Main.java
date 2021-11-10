@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.NoSuchFileException;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 import refactor.MainHandler;
 
@@ -21,7 +22,9 @@ public class Main {
         System.out.print("########                                      #########\n");
         System.out.print("########  [ 1 ] Registrar Espectador          #########\n");
         System.out.print("########                                      #########\n");
-        System.out.print("########  [ 2 ] Registrar Show                #########\n");
+        System.out.print("########  [ 2 ] Display all users             #########\n");
+        System.out.print("########                                      #########\n");
+        System.out.print("########  [ 3 ] Update user data              #########\n");
         System.out.print("########                                      #########\n");
         System.out.print("#######################################################\n");
         System.out.print("########  -> ");
@@ -36,7 +39,9 @@ public class Main {
 
             printMenu();
 
-            int option = Integer.parseInt (br.readLine());
+            Scanner s = new Scanner(System.in);
+
+            int option = s.nextInt();
 
             if(option == 1){
         
@@ -60,6 +65,21 @@ public class Main {
 
             if(option == 2){
         
+                System.out.print("######## ");
+
+                for(String mail: MainHandler.getHandler().getAllUsersMails()){
+
+                    System.out.print(mail);
+                    System.out.print(" ########\n");
+                }
+
+            }
+
+            if(option == 3){
+
+                System.out.print("########  Introduzca el correo del user que desea actualizar: \n");
+                System.out.print("######## -> ");
+                String userMail = br.readLine();
                 System.out.print("########  Introduzca el nombre del user:      #########\n");
                 System.out.print("######## -> ");
                 String inputName = br.readLine();
@@ -74,6 +94,7 @@ public class Main {
                 String inputMail = br.readLine();
                 System.out.print("########                                      #########");
 
+                MainHandler.getHandler().updateUserData(userMail, inputName, inputLastName, inputNickName, inputMail);
             }
         }
 

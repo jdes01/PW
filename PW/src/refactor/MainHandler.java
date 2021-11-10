@@ -4,8 +4,12 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import refactor.Model.Entities.Review;
+import refactor.Model.ValueObjects.Score;
 import refactor.Repository.UserRepository;
+import refactor.UseCases.CreateReviewUseCase;
 import refactor.UseCases.DeleteUserUseCase;
+import refactor.UseCases.GetAllReviewsUseCase;
 import refactor.UseCases.GetAllUsersMailsUseCase;
 import refactor.UseCases.LoginUserUseCase;
 import refactor.UseCases.RegisterAdminUseCase;
@@ -127,4 +131,19 @@ public class MainHandler {
 
 		return GetAllUsersMailsUseCase.getAllUsersMails();
 	}
+
+
+	public void createReview(String userMail, String title, String text, String show, Integer intscore) throws IOException{
+
+		Score score = new Score(intscore);
+		CreateReviewUseCase.createReview(userMail, title, text, show, score);
+	}
+
+	public ArrayList<Review> getAllReviews() throws IOException{
+
+		return GetAllReviewsUseCase.getAllReviews();
+	}
+
+
+	
 }

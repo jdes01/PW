@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import refactor.MainHandler;
+import refactor.Model.Entities.Review;
 
 public class Main {
 
@@ -25,6 +26,10 @@ public class Main {
         System.out.print("########  [ 2 ] Display all users             #########\n");
         System.out.print("########                                      #########\n");
         System.out.print("########  [ 3 ] Update user data              #########\n");
+        System.out.print("########                                      #########\n");
+        System.out.print("########  [ 4 ] Create Review                 #########\n");
+        System.out.print("########                                      #########\n");
+        System.out.print("########  [ 5 ] Display all Reviews           #########\n");
         System.out.print("########                                      #########\n");
         System.out.print("#######################################################\n");
         System.out.print("########  -> ");
@@ -95,6 +100,48 @@ public class Main {
                 System.out.print("########                                      #########");
 
                 MainHandler.getHandler().updateUserData(userMail, inputName, inputLastName, inputNickName, inputMail);
+            }
+
+            if(option == 4){
+
+                System.out.print("########  Introduzca el mail del user  :      #########\n");
+                System.out.print("######## -> ");
+                String inputUserMail = br.readLine();
+                System.out.print("########  Introduzca el titulo:               #########\n");
+                System.out.print("######## -> ");
+                String inputTitle = br.readLine();
+                System.out.print("########  Introduzca el texto:                #########\n");
+                System.out.print("######## -> ");
+                String inputText = br.readLine();
+                System.out.print("########  Introduzca el titulo del show:      #########\n");
+                System.out.print("######## -> ");
+                String inputShowTitle = br.readLine();
+                System.out.print("########  Introduzca la calificacion   :      #########\n");
+                System.out.print("######## -> ");
+                Integer inputScore = Integer.parseInt(br.readLine());
+                System.out.print("########                                      #########");
+
+                MainHandler.getHandler().createReview(inputUserMail, inputTitle, inputText, inputShowTitle, inputScore);
+            }
+
+            if(option == 5){
+
+                System.out.print("######## ");
+
+                for(Review review: MainHandler.getHandler().getAllReviews()){
+
+                    System.out.print(review.getTitle());
+                    System.out.print(" ");
+                    System.out.print(review.getText());
+                    System.out.print(" ");
+                    System.out.print(review.getUser().getName());
+                    System.out.print(" ");
+                    System.out.print(review.getShow().getTitle());
+                    System.out.print(" ");
+                    System.out.print(review.getScore().getScore());
+                    System.out.print(" ");
+                    System.out.print(" ########\n");
+                }
             }
         }
 

@@ -32,6 +32,8 @@ public class Review {
         this._score = score;
     }
 
+    public Review() {}
+
     public UUID getId(){ return _id; }
     public User getUser(){ return _user; }
     public String getTitle(){ return _title; }

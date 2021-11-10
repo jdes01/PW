@@ -1,5 +1,7 @@
 package refactor.Repository;
 
+import java.util.ArrayList;
+
 import refactor.Model.Entities.Review;
 import refactor.Model.Entities.User;
 import refactor.Model.Entities.Show.Show;
@@ -27,5 +29,12 @@ public class ReviewRepository {
 
         reviewDAO.createReview(review);
     }
+
+public ArrayList<Review> getAllReviews() {
+    
+    ReviewDAO reviewDAO = new ReviewDAO();
+
+    return reviewDAO.getAllReviews();
+}
     
 }

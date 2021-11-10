@@ -3,8 +3,14 @@ package refactor.Repository.DAOs;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.UUID;
 
 import refactor.Model.Entities.Review;
+import refactor.Model.Entities.User;
+import refactor.Model.ValueObjects.Score;
 import refactor.Model.ValueObjects.UserScore;
 
 /**
@@ -62,6 +68,60 @@ public class ReviewDAO {
         } catch (Exception e){
             System.out.println(e);
         }
+    }
+
+
+    
+    public ArrayList<Review> getAllReviews() {
+
+        ArrayList<Review> reviews = new ArrayList<Review>();
+
+        try{
+
+            Connection connection = null;
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
+            Statement statement = connection.createStatement();
+
+            String sqlString = "SELECT * FROM Review r";
+            ResultSet rs = statement.executeQuery(sqlString);
+
+            while (rs.next()) {
+
+                Review review = new Review();
+                review.setTitle(rs.getString("r.title"));
+                review.setText(rs.getString("r.text"));
+                Score score = new Score(rs.getInt("r.score"));
+                review.setScore(score);
+
+                UserDAO userDAO = new UserDAO();
+                UUID userId = UUID.fromString(rs.getString("r.userId"));
+                review.setUser(userDAO.getUserById(userId));
+
+                ShowDAO showDAO = new ShowDAO();
+                UUID showId = UUID.fromString(rs.getString("r.showId"));
+                review.setShow(showDAO.getShowById(showId));
+
+                    String sqlString2 = "SELECT * FROM `ReviewUserRating` rur WHERE rur.reviewId = '" + rs.getString("r.id") + "'";
+                    ResultSet rs2 = statement.executeQuery(sqlString2);
+
+                    while(rs2.next()){
+
+                        User x = userDAO.getUserById( UUID.fromString(rs2.getString("rur.userId")) );
+                        Score xscore = new Score(rs2.getInt("rur.score"));
+
+                        review.addUserRating(x, xscore);
+                    }
+
+                reviews.add(review);
+            }
+            if (statement != null) statement.close();
+            return reviews;
+            
+        } catch (Exception e){
+            System.out.println(e);
+        }
+        return null;
     }
     
 }

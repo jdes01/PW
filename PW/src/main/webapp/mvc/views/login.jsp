@@ -23,7 +23,7 @@
 		<label for="email">Email: </label>
 		<input type="text" name="email" value="">	
 		<br/>
-		<input type="submit" value="Submit">
+		<input type="submit" value="Login">
 	</form>
 </body>
 </html>

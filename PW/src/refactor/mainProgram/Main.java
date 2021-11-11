@@ -5,13 +5,17 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.NoSuchFileException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 import refactor.MainHandler;
 import refactor.Model.Entities.Review;
+import refactor.Model.Entities.Show.Show;
+import refactor.Model.ValueObjects.ShowSesion;
 
 public class Main {
 
@@ -36,11 +40,17 @@ public class Main {
         System.out.print("########                                      #########\n");
         System.out.print("########  [ 6 ] Create a Single Date Show     #########\n");
         System.out.print("########                                      #########\n");
+        System.out.print("########  [ 7 ] Create a Multiple Date Show   #########\n");
+        System.out.print("########                                      #########\n");
+        System.out.print("########  [ 8 ] Create a Season Show          #########\n");
+        System.out.print("########                                      #########\n");
+        System.out.print("########  [ 9 ] Display all shows             #########\n");
+        System.out.print("########                                      #########\n");
         System.out.print("#######################################################\n");
         System.out.print("########  -> ");
     }
     
-    public static void main(String args[]) throws IOException, ClassNotFoundException, SQLException, NoSuchFileException{
+    public static void main(String args[]) throws IOException, ClassNotFoundException, SQLException, NoSuchFileException, ParseException{
 
         InputStreamReader isr = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader (isr);
@@ -73,7 +83,7 @@ public class Main {
 
             }
 
-            if(option == 2){
+            else if(option == 2){
         
                 System.out.print("######## ");
 
@@ -85,7 +95,7 @@ public class Main {
 
             }
 
-            if(option == 3){
+            else if(option == 3){
 
                 System.out.print("########  Introduzca el correo del user que desea actualizar: \n");
                 System.out.print("######## -> ");
@@ -107,7 +117,7 @@ public class Main {
                 MainHandler.getHandler().updateUserData(userMail, inputName, inputLastName, inputNickName, inputMail);
             }
 
-            if(option == 4){
+            else if(option == 4){
 
                 System.out.print("########  Introduzca el mail del user  :      #########\n");
                 System.out.print("######## -> ");
@@ -129,7 +139,7 @@ public class Main {
                 MainHandler.getHandler().createReview(inputUserMail, inputTitle, inputText, inputShowTitle, inputScore);
             }
 
-            if(option == 5){
+            else if(option == 5){
 
                 System.out.print("######## ");
 
@@ -149,7 +159,7 @@ public class Main {
                 }
             }
 
-            if(option == 6){
+            else if(option == 6){
 
                 System.out.print("########  Introduzca el titulo :              #########\n");
                 System.out.print("######## -> ");
@@ -160,7 +170,7 @@ public class Main {
                 System.out.print("########  Introduzca la categoria :           #########\n");
                 System.out.print("######## -> ");
                 String inputCategory = br.readLine();
-                System.out.print("########  Introduzca la fecha ( YY/mm/dd ) :  #########\n");
+                System.out.print("########  Introduzca la fecha ( dd-MM-yyyy ) :  #########\n");
                 System.out.print("######## -> ");
                 String inputDate = br.readLine();
                 System.out.print("########  Introduzca la capacidad :           #########\n");
@@ -173,8 +183,115 @@ public class Main {
                 Calendar formattedCalendar = Calendar.getInstance();
                 formattedCalendar.setTime(date);
 
-                MainHandler.getHandler().createSingleDateShow(inputTitle, inputDescription, inputCategory, inputCapacity, formattedCalendar);
+                MainHandler.getHandler().createPunctualShow(inputTitle, inputDescription, inputCategory, inputCapacity, formattedCalendar);
             }
+
+            else if(option == 7){
+
+                System.out.print("########  Introduzca el titulo :              #########\n");
+                System.out.print("######## -> ");
+                String inputTitle = br.readLine();
+                System.out.print("########  Introduzca la descripcion :         #########\n");
+                System.out.print("######## -> ");
+                String inputDescription = br.readLine();
+                System.out.print("########  Introduzca la categoria :           #########\n");
+                System.out.print("######## -> ");
+                String inputCategory = br.readLine();
+
+                System.out.print("########  Introduzca el numero de fechas :    #########\n");
+                System.out.print("######## -> ");
+                Integer numberOfDate = Integer.parseInt(br.readLine());
+
+                ArrayList<Calendar> dates = new ArrayList<Calendar>();
+
+                for(int i=0; i<numberOfDate; i++){
+
+                    System.out.print("########  Introduzca la fecha ( dd-MM-yyyy ) :  #########\n");
+                    System.out.print("######## -> ");
+                    String inputDate = br.readLine();
+
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                    Date date = sdf.parse(inputDate);
+                    Calendar formattedCalendar = Calendar.getInstance();
+                    formattedCalendar.setTime(date);
+
+                    dates.add(formattedCalendar);
+                }
+
+                System.out.print("########  Introduzca la capacidad :           #########\n");
+                System.out.print("######## -> ");
+                Integer inputCapacity = Integer.parseInt(br.readLine());
+                System.out.print("########                                      #########");
+
+                MainHandler.getHandler().createMultipleDateShow(inputTitle, inputDescription, inputCategory, inputCapacity, dates);
+            }
+
+            else if(option == 8){
+
+                System.out.print("########  Introduzca el titulo :              #########\n");
+                System.out.print("######## -> ");
+                String inputTitle = br.readLine();
+                System.out.print("########  Introduzca la descripcion :         #########\n");
+                System.out.print("######## -> ");
+                String inputDescription = br.readLine();
+                System.out.print("########  Introduzca la categoria :           #########\n");
+                System.out.print("######## -> ");
+                String inputCategory = br.readLine();
+
+                System.out.print("########  Introduzca la fecha de inicio ( dd-MM-yyyy ) : \n");
+                System.out.print("######## -> ");
+                String inputBeginDate = br.readLine();
+
+                System.out.print("########  Introduzca la fecha final( dd-MM-yyyy ) : \n");
+                System.out.print("######## -> ");
+                String inputEndDate = br.readLine();
+
+                System.out.print("########  Introduzca el dia de la semana (1 - 7) : \n");
+                System.out.print("######## -> ");
+                Integer inputWeekDay = Integer.parseInt(br.readLine());
+
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                    Date beginDate = sdf.parse(inputBeginDate);
+                    Date endDate = sdf.parse(inputEndDate);
+                    Calendar formattedBeginDate = Calendar.getInstance();
+                    Calendar formattedEndDate = Calendar.getInstance();
+                    formattedBeginDate.setTime(beginDate);
+                    formattedEndDate.setTime(endDate);
+
+                System.out.print("########  Introduzca la capacidad :           #########\n");
+                System.out.print("######## -> ");
+                Integer inputCapacity = Integer.parseInt(br.readLine());
+                System.out.print("########                                      #########");
+            
+                MainHandler.getHandler().createSeasonPassDateShow(inputTitle, inputDescription, inputCategory, inputCapacity, formattedBeginDate, formattedEndDate, inputWeekDay);
+            }
+        
+            else if(option == 9){
+
+                System.out.print("######## \n");
+
+                for(Show show: MainHandler.getHandler().getAllShows()){
+
+                    System.out.print("\n");
+                    System.out.print("Show: ");
+                    System.out.print(show.getTitle());
+                    System.out.print("\n");
+
+                    System.out.print("Dates: \n");
+                    
+                    for(ShowSesion sesion: show.getSesions()){
+
+                        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+                        String stringDate = sdf.format(sesion.getDate().getTime());
+
+                        System.out.print(stringDate);
+                        System.out.print(" with ");
+                        System.out.print(sesion.getTickets());
+                        System.out.print(" tickets \n");
+                    }
+                }
+            }
+
         }
 
     }

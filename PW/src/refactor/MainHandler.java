@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import refactor.Model.Entities.Review;
+import refactor.Model.Entities.Show.Show;
 import refactor.Model.ValueObjects.Score;
 import refactor.Repository.UserRepository;
 import refactor.UseCases.CreateMultiplePassShowUseCase;
@@ -14,6 +15,7 @@ import refactor.UseCases.CreateSeasonShowUseCase;
 import refactor.UseCases.CreatePunctualShowUseCase;
 import refactor.UseCases.DeleteUserUseCase;
 import refactor.UseCases.GetAllReviewsUseCase;
+import refactor.UseCases.GetAllShowsUseCase;
 import refactor.UseCases.GetAllUsersMailsUseCase;
 import refactor.UseCases.LoginUserUseCase;
 import refactor.UseCases.RegisterAdminUseCase;
@@ -165,6 +167,11 @@ public class MainHandler {
 	public void createSeasonPassDateShow(String title, String description, String category, Integer capacity, Calendar beginDate, Calendar endDate, Integer weekDay) {
     
 		CreateSeasonShowUseCase.createSeasonShow(title, description, category, capacity, beginDate, endDate, weekDay);
+	}
+
+	public ArrayList<Show> getAllShows(){
+
+		return GetAllShowsUseCase.getAllShows();
 	}
 	
 }

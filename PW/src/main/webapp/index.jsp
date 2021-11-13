@@ -5,6 +5,7 @@
 <%@ page import="refactor.Repository.UserRepository" %>
 <%@ page import="java.time.ZonedDateTime" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +25,7 @@
 		<p><a href="/PW/mvc/controllers/registerController.jsp">Registrarse</a></p>
 	<%
 		} else {
+			session.setAttribute("message", "new");
 			UserRepository userRepo = new UserRepository();
 			User user = userRepo.getUserByMail(User.getMail());
 			SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
@@ -31,14 +33,23 @@
             String formattedNowDate = format.format(user.getLastLoginDate().getTime());
 			if(user.getRole() == "VIEWER") {
 	%>
-	<p>¡Bienvenido <%out.println(user.getName()); %>!</p>
+	<p>¡Bienvenido <%out.println(user.getName() + " " + user.getLastName()); %>!</p>
 	<p>Hoy es <%out.println(formattedNowDate); %></p>
 	<p>Ud. se registró el día <%out.println(formattedRegisterDate); %></p>
+	<a href="/PW/mvc/controllers/modifyDataController.jsp">Modificar Datos</a>
 	<a href="/PW/mvc/controllers/disconnectController.jsp">Desconectar</a>
 	<%
 			} else if(user.getRole() == "ADMIN") {
+				ArrayList<String> userMails = userRepo.getAllUsersMails();
+				for(String mail : userMails) {
+					User userToBePrinted = userRepo.getUserByMail(mail);
+		            String formattedLastLoginDate = format.format(userToBePrinted.getLastLoginDate().getTime());
 	%>
-	¡ADMIN: <jsp:getProperty property="mail" name="User"/>!
+	<p><% out.println(userToBePrinted.getMail() + " / " + userToBePrinted.getRole() + " / " + formattedLastLoginDate); %></p>
+	<%
+				}
+	%>
+	<a href="/PW/mvc/controllers/modifyDataController.jsp">Modificar Datos</a>
 	<a href="/PW/mvc/controllers/disconnectController.jsp">Desconectar</a>
 	<%
 			} else {

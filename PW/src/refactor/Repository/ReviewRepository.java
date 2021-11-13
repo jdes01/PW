@@ -30,11 +30,20 @@ public class ReviewRepository {
         reviewDAO.createReview(review);
     }
 
-public ArrayList<Review> getAllReviews() {
+    public ArrayList<Review> getAllReviews() {
     
-    ReviewDAO reviewDAO = new ReviewDAO();
+        ReviewDAO reviewDAO = new ReviewDAO();
+        return reviewDAO.getAllReviews();
+    }
 
-    return reviewDAO.getAllReviews();
-}
+    public void deleteReviewByTitle(String title){
+
+        ReviewDAO reviewDAO = new ReviewDAO();
+
+        for(Review review: reviewDAO.getAllReviews()){
+
+            if(review.getTitle() == title){ reviewDAO.delete(review); }
+        }
+    }
     
 }

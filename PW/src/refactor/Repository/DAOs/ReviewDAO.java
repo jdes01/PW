@@ -124,4 +124,28 @@ public class ReviewDAO {
         return null;
     }
     
+
+    /** 
+     * Función que se encarga de eliminar la instancia de review pasada cómo parámetro de la base de datos.
+     * 
+     * @param user Instancia de user que se quiere eliminar de la base de datos.
+     */
+    public void delete(Review review) {
+
+        try {
+            Connection connection = null;
+
+            Class.forName("com.mysql.jdbc.Driver");
+
+            connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
+
+            PreparedStatement ps = connection.prepareStatement("DELETE FROM Review WHERE title = ?");
+
+            ps.setString(1, review.getId().toString());
+
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

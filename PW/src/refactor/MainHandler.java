@@ -6,18 +6,22 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import refactor.Model.Entities.Review;
+import refactor.Model.Entities.User;
 import refactor.Model.Entities.Show.Show;
 import refactor.Model.ValueObjects.Score;
 import refactor.Repository.UserRepository;
 import refactor.UseCases.CreateMultiplePassShowUseCase;
 import refactor.UseCases.CreateReviewUseCase;
 import refactor.UseCases.CreateSeasonShowUseCase;
+import refactor.UseCases.DeleteReviewByTitleUseCase;
 import refactor.UseCases.CreatePunctualShowUseCase;
 import refactor.UseCases.DeleteUserUseCase;
 import refactor.UseCases.GetAllReviewsUseCase;
 import refactor.UseCases.GetAllShowsUseCase;
 import refactor.UseCases.GetAllUsersMailsUseCase;
+import refactor.UseCases.GetReviewByTitleUseCase;
 import refactor.UseCases.LoginUserUseCase;
+import refactor.UseCases.RateReviewByUser;
 import refactor.UseCases.RegisterAdminUseCase;
 import refactor.UseCases.RegisterViewerUseCase;
 import refactor.UseCases.UpdateUserDataUseCase;
@@ -152,6 +156,11 @@ public class MainHandler {
 	}
 
 
+	public void deleteReviewByTitle(String title){
+		DeleteReviewByTitleUseCase.deleteReviewByTitle(title);
+	} 
+
+
     public void createPunctualShow(String title, String description, String category, Integer capacity, Calendar date) {
     
 		CreatePunctualShowUseCase.createPunctualShow(title, description, category, capacity, date);
@@ -173,5 +182,14 @@ public class MainHandler {
 
 		return GetAllShowsUseCase.getAllShows();
 	}
+
+	public Review getReviewByTitle(String title){
+
+		return GetReviewByTitleUseCase.getReviewByTitle(title);
+	}
 	
+	public void rateReviewByUser(Review review, String userMail, Integer score){
+
+		RateReviewByUser.rateReviewByUser(review, userMail, score);
+	}
 }

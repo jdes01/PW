@@ -14,6 +14,7 @@ import java.util.Scanner;
 
 import refactor.MainHandler;
 import refactor.Model.Entities.Review;
+import refactor.Model.Entities.User;
 import refactor.Model.Entities.Show.Show;
 import refactor.Model.ValueObjects.ShowSesion;
 
@@ -28,6 +29,8 @@ public class Main {
         System.out.print("########                                      #########\n");
         System.out.print("#######################################################\n");
         System.out.print("########                                      #########\n");
+        System.out.print("########  [ 0 ] login viewer                  #########\n");
+        System.out.print("########                                      #########\n");
         System.out.print("########  [ 1 ] Registrar Espectador          #########\n");
         System.out.print("########                                      #########\n");
         System.out.print("########  [ 2 ] Display all users             #########\n");
@@ -38,13 +41,17 @@ public class Main {
         System.out.print("########                                      #########\n");
         System.out.print("########  [ 5 ] Display all Reviews           #########\n");
         System.out.print("########                                      #########\n");
-        System.out.print("########  [ 6 ] Create a Single Date Show     #########\n");
+        System.out.print("########  [ 6 ] Delete review                 #########\n");
         System.out.print("########                                      #########\n");
-        System.out.print("########  [ 7 ] Create a Multiple Date Show   #########\n");
+        System.out.print("########  [ 7 ] Create a Single Date Show     #########\n");
         System.out.print("########                                      #########\n");
-        System.out.print("########  [ 8 ] Create a Season Show          #########\n");
+        System.out.print("########  [ 8 ] Create a Multiple Date Show   #########\n");
         System.out.print("########                                      #########\n");
-        System.out.print("########  [ 9 ] Display all shows             #########\n");
+        System.out.print("########  [ 9 ] Create a Season Show          #########\n");
+        System.out.print("########                                      #########\n");
+        System.out.print("########  [ 10 ] Display all shows            #########\n");
+        System.out.print("########                                      #########\n");
+        System.out.print("########  [ 11 ] Rate review                  #########\n");
         System.out.print("########                                      #########\n");
         System.out.print("#######################################################\n");
         System.out.print("########  -> ");
@@ -55,6 +62,8 @@ public class Main {
         InputStreamReader isr = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader (isr);
 
+        String hostMail = new String();
+
         while(true){
 
             printMenu();
@@ -63,7 +72,19 @@ public class Main {
 
             int option = s.nextInt();
 
-            if(option == 1){
+            if(option == 0){
+
+                System.out.print("########  Introduzca el mail del user:      #########\n");
+                System.out.print("######## -> ");
+                String inputMail = br.readLine();
+
+                if (MainHandler.getHandler().loginUser(inputMail) == true){
+
+                    hostMail = inputMail;
+                }
+            }
+
+            else if(option == 1){
         
                 System.out.print("########  Introduzca el nombre del user:      #########\n");
                 System.out.print("######## -> ");
@@ -161,6 +182,15 @@ public class Main {
 
             else if(option == 6){
 
+                System.out.print("########  Introduzca el titulo de la reivew: \n");
+                System.out.print("######## -> ");
+                String inputReviewTitle = br.readLine();
+
+                MainHandler.getHandler().deleteReviewByTitle(inputReviewTitle);
+            }
+
+            else if(option == 7){
+
                 System.out.print("########  Introduzca el titulo :              #########\n");
                 System.out.print("######## -> ");
                 String inputTitle = br.readLine();
@@ -186,7 +216,7 @@ public class Main {
                 MainHandler.getHandler().createPunctualShow(inputTitle, inputDescription, inputCategory, inputCapacity, formattedCalendar);
             }
 
-            else if(option == 7){
+            else if(option == 8){
 
                 System.out.print("########  Introduzca el titulo :              #########\n");
                 System.out.print("######## -> ");
@@ -226,7 +256,7 @@ public class Main {
                 MainHandler.getHandler().createMultipleDateShow(inputTitle, inputDescription, inputCategory, inputCapacity, dates);
             }
 
-            else if(option == 8){
+            else if(option == 9){
 
                 System.out.print("########  Introduzca el titulo :              #########\n");
                 System.out.print("######## -> ");
@@ -266,7 +296,7 @@ public class Main {
                 MainHandler.getHandler().createSeasonPassDateShow(inputTitle, inputDescription, inputCategory, inputCapacity, formattedBeginDate, formattedEndDate, inputWeekDay);
             }
         
-            else if(option == 9){
+            else if(option == 10){
 
                 System.out.print("######## \n");
 
@@ -292,6 +322,25 @@ public class Main {
                 }
             }
 
+            else if(option == 11){
+
+                System.out.print("########  Introduzca el titulo :              #########\n");
+                System.out.print("######## -> ");
+                String inputTitle = br.readLine();
+
+                for(Review review: MainHandler.getHandler().getAllReviews()){
+
+                    if(review.getTitle() == inputTitle && review.getUser().getMail() == hostMail){
+
+                        System.out.print("\n");
+                        System.out.print("########  Introduzca el score :              #########\n");
+                        System.out.print("######## -> ");
+                        Integer inputScore = Integer.parseInt(br.readLine());
+
+                        MainHandler.getHandler().rateReviewByUser(review, hostMail, inputScore);
+                    }
+                }
+            }
         }
 
     }

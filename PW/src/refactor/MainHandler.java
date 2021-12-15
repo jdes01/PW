@@ -19,6 +19,7 @@ import refactor.UseCases.DeleteUserUseCase;
 import refactor.UseCases.GetAllReviewsUseCase;
 import refactor.UseCases.GetAllShowsUseCase;
 import refactor.UseCases.GetAllUsersMailsUseCase;
+import refactor.UseCases.GetAllUsersUseCase;
 import refactor.UseCases.GetReviewByTitleUseCase;
 import refactor.UseCases.LoginUserUseCase;
 import refactor.UseCases.RateReviewByUser;
@@ -140,6 +141,12 @@ public class MainHandler {
 	public ArrayList<String> getAllUsersMails(){
 
 		return GetAllUsersMailsUseCase.getAllUsersMails();
+	}
+
+
+	public ArrayList<User> getAllUsers(){
+
+		return GetAllUsersUseCase.getAllUsers();
 	}
 
 

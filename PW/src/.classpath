@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry excluding="refactor/Repository/DAOs/" kind="src" path="main/java"/>
+	<classpathentry kind="src" path="main/java/refactor/Repository/DAOs"/>
+	<classpathentry kind="lib" path="main/webapp/WEB-INF/lib/junit-platform-console-standalone-1.8.1.jar"/>
+	<classpathentry kind="lib" path="main/webapp/WEB-INF/lib/mysql-connector.jar"/>
+	<classpathentry kind="lib" path="main/webapp/WEB-INF/lib/servlet-api.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

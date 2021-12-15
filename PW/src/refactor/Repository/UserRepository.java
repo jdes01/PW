@@ -224,6 +224,13 @@ public class UserRepository {
         return allUsers;
     }
 
+    public ArrayList<User> getAllUsers(){
+
+        UserDAO userDAO = new UserDAO();
+
+        return userDAO.getAllUsers();
+    }
+
     public ArrayList<String> getAllNickNames() {
 
         UserDAO userDAO = new UserDAO();

@@ -30,8 +30,30 @@
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			date.setTime(format.parse(dateInStr));
 		}
-		ArrayList<Calendar> dates = null;
+		String datesInStr = request.getParameter("dates");
+		ArrayList<Calendar> dates = new ArrayList<Calendar>();
+		if(datesInStr != null && !datesInStr.trim().isEmpty()) {
+			String[] datesSplitted = datesInStr.split(",");
+			for(String SingleDate : datesSplitted) {
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+				Calendar SingleDateFormatted = Calendar.getInstance();
+				SingleDateFormatted.setTime(format.parse(SingleDate));
+				dates.add(SingleDateFormatted);
+			}
+		}
 		
+		Calendar beginDate = Calendar.getInstance();
+		Calendar endDate = Calendar.getInstance();
+		Integer weekDay = 0;
+		String beginDateInStr = request.getParameter("beginDate");
+		String endDateInStr = request.getParameter("endDate");
+		String weekDayInStr = request.getParameter("weekDay");
+		if(beginDateInStr != null && !beginDateInStr.trim().isEmpty() && endDateInStr != null && !endDateInStr.trim().isEmpty() && weekDayInStr != null) {
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			beginDate.setTime(format.parse(beginDateInStr));
+			endDate.setTime(format.parse(endDateInStr));
+			weekDay = Integer.parseInt(weekDayInStr);
+		}
 	
 		MainHandler mainHandler = new MainHandler();
 		if(category != null) {
@@ -41,6 +63,12 @@
 				nextPageMessage = "";
 			} else if(category.contentEquals("MultiplePass")) {
 				mainHandler.createMultipleDateShow(title, description, category, capacity, dates);
+				nextPage = "../../index.jsp";
+				nextPageMessage = "";
+			} else if(category.contentEquals("Season")) {
+				mainHandler.createSeasonPassDateShow(title, description, category, capacity, beginDate, endDate, weekDay);
+				nextPage = "../../index.jsp";
+				nextPageMessage = "";
 			}
 		}
 	%>

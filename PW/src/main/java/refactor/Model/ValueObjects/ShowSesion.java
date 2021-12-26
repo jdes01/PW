@@ -10,6 +10,7 @@ import java.util.Calendar;
 
 public class ShowSesion {
 
+	private int _id;
     private Calendar _date;
     private int  _tickets;
 
@@ -20,11 +21,17 @@ public class ShowSesion {
      * @param tickets tickets del show
      */
 
-    public ShowSesion(Calendar date, int tickets){
+    public ShowSesion(int id, Calendar date, int tickets){
 
+    	this._id = id;
         this._date = date;
         this._tickets = tickets;
     }
+    
+   public ShowSesion(Calendar date, int tickets) {
+	   this._date = date;
+	   this._tickets = tickets;
+   }
 
 /**
  * Getter de la fecha
@@ -41,6 +48,8 @@ public class ShowSesion {
  */
 
     public int getTickets(){ return this._tickets; }
+    
+    public int getId() { return this._id; }
 
 /**
  * Setter de la fecha
@@ -57,4 +66,6 @@ public class ShowSesion {
 
     public void setTickets(int tickets){ this._tickets = tickets; }
     
+    
+    public void setId(int id) { this._id = id; }
 }

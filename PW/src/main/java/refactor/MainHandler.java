@@ -24,7 +24,9 @@ import refactor.UseCases.LoginUserUseCase;
 import refactor.UseCases.RateReviewByUser;
 import refactor.UseCases.RegisterAdminUseCase;
 import refactor.UseCases.RegisterViewerUseCase;
+import refactor.UseCases.UpdateSesionShowUseCase;
 import refactor.UseCases.UpdateUserDataUseCase;
+import refactor.UseCases.DeleteShowSesionUseCase;
 
 /**
  * Clase que usa el patron de diseño singleton para gestionar la app
@@ -163,6 +165,10 @@ public class MainHandler {
 	public void deleteReviewByTitle(String title){
 		DeleteReviewByTitleUseCase.deleteReviewByTitle(title);
 	} 
+	
+	public void deleteShowSesion(int Id) throws IOException {
+		DeleteShowSesionUseCase.deleteShowSesion(Id);
+	}
 
 
     public void createPunctualShow(String title, String description, String category, Integer capacity, Calendar date) {
@@ -196,4 +202,10 @@ public class MainHandler {
 
 		RateReviewByUser.rateReviewByUser(review, userMail, score);
 	}
+	
+	public void modifyShowSesion(int id, Calendar date, int capacity) {
+		
+		UpdateSesionShowUseCase.updateSesionShowData(id, date, capacity);
+	}
+	
 }

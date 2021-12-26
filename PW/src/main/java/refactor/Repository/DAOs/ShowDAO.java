@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.UUID;
 
+import refactor.Model.Entities.User;
 import refactor.Model.Entities.Show.Show;
 import refactor.Model.ValueObjects.ShowSesion;
 
@@ -127,7 +128,7 @@ public class ShowDAO {
 
             }
 
-            String sqlString2 = "select ss.date, ss.tickets from `ShowSesion` ss where ss.showId = '" + show.getUuid() + "'";
+            String sqlString2 = "select ss.id, ss.date, ss.tickets from `ShowSesion` ss where ss.showId = '" + show.getUuid() + "'";
             rs = statement.executeQuery(sqlString2);
 
             while(rs.next()){
@@ -136,7 +137,7 @@ public class ShowDAO {
                 Calendar calendarDate = new GregorianCalendar();
                 calendarDate.setTime(date);
 
-                show.addSesion(calendarDate, rs.getInt("ss.tickets"));
+                show.addSesion(rs.getInt("ss.id"),calendarDate, rs.getInt("ss.tickets"));
             }
             if (statement != null) statement.close();
 
@@ -183,7 +184,7 @@ public class ShowDAO {
 
             for(Show i: shows){
 
-                String sqlString2 = "select ss.date, ss.tickets from `ShowSesion` ss where ss.showId = '" + i.getUuid() + "'";
+                String sqlString2 = "select ss.id, ss.date, ss.tickets from `ShowSesion` ss where ss.showId = '" + i.getUuid().toString() + "'";
                 rs = statement.executeQuery(sqlString2);
 
                 while(rs.next()){
@@ -192,7 +193,7 @@ public class ShowDAO {
                     Calendar calendarDate = new GregorianCalendar();
                     calendarDate.setTime(date);
 
-                    i.addSesion(calendarDate, rs.getInt("ss.tickets"));
+                    i.addSesion(rs.getInt("ss.id"),calendarDate, rs.getInt("ss.tickets"));
                 }
             }
 
@@ -231,7 +232,7 @@ public class ShowDAO {
 
             }
 
-            String sqlString2 = "select ss.date, ss.tickets from `ShowSesion` ss where ss.showId = '" + show.getUuid() + "'";
+            String sqlString2 = "select ss.id, ss.date, ss.tickets from `ShowSesion` ss where ss.showId = '" + show.getUuid() + "'";
             rs = statement.executeQuery(sqlString2);
 
             while(rs.next()){
@@ -240,7 +241,7 @@ public class ShowDAO {
                 Calendar calendarDate = new GregorianCalendar();
                 calendarDate.setTime(date);
 
-                show.addSesion(calendarDate, rs.getInt("ss.tickets"));
+                show.addSesion(rs.getInt("ss.id"), calendarDate, rs.getInt("ss.tickets"));
             }
             if (statement != null) statement.close();
 
@@ -252,4 +253,51 @@ public class ShowDAO {
         return null;
     }
     
+    public void deleteShowSesion(int Id) {
+
+        try {
+            Connection connection = null;
+
+            Class.forName("com.mysql.jdbc.Driver");
+
+            connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
+
+            PreparedStatement ps = connection.prepareStatement("DELETE FROM ShowSesion WHERE id = ? LIMIT 1");
+
+            ps.setString(1, String.valueOf(Id));
+
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void updateShowSesion(int id, Calendar date, int capacity) {
+    	try{
+            Connection connection = null;
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
+            PreparedStatement ps = connection.prepareStatement("UPDATE `ShowSesion` SET `date`=(?), `tickets`=(?) WHERE `id`=(?) LIMIT 1");
+
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            String formattedDate = format.format(date.getTime());
+            
+	            ps.setString(1, formattedDate);
+	            ps.setInt(2, capacity);
+	            ps.setInt(3, id);
+
+
+                ps.executeUpdate();
+
+                if (ps != null){ 
+                    ps.close(); 
+                }
+                connection.close();
+
+        } catch (Exception e){
+            System.out.println(e);
+        }
+
+    }
+
 }

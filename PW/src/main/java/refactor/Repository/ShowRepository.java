@@ -156,4 +156,15 @@ public class ShowRepository {
         ShowDAO showDAO = new ShowDAO();
         return showDAO.getAllShows();
     }
+    
+    public void deleteShowSesion(int Id) {
+    	ShowDAO showDAO = new ShowDAO();
+    	showDAO.deleteShowSesion(Id);
+    }
+    
+    public void updateShowSesion(int id, Calendar date, int capacity) {
+    	ShowDAO showDAO = new ShowDAO();
+    	showDAO.updateShowSesion(id, date, capacity);
+    }
+    
 }

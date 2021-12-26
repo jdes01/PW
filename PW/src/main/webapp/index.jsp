@@ -44,9 +44,15 @@
 			} else if(user.getRole() == "ADMIN") {
 	%>
 	<a href="/PW/mvc/views/users.jsp">Ver listado de usuarios</a>
+	<br />
 	<a href="/PW/mvc/controllers/createShowController.jsp">Dar de alta un espectáculo</a>
+	<br />
+	<a href="/PW/mvc/views/sesions.jsp">Añadir, Cancelar o modificar sesiones</a>
+	<br />
 	<a href="/PW/mvc/controllers/modifyDataController.jsp">Modificar Datos</a>
+	<br />
 	<a href="/PW/mvc/controllers/disconnectController.jsp">Desconectar</a>
+	<br />
 	<%
 			}
 		}

@@ -133,11 +133,19 @@ public class Show {
      * @param date Nueva fecha del show
      * @param tickets Aforo de esa fecha
      */
+    public void addSesion(int id, Calendar date, int tickets){
+
+        ShowSesion showSesion = new ShowSesion(id, date, tickets);
+
+        this._sesions.add(showSesion);
+    }
+    
     public void addSesion(Calendar date, int tickets){
 
         ShowSesion showSesion = new ShowSesion(date, tickets);
 
         this._sesions.add(showSesion);
     }
+
     
 }

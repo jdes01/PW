@@ -209,7 +209,11 @@ public class UserDAO {
                 user.setLastName(rs.getString("u.lastname"));
                 user.setNickName(rs.getString("u.nickname"));
                 user.setMail(rs.getString("u.mail"));
-                if(rs.getString("u.role")=="ADMIN"){user.setRoleAdmin();}
+                if(rs.getString("u.role").contentEquals("ADMIN")) {
+                	user.setRoleAdmin();
+                } else if(rs.getString("u.role").contentEquals("VIEWER")) {
+                	user.setRoleViewer();
+                }
 
                 Calendar c1 = Calendar.getInstance();
                 c1.setTime(rs.getDate("u.registerDate"));

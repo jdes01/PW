@@ -27,7 +27,7 @@
 		<input type="text" name="nickname" value="">
 		<br />
 		<label for="email">Email: </label>
-		<input type="text" name="email" value="">	
+		<input type="email" name="email" value="">	
 		<br/>
 		<input type="submit" value="Registrarse">
 	</form>

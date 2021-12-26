@@ -1,5 +1,7 @@
 package refactor.Repository;
 
+import java.util.ArrayList;
+
 import refactor.Model.Entities.Review;
 import refactor.Model.Entities.User;
 import refactor.Model.Entities.Show.Show;
@@ -26,6 +28,22 @@ public class ReviewRepository {
         ReviewDAO reviewDAO = new ReviewDAO();
 
         reviewDAO.createReview(review);
+    }
+
+    public ArrayList<Review> getAllReviews() {
+    
+        ReviewDAO reviewDAO = new ReviewDAO();
+        return reviewDAO.getAllReviews();
+    }
+
+    public void deleteReviewByTitle(String title){
+
+        ReviewDAO reviewDAO = new ReviewDAO();
+
+        for(Review review: reviewDAO.getAllReviews()){
+
+            if(review.getTitle() == title){ reviewDAO.delete(review); }
+        }
     }
     
 }

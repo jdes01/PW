@@ -47,6 +47,7 @@ public class Review {
         this._score = score;
     }
 
+    public Review() {}
     
     /** 
      * Getter de ID

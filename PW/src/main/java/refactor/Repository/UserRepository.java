@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.TimeZone;
 import java.util.UUID;
 
 import refactor.Model.Entities.User;
@@ -35,7 +33,6 @@ public class UserRepository {
      * @param mail Mail del usuario
      * @throws IOException Signals that an I/O exception of some sort has occurred. This class is the general class of exceptions produced by failed or interrupted I/O operations.
      * @throws ClassNotFoundException Thrown when an application tries to load in a class through its string name using:<p>
-
         The forName method in class Class<p>
         The findSystemClass method in class ClassLoader<p>
         The loadClass method in class ClassLoader
@@ -64,7 +61,6 @@ public class UserRepository {
      * @param mail Mail del administrador
      * @throws IOException Signals that an I/O exception of some sort has occurred. This class is the general class of exceptions produced by failed or interrupted I/O operations.
      * @throws ClassNotFoundException Thrown when an application tries to load in a class through its string name using:<p>
-
         The forName method in class Class<p>
         The findSystemClass method in class ClassLoader<p>
         The loadClass method in class ClassLoader
@@ -161,7 +157,7 @@ public class UserRepository {
 
     
     /** 
-     * Funcion para actualizar el nick del usuario
+     * Funcion para actualziar el nick del usuario
      * 
      * @param id ID del usuario
      * @param newNickName Nuevo nick del usuario
@@ -222,6 +218,13 @@ public class UserRepository {
         }
 
         return allUsers;
+    }
+
+    public ArrayList<User> getAllUsers(){
+
+        UserDAO userDAO = new UserDAO();
+
+        return userDAO.getAllUsers();
     }
 
     public ArrayList<String> getAllNickNames() {

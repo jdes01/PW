@@ -6,6 +6,7 @@
 <%@ page import="java.time.ZonedDateTime" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="refactor.MainHandler" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,6 +27,7 @@
 	<%
 		} else {
 			session.setAttribute("message", "new");
+			MainHandler mainHandler = new MainHandler();
 			UserRepository userRepo = new UserRepository();
 			User user = userRepo.getUserByMail(User.getMail());
 			SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
@@ -40,22 +42,12 @@
 	<a href="/PW/mvc/controllers/disconnectController.jsp">Desconectar</a>
 	<%
 			} else if(user.getRole() == "ADMIN") {
-				ArrayList<String> userMails = userRepo.getAllUsersMails();
-				for(String mail : userMails) {
-					User userToBePrinted = userRepo.getUserByMail(mail);
-		            String formattedLastLoginDate = format.format(userToBePrinted.getLastLoginDate().getTime());
 	%>
-	<p><% out.println(userToBePrinted.getMail() + " / " + userToBePrinted.getRole() + " / " + formattedLastLoginDate); %></p>
-	<%
-				}
-	%>
+	<a href="/PW/mvc/views/users.jsp">Ver listado de usuarios</a>
+	<a href="/PW/mvc/controllers/createShowController.jsp">Dar de alta un espectáculo</a>
 	<a href="/PW/mvc/controllers/modifyDataController.jsp">Modificar Datos</a>
 	<a href="/PW/mvc/controllers/disconnectController.jsp">Desconectar</a>
 	<%
-			} else {
-				%>
-				Error?
-				<%
 			}
 		}
 	%>

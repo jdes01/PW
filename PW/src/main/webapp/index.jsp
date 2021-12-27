@@ -15,6 +15,7 @@
 </head>
 <body>
 	<%
+		String error = (String)request.getParameter("error");
 		if(request.getParameter("disconnect") != null) {
 	%>
 	<jsp:setProperty property="mail" value="" name="User"/>
@@ -34,10 +35,24 @@
             String formattedRegisterDate = format.format(user.getRegisterDate().getTime());
             String formattedNowDate = format.format(user.getLastLoginDate().getTime());
 			if(user.getRole() == "VIEWER") {
+				
+				if(error != null && error != "") {
 	%>
+	<p style="color:red;">Error: <%out.println((String)request.getParameter("error")); %></p>
+	<% } %>
 	<p>¡Bienvenido <%out.println(user.getName() + " " + user.getLastName()); %>!</p>
 	<p>Hoy es <%out.println(formattedNowDate); %></p>
 	<p>Ud. se registró el día <%out.println(formattedRegisterDate); %></p>
+	<form action="/PW/mvc/controllers/searchShowController.jsp">
+		Busca por Título: <input type="text" name="title">
+		Busca por Categoría: <select id="category">
+			<option value=null></option>
+			<option value="Punctual">Puntual</option>
+			<option value="MultiplePass">De Pase Múltiple</option>
+			<option value="Season">De Temporada</option>
+		</select>
+		<input type="submit" value="Buscar">
+	</form>
 	<a href="/PW/mvc/controllers/modifyDataController.jsp">Modificar Datos</a>
 	<a href="/PW/mvc/controllers/disconnectController.jsp">Desconectar</a>
 	<%

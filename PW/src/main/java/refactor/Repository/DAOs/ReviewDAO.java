@@ -37,7 +37,6 @@ public class ReviewDAO {
             Connection connection2 = null;
             Class.forName("com.mysql.jdbc.Driver");
             connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
-            connection2 = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
             PreparedStatement ps = connection.prepareStatement("INSERT INTO `Review` values(?,?,?,?,?,?)");
 
                 ps.setString(1, review.getId().toString());
@@ -49,6 +48,7 @@ public class ReviewDAO {
 
                 ps.executeUpdate();
 
+            connection2 = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
             PreparedStatement ps2 = connection2.prepareStatement("INSERT INTO `ReviewUserRating` values(?,?,?)");
 
             for(UserScore userScore: review.getUserRatings()){
@@ -121,9 +121,62 @@ public class ReviewDAO {
         } catch (Exception e){
             System.out.println(e);
         }
-        return null;
+        return reviews;
     }
     
+    public ArrayList<Review> getReviewsByShow(String id) {
+
+        ArrayList<Review> reviews = new ArrayList<Review>();
+
+        try{
+
+            Connection connection = null;
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
+            Statement statement = connection.createStatement();
+            Statement statement2 = connection.createStatement();
+
+            String sqlString = "SELECT * FROM Review r WHERE r.showId = '" + id + "'";
+            ResultSet rs = statement.executeQuery(sqlString);
+
+            while (rs.next()) {
+
+                Review review = new Review();
+                review.setTitle(rs.getString("r.title"));
+                review.setText(rs.getString("r.text"));
+                Score score = new Score(rs.getInt("r.score"));
+                review.setScore(score);
+
+                UserDAO userDAO = new UserDAO();
+                UUID userId = UUID.fromString(rs.getString("r.userId"));
+                review.setUser(userDAO.getUserById(userId));
+
+                ShowDAO showDAO = new ShowDAO();
+                UUID showId = UUID.fromString(rs.getString("r.showId"));
+                review.setShow(showDAO.getShowById(showId));
+
+                    String sqlString2 = "SELECT * FROM `ReviewUserRating` rur WHERE rur.reviewId = '" + rs.getString("r.id") + "'";
+                    ResultSet rs2 = statement2.executeQuery(sqlString2);
+
+                    while(rs2.next()){
+
+                        User x = userDAO.getUserById( UUID.fromString(rs2.getString("rur.userId")) );
+                        Score xscore = new Score(rs2.getInt("rur.score"));
+
+                        review.addUserRating(x, xscore);
+                    }
+
+                reviews.add(review);
+            }
+            if (statement != null) statement.close();
+            return reviews;
+            
+        } catch (Exception e){
+            System.out.println(e);
+        }
+        return reviews;
+    }
+
 
     /** 
      * Función que se encarga de eliminar la instancia de review pasada cómo parámetro de la base de datos.
@@ -139,7 +192,7 @@ public class ReviewDAO {
 
             connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
 
-            PreparedStatement ps = connection.prepareStatement("DELETE FROM Review WHERE title = ?");
+            PreparedStatement ps = connection.prepareStatement("DELETE FROM Review WHERE id = ?");
 
             ps.setString(1, review.getId().toString());
 

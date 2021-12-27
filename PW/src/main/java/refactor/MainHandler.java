@@ -20,6 +20,8 @@ import refactor.UseCases.GetAllShowsUseCase;
 import refactor.UseCases.GetAllUsersMailsUseCase;
 import refactor.UseCases.GetAllUsersUseCase;
 import refactor.UseCases.GetReviewByTitleUseCase;
+import refactor.UseCases.GetReviewsByShowUserCase;
+import refactor.UseCases.GetShowByTitleUseCase;
 import refactor.UseCases.LoginUserUseCase;
 import refactor.UseCases.RateReviewByUser;
 import refactor.UseCases.RegisterAdminUseCase;
@@ -206,6 +208,16 @@ public class MainHandler {
 	public void modifyShowSesion(int id, Calendar date, int capacity) {
 		
 		UpdateSesionShowUseCase.updateSesionShowData(id, date, capacity);
+	}
+	
+	public Show getShowByTitle(String title) throws IOException {
+		
+		return GetShowByTitleUseCase.getShowByTitle(title);
+	}
+	
+	public ArrayList<Review> getReviewsByShow(String id) {
+		
+		return GetReviewsByShowUserCase.GetReviewsByShow(id);
 	}
 	
 }

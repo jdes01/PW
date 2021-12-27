@@ -42,8 +42,16 @@ public class ReviewRepository {
 
         for(Review review: reviewDAO.getAllReviews()){
 
-            if(review.getTitle() == title){ reviewDAO.delete(review); }
+            if(review.getId().toString().contentEquals(title)){ reviewDAO.delete(review); }
         }
+    }
+    
+    public ArrayList<Review> getReviewsByShow(String id) {
+    	
+    	ReviewDAO reviewDAO = new ReviewDAO();
+    	
+    	return reviewDAO.getReviewsByShow(id);
+    	
     }
     
 }

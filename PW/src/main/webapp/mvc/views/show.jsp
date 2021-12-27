@@ -68,11 +68,11 @@
 		<p><%out.println(review.getText()); %></p>
 		<p>Puntuación de: <%out.print(review.getScore().getScore()); %>/5</p>
 		<%
-		if(review.getUser().getMail().contentEquals(User.getMail())) {
+		if(User.getMail().contentEquals(review.getUser().getMail())) {
 		%>
 		<form name="deleteReview" method="post" action="../controllers/removeReviewController.jsp">
 			<input type="hidden" name="showTitle" value="<%=show.getTitle() %>">
-			<input type="hidden" name="reviewTitle" value="<%=review.getId().toString() %>">
+			<input type="hidden" name="reviewTitle" value="<%=review.getTitle() %>">
 			<input type="submit" value="Eliminar">
 		</form>
 		<%
@@ -81,6 +81,11 @@
 	</div>
 	
 	<% }} %>
+	<% 
+	if(request.getParameter("error") != null) {
+	%>
+	<p style="color:red; "><%out.println(request.getParameter("error")); %></p>
+	<% } %>
 	<br />
 	<form name="sendReview" method="post" action="../controllers/sendReviewController.jsp">
 		<input type="hidden" name="showTitle" value="<%=show.getTitle() %>">
@@ -88,37 +93,14 @@
 		<input type="text" name="title" value="" placeholder="Titulo del comentario">
 		<textarea name="text" placeholder="Escribe aqui tu comentario" class="text"></textarea>
 		<br />
-		<label>
-		    <input type="radio" name="stars" value="1" />
-		    <span class="icon">★</span>
-		  </label>
-		  <label>
-		    <input type="radio" name="stars" value="2" />
-		    <span class="icon">★</span>
-		    <span class="icon">★</span>
-		  </label>
-		  <label>
-		    <input type="radio" name="stars" value="3" />
-		    <span class="icon">★</span>
-		    <span class="icon">★</span>
-		    <span class="icon">★</span>   
-		  </label>
-		  <label>
-		    <input type="radio" name="stars" value="4" />
-		    <span class="icon">★</span>
-		    <span class="icon">★</span>
-		    <span class="icon">★</span>
-		    <span class="icon">★</span>
-		  </label>
-		  <label>
-		    <input type="radio" name="stars" value="5" />
-		    <span class="icon">★</span>
-		    <span class="icon">★</span>
-		    <span class="icon">★</span>
-		    <span class="icon">★</span>
-		    <span class="icon">★</span>
-		  </label>
-		  <br />
+		<select name="rating">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+		</select>
+		<br />
 		  <input type="submit" value="Enviar">
 	</form>
 </body>

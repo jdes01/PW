@@ -40,10 +40,7 @@ public class ReviewRepository {
 
         ReviewDAO reviewDAO = new ReviewDAO();
 
-        for(Review review: reviewDAO.getAllReviews()){
-
-            if(review.getId().toString().contentEquals(title)){ reviewDAO.delete(review); }
-        }
+        reviewDAO.delete(title);
     }
     
     public ArrayList<Review> getReviewsByShow(String id) {

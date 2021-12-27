@@ -155,6 +155,12 @@ public class Review {
      */
     public void setScore(Score score){ this._score = score; }
 
+    /** 
+     * Setter de la ID
+     * 
+     * @param String Id
+     */
+    public void setId(String Id) {this._id = UUID.fromString(Id); }
     
     /** 
      * Funcion para añadir los ratings de los usuarios 

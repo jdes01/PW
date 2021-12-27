@@ -21,31 +21,21 @@
 		String userMail = request.getParameter("userMail");
 		
 		String title = request.getParameter("title");
-		String stars = request.getParameter("stars");
-		Integer rating = 0;
+		String stars = request.getParameter("rating");
+		Integer rating = Integer.parseInt(stars);
 		if(stars != null && stars.trim().isEmpty()) {
-			rating = Integer.valueOf(stars);
+			rating = Integer.parseInt(stars);
 		}
 		String text = request.getParameter("text");
 	
 	
 		MainHandler mainHandler = new MainHandler();
-		ArrayList<Review> reviews = mainHandler.getAllReviews();
 		
 		
-		boolean exists = false;
 		if(title == "" || title == null || rating == 0 || text == null || text == "") {
-			nextPageMessage = "No puede dejar una review sin titulo, comentario ni puntuacion. ";
+			nextPageMessage = "No puede dejar una review sin titulo, comentario ni puntuacion. " + rating;
 		} else {
-			for(Review review : reviews) {
-				if(review.getUser().getMail() == userMail) {
-					nextPageMessage = "No puedes crear otro comentario, debes borrar el tuyo. ";
-					exists = true;
-				}
-			}
-			if(exists) {
-				mainHandler.createReview(userMail, title, text, showTitle, rating);
-			}
+			mainHandler.createReview(userMail, title, text, showTitle, rating);
 		}
 		
 	%>

@@ -34,7 +34,6 @@ public class ReviewDAO {
 
         try{
             Connection connection = null;
-            Connection connection2 = null;
             Class.forName("com.mysql.jdbc.Driver");
             connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
             PreparedStatement ps = connection.prepareStatement("INSERT INTO `Review` values(?,?,?,?,?,?)");
@@ -47,18 +46,6 @@ public class ReviewDAO {
                 ps.setInt(6, review.getScore().getScore());
 
                 ps.executeUpdate();
-
-            connection2 = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
-            PreparedStatement ps2 = connection2.prepareStatement("INSERT INTO `ReviewUserRating` values(?,?,?)");
-
-            for(UserScore userScore: review.getUserRatings()){
-
-                ps2.setString(1, review.getId().toString());
-                ps2.setString(2, userScore.getUser().getUuid().toString());
-                ps2.setInt(3, userScore.getScore().getScore());
-
-                ps2.executeUpdate();
-            }
 
             if (ps != null){ 
                 ps.close(); 
@@ -183,20 +170,20 @@ public class ReviewDAO {
      * 
      * @param user Instancia de user que se quiere eliminar de la base de datos.
      */
-    public void delete(Review review) {
+    public void delete(String title) {
 
-        try {
+    	try {
             Connection connection = null;
 
             Class.forName("com.mysql.jdbc.Driver");
 
             connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
 
-            PreparedStatement ps = connection.prepareStatement("DELETE FROM Review WHERE id = ?");
-
-            ps.setString(1, review.getId().toString());
+            PreparedStatement ps = connection.prepareStatement("DELETE FROM Review WHERE title = '" + title + "' LIMIT 1");
 
             ps.executeUpdate();
+            
+            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -14,7 +14,7 @@
 </head>
 <body>
 	<%
-		String nextPage = "/PW/mvc/views/show.jsp";
+		String nextPage = "../views/show.jsp";
 		String nextPageMessage = null;
 	
 		String showTitle = request.getParameter("showTitle");

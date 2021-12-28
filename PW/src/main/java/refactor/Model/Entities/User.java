@@ -20,6 +20,7 @@ public class User {
     private String _lastName;
     private String _nickName;
     private String _mail;
+    private String _password;
 
     private String _role;
 
@@ -37,7 +38,7 @@ public class User {
     * @param mail Mail del usuario
     */
 
-    public User(String name, String lastName, String nickName, String mail){
+    public User(String name, String lastName, String nickName, String mail, String password){
 
         UUID uuid = UUID.randomUUID();
         this._id = uuid;
@@ -46,6 +47,7 @@ public class User {
         this._lastName = lastName;
         this._nickName = nickName;
         this._mail = mail;
+        this._password = password;
 
         this._role = viewer;
     }
@@ -101,7 +103,15 @@ public class User {
     public String getMail(){
         return this._mail;
     }
-
+    
+    /**
+     * Getter de la password
+     * 
+     * @return String password
+     */
+    public String getPassword() {
+    	return this._password;
+    }
     
     /** 
      * Getter del rol
@@ -194,6 +204,10 @@ public class User {
 
     public void setLastLoginDate(Calendar lastLoginDate){
         this._lastLoginDate = lastLoginDate;
+    }
+    
+    public void setPassword(String passwd) {
+    	this._password = passwd;
     }
 
 }

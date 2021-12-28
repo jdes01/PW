@@ -29,6 +29,9 @@
 		<label for="email">Email: </label>
 		<input type="email" name="email" value="">	
 		<br/>
+		<label for="password">Contraseña: </label>
+		<input type="password" name="password" value="">
+		<br />
 		<input type="submit" value="Registrarse">
 	</form>
 </body>

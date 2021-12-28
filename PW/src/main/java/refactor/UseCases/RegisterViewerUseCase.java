@@ -29,7 +29,7 @@ public class RegisterViewerUseCase {
         but no definition for the class with the specified name could be found. 
      * @throws SQLException An exception that provides information on a database access error or other errors.
      */
-    public static void registerViewer(String name, String lastName, String nickName, String mail) throws IOException, ClassNotFoundException, SQLException{
+    public static void registerViewer(String name, String lastName, String nickName, String mail, String password) throws IOException, ClassNotFoundException, SQLException{
 
         UserRepository userRepository = new UserRepository();
         
@@ -39,7 +39,7 @@ public class RegisterViewerUseCase {
         
         } else {
             
-            userRepository.saveViewer(name, lastName, nickName, mail);
+            userRepository.saveViewer(name, lastName, nickName, mail, password);
         }
     }
     

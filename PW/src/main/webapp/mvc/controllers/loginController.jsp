@@ -14,9 +14,10 @@
 		String nextPageMessage = null;
 		
 		String mail = request.getParameter("email");
+		String password = request.getParameter("password");
 	
 		MainHandler mainHandler = new MainHandler();
-		if(mainHandler.loginUser(mail) == true) {
+		if(mainHandler.loginUser(mail, password) == true) {
 			nextPage = "../../index.jsp";
 			nextPageMessage = "";
 	%>

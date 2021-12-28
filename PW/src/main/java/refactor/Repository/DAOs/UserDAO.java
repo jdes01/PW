@@ -38,7 +38,7 @@ public class UserDAO {
             Connection connection = null;
             Class.forName("com.mysql.jdbc.Driver");
             connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
-            PreparedStatement ps = connection.prepareStatement("INSERT INTO User values(?,?,?,?,?,?,?,?)");
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO User values(?,?,?,?,?,?,?,?,?)");
 
                 ps.setString(1,user.getUuid().toString());
                 ps.setString(2,user.getName());
@@ -46,6 +46,7 @@ public class UserDAO {
                 ps.setString(4,user.getNickName());
                 ps.setString(5,user.getMail());
                 ps.setString(6,user.getRole());
+                ps.setString(9, user.getPassword());
 
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                 String formattedRegisterDate = format.format(user.getRegisterDate().getTime());
@@ -102,7 +103,7 @@ public class UserDAO {
             connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
             Statement statement = connection.createStatement();
 
-            String sqlString = "select u.id, u.name, u.lastname, u.nickname, u.mail, u.role, u.registerDate, u.lastLoginDate from `User` u where u.id = '" + userId + "'";
+            String sqlString = "select u.id, u.name, u.lastname, u.nickname, u.mail, u.role, u.registerDate, u.lastLoginDate, u.password from `User` u where u.id = '" + userId + "'";
             ResultSet rs = statement.executeQuery(sqlString);
 
             while (rs.next()) {
@@ -112,6 +113,7 @@ public class UserDAO {
                 user.setLastName(rs.getString("u.lastname"));
                 user.setNickName(rs.getString("u.nickname"));
                 user.setMail(rs.getString("u.mail"));
+                user.setPassword(rs.getString("u.password"));
                 if(rs.getString("u.role")=="ADMIN"){user.setRoleAdmin();}
 
                 Calendar c1 = Calendar.getInstance();
@@ -148,7 +150,7 @@ public class UserDAO {
             connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
             Statement statement = connection.createStatement();
 
-            String sqlString = "select u.id, u.name, u.lastname, u.nickname, u.mail, u.role, u.registerDate, u.lastLoginDate from `User` u where u.mail = '" + mail + "'";
+            String sqlString = "select u.id, u.name, u.lastname, u.nickname, u.mail, u.role, u.registerDate, u.lastLoginDate, u.password from `User` u where u.mail = '" + mail + "'";
             ResultSet rs = statement.executeQuery(sqlString);
 
             while (rs.next()) {
@@ -158,6 +160,7 @@ public class UserDAO {
                 user.setLastName(rs.getString("u.lastname"));
                 user.setNickName(rs.getString("u.nickname"));
                 user.setMail(rs.getString("u.mail"));
+                user.setPassword(rs.getString("u.password"));
                 if(rs.getString("u.role").contentEquals("ADMIN")) {
                 	user.setRoleAdmin();
                 } else if(rs.getString("u.role").contentEquals("VIEWER")) {
@@ -209,6 +212,7 @@ public class UserDAO {
                 user.setLastName(rs.getString("u.lastname"));
                 user.setNickName(rs.getString("u.nickname"));
                 user.setMail(rs.getString("u.mail"));
+                user.setPassword(rs.getString("u.password"));
                 if(rs.getString("u.role").contentEquals("ADMIN")) {
                 	user.setRoleAdmin();
                 } else if(rs.getString("u.role").contentEquals("VIEWER")) {

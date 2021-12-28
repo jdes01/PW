@@ -39,9 +39,9 @@ public class UserRepository {
      * @throws SQLException An exception that provides information on a database access error or other errors. 
      */
 
-    public void saveViewer(String name, String lastName, String nickName, String mail) throws IOException, ClassNotFoundException, SQLException {
+    public void saveViewer(String name, String lastName, String nickName, String mail, String password) throws IOException, ClassNotFoundException, SQLException {
 
-        User user = new User(name, lastName, nickName, mail);
+        User user = new User(name, lastName, nickName, mail, password);
 
         Calendar c = Calendar.getInstance();
         user.setRegiserDate(c);
@@ -67,9 +67,9 @@ public class UserRepository {
      * @throws SQLException An exception that provides information on a database access error or other errors. 
      */
 
-    public void saveAdmin(String name, String lastName, String nickName, String mail) throws IOException, ClassNotFoundException, SQLException {
+    public void saveAdmin(String name, String lastName, String nickName, String mail, String password) throws IOException, ClassNotFoundException, SQLException {
 
-        User user = new User(name, lastName, nickName, mail);
+        User user = new User(name, lastName, nickName, mail, password);
         user.setRoleAdmin();
 
         Calendar c = Calendar.getInstance();

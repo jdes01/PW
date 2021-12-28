@@ -2,6 +2,7 @@ package refactor.UseCases;
 
 import java.io.IOException;
 
+import refactor.Model.Entities.User;
 import refactor.Repository.UserRepository;
 
 /**
@@ -18,16 +19,19 @@ public class LoginUserUseCase {
      * @return Boolean Se devuelve True si se ha encontrado al usuario en el sistema.
      * @throws IOException Signals that an I/O exception of some sort has occurred. This class is the general class of exceptions produced by failed or interrupted I/O operations.
      */
-    public static Boolean loginUser(String mail) throws IOException{
+    public static Boolean loginUser(String mail, String password) throws IOException{
 
         UserRepository userRepository = new UserRepository();
 
         if( userRepository.anyUserWithMail(mail) == true ){
 
-            userRepository.updateLastLoginDateByMail(mail);
-            return true;
-        }
+        	User user = userRepository.getUserByMail(mail);
+        	if(user.getPassword().contentEquals(password)) {
+        		userRepository.updateLastLoginDateByMail(mail);
+                return true;
 
+        	}
+        }
         return false;
     }    
 }

@@ -17,10 +17,11 @@
 		String lastName = request.getParameter("lastname");
 		String nickName = request.getParameter("nickname");
 		String mail = request.getParameter("email");
+		String password = request.getParameter("password");
 	
 		MainHandler mainHandler = new MainHandler();
-		if(mainHandler.loginUser(mail) == false && mail != null && name != null && lastName != null && nickName != null) {
-			mainHandler.registerViewer(name, lastName, nickName, mail);
+		if(mainHandler.loginUser(mail, password) == false && mail != null && name != null && lastName != null && nickName != null && password != null) {
+			mainHandler.registerViewer(name, lastName, nickName, mail, password);
 			nextPage = "../../index.jsp";
 			nextPageMessage = "";
 	%>

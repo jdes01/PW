@@ -74,9 +74,9 @@ public class MainHandler {
 	 * @throws SQLException An exception that provides information on a database access error or other errors. 
 	 */
 
-	public void registerViewer(String name, String lastName, String nickName, String mail) throws IOException, ClassNotFoundException, SQLException{
+	public void registerViewer(String name, String lastName, String nickName, String mail, String password) throws IOException, ClassNotFoundException, SQLException{
 
-        RegisterViewerUseCase.registerViewer(name, lastName, nickName, mail);
+        RegisterViewerUseCase.registerViewer(name, lastName, nickName, mail, password);
     }
 
 	
@@ -94,9 +94,9 @@ public class MainHandler {
        The loadClass method in class ClassLoader. 
 	 * @throws SQLException An exception that provides information on a database access error or other errors. 
 	 */
-	public void registerAdmin(String name, String lastName, String nickName, String mail) throws IOException, ClassNotFoundException, SQLException{
+	public void registerAdmin(String name, String lastName, String nickName, String mail, String password) throws IOException, ClassNotFoundException, SQLException{
 
-        RegisterAdminUseCase.registerAdmin(name, lastName, nickName, mail);
+        RegisterAdminUseCase.registerAdmin(name, lastName, nickName, mail, password);
     }
 
 	/**
@@ -119,9 +119,9 @@ public class MainHandler {
 	 * @return Boolean 
 	 * @throws IOException Signals that an I/O exception of some sort has occurred. This class is the general class of exceptions produced by failed or interrupted I/O operations.
 	 */
-	public Boolean loginUser(String mail) throws IOException{
+	public Boolean loginUser(String mail, String password) throws IOException{
 
-		return LoginUserUseCase.loginUser(mail);
+		return LoginUserUseCase.loginUser(mail, password);
 	}
 
 	

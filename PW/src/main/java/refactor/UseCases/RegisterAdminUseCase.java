@@ -30,7 +30,7 @@ public class RegisterAdminUseCase {
      * @throws SQLException An exception that provides information on a database access error or other errors.
 
      */
-    public static void registerAdmin(String name, String lastName, String nickName, String mail) throws IOException, ClassNotFoundException, SQLException{
+    public static void registerAdmin(String name, String lastName, String nickName, String mail, String password) throws IOException, ClassNotFoundException, SQLException{
 
         UserRepository userRepository = new UserRepository();
         
@@ -40,7 +40,7 @@ public class RegisterAdminUseCase {
         
         } else {
             
-            userRepository.saveAdmin(name, lastName, nickName, mail);
+            userRepository.saveAdmin(name, lastName, nickName, mail, password);
         }
     }
     

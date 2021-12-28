@@ -45,7 +45,7 @@
 	<p>Ud. se registró el día <%out.println(formattedRegisterDate); %></p>
 	<form action="/PW/mvc/controllers/searchShowController.jsp">
 		Busca por Título: <input type="text" name="title">
-		Busca por Categoría: <select id="category">
+		Busca por Categoría: <select id="category" name="category">
 			<option value=null></option>
 			<option value="Punctual">Puntual</option>
 			<option value="MultiplePass">De Pase Múltiple</option>

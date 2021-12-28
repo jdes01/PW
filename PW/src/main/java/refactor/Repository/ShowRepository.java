@@ -167,4 +167,9 @@ public class ShowRepository {
     	showDAO.updateShowSesion(id, date, capacity);
     }
     
+    public ArrayList<Show> getAllShowsByCategory(String category) {
+    	ShowDAO showDAO = new ShowDAO();
+    	return showDAO.getAllShowsByCategory(category);
+    }
+    
 }

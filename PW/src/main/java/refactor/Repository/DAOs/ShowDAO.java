@@ -299,5 +299,57 @@ public class ShowDAO {
         }
 
     }
+    
+    public ArrayList<Show> getAllShowsByCategory(String category) {
+        
+        ArrayList<Show> shows = new ArrayList<Show>();
 
+        try{
+
+            Connection connection = null;
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
+            Statement statement = connection.createStatement();
+
+            String sqlString = "select s.id, s.title, s.description, s.category, s.capacity from `Show` s where s.category = '" + category + "'";
+            ResultSet rs = statement.executeQuery(sqlString);
+
+            while (rs.next()) {
+
+                Show show = new Show();
+
+                show.setID(rs.getString("s.id"));
+                show.setTitle(rs.getString("s.title"));
+                show.setDescription(rs.getString("s.description"));
+                show.setCategory(rs.getString("s.category"));
+                show.setCapacity(rs.getInt("s.capacity"));
+                
+                shows.add(show);
+            }
+
+            for(Show i: shows){
+
+                String sqlString2 = "select ss.id, ss.date, ss.tickets from `ShowSesion` ss where ss.showId = '" + i.getUuid().toString() + "'";
+                rs = statement.executeQuery(sqlString2);
+
+                while(rs.next()){
+
+                    Date date = new Date(rs.getDate("date").getTime());
+                    Calendar calendarDate = new GregorianCalendar();
+                    calendarDate.setTime(date);
+
+                    i.addSesion(rs.getInt("ss.id"),calendarDate, rs.getInt("ss.tickets"));
+                }
+            }
+
+            if (statement != null) statement.close();
+
+            return shows;
+            
+        } catch (Exception e){
+            System.out.println(e);
+        }
+        return shows;
+        
+    }
 }

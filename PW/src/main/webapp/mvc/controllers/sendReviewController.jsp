@@ -6,6 +6,9 @@
 <%@ page import="java.util.Calendar" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="refactor.Model.ValueObjects.ShowSesion" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,12 +33,27 @@
 	
 	
 		MainHandler mainHandler = new MainHandler();
+		Calendar today = Calendar.getInstance();
+		Date todayInDate = Calendar.getInstance().getTime();
+		today.setTime(todayInDate);
 		
-		
+		boolean AnySesionBeforeToday = false;
 		if(title == "" || title == null || rating == 0 || text == null || text == "") {
-			nextPageMessage = "No puede dejar una review sin titulo, comentario ni puntuacion. " + rating;
+			nextPageMessage = "No puede dejar una review sin titulo, comentario ni puntuacion. ";
 		} else {
-			mainHandler.createReview(userMail, title, text, showTitle, rating);
+			Show show = mainHandler.getShowByTitle(title);
+			List<ShowSesion> sesions = show.getSesions();
+			for(ShowSesion sesion : sesions) {
+				if(sesion.getDate().before(today)) {
+					AnySesionBeforeToday = true;
+					break;
+				}
+			}
+			if(AnySesionBeforeToday == true) {
+				mainHandler.createReview(userMail, title, text, showTitle, rating);
+			} else {
+				nextPageMessage = "Todavia no se ha celebrado ninguna sesion para este show. ";
+			}
 		}
 		
 	%>

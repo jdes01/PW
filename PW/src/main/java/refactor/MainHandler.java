@@ -16,6 +16,7 @@ import refactor.UseCases.DeleteReviewByTitleUseCase;
 import refactor.UseCases.CreatePunctualShowUseCase;
 import refactor.UseCases.DeleteUserUseCase;
 import refactor.UseCases.GetAllReviewsUseCase;
+import refactor.UseCases.GetAllShowsByCategoryUseCase;
 import refactor.UseCases.GetAllShowsUseCase;
 import refactor.UseCases.GetAllUsersMailsUseCase;
 import refactor.UseCases.GetAllUsersUseCase;
@@ -218,6 +219,11 @@ public class MainHandler {
 	public ArrayList<Review> getReviewsByShow(String id) {
 		
 		return GetReviewsByShowUserCase.GetReviewsByShow(id);
+	}
+	
+	public ArrayList<Show> getAllShowsByCategory(String category) {
+		
+		return GetAllShowsByCategoryUseCase.GetAllShowsByCategory(category);
 	}
 	
 }

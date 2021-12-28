@@ -51,4 +51,10 @@ public class ReviewRepository {
     	
     }
     
+    public void saveUserRating(Review review, User user, Score score) {
+    	ReviewDAO reviewDAO = new ReviewDAO();
+    	
+    	reviewDAO.saveUserRating(review, user, score);
+    }
+    
 }

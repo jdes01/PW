@@ -3,6 +3,7 @@
 <%@ page import="refactor.MainHandler" %>
 <%@ page import="refactor.Model.Entities.Show.Show" %>
 <%@ page import="refactor.Model.Entities.Review" %>
+<%@ page import="refactor.Model.ValueObjects.UserScore" %>
 <%@ page import="java.time.ZonedDateTime" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.ArrayList" %>
@@ -28,11 +29,19 @@
  
  .review {
  	border-style: groove;	
+ 	padding-top: 10px;
+ 	padding-bottom: 10px;
+ 	padding-left: 15px;
+ 	padding-right: 15px;
  }
  
  .inline {
  	display: inline;
+ 	margin-right: 15px;
+ 	padding-bottom: 10px;
+ 	padding-top: 10px;
  }
+
 </style>
 <body>
 	<%
@@ -62,11 +71,22 @@
 	
 	if(!reviews.isEmpty()) {
 		for(Review review : reviews) {
+			List<UserScore> userRating = review.getUserRatings();
+			float UserRatingMed = 0;
+			if(userRating.size() > 0) {
+				float sum = 0;
+				for(UserScore score : userRating) {
+					sum += score.getScore().getScore();
+				}
+				UserRatingMed = sum / userRating.size();
+			}
 	%>
 	<div class="review">
-		<h3 class="inline"><%out.print(review.getTitle()); %></h3><h6 class="inline"> Usuario: <%out.print(review.getUser().getNickName()); %></h6>
+		<h3 class="inline"><%out.print(review.getTitle()); %></h3>
+		<h6 class="inline"> Usuario: <%out.print(review.getUser().getNickName()); %></h6>
 		<p><%out.println(review.getText()); %></p>
 		<p>Puntuación de: <%out.print(review.getScore().getScore()); %>/5</p>
+		<p>¿Le ha sido util a los usuarios? <%out.print(UserRatingMed); %></p>
 		<%
 		if(User.getMail().contentEquals(review.getUser().getMail())) {
 		%>
@@ -76,17 +96,36 @@
 			<input type="submit" value="Eliminar">
 		</form>
 		<%
-		} 
+		} else {
+		%>
+		<form name="userRating" method="post" action="../controllers/addUserRatingToReviewController.jsp">
+			<input type="hidden" name="showTitle" value="<%=show.getTitle() %>">
+			<input type="hidden" name="reviewTitle" value="<%=review.getTitle() %>">
+			<input type="hidden" name="userMail" value="<%=User.getMail() %>">
+			<select name="rating">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+			</select>
+			<input type="submit" value="Votar">
+		</form>
+		<%
+		}
 		%>
 	</div>
 	
 	<% }} %>
-	<% 
-	if(request.getParameter("error") != null) {
-	%>
-	<p style="color:red; "><%out.println(request.getParameter("error")); %></p>
-	<% } %>
 	<br />
+	<%
+	String error = request.getParameter("error");
+	if(error != null && error != "") {
+	%>
+	<p style="color:red; ">Error: <%out.println(request.getParameter("error")); %></p>
+	<%
+	}
+	%>
 	<form name="sendReview" method="post" action="../controllers/sendReviewController.jsp">
 		<input type="hidden" name="showTitle" value="<%=show.getTitle() %>">
 		<input type="hidden" name="userMail" value="<%=User.getMail() %>">

@@ -69,6 +69,7 @@ public class ReviewDAO {
             Class.forName("com.mysql.jdbc.Driver");
             connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
             Statement statement = connection.createStatement();
+            Statement statement2 = connection.createStatement();
 
             String sqlString = "SELECT * FROM Review r";
             ResultSet rs = statement.executeQuery(sqlString);
@@ -76,6 +77,7 @@ public class ReviewDAO {
             while (rs.next()) {
 
                 Review review = new Review();
+                review.setId(rs.getString("r.id"));
                 review.setTitle(rs.getString("r.title"));
                 review.setText(rs.getString("r.text"));
                 Score score = new Score(rs.getInt("r.score"));
@@ -90,7 +92,7 @@ public class ReviewDAO {
                 review.setShow(showDAO.getShowById(showId));
 
                     String sqlString2 = "SELECT * FROM `ReviewUserRating` rur WHERE rur.reviewId = '" + rs.getString("r.id") + "'";
-                    ResultSet rs2 = statement.executeQuery(sqlString2);
+                    ResultSet rs2 = statement2.executeQuery(sqlString2);
 
                     while(rs2.next()){
 
@@ -129,6 +131,7 @@ public class ReviewDAO {
             while (rs.next()) {
 
                 Review review = new Review();
+                review.setId(rs.getString("r.id"));
                 review.setTitle(rs.getString("r.title"));
                 review.setText(rs.getString("r.text"));
                 Score score = new Score(rs.getInt("r.score"));
@@ -180,6 +183,29 @@ public class ReviewDAO {
             connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
 
             PreparedStatement ps = connection.prepareStatement("DELETE FROM Review WHERE title = '" + title + "' LIMIT 1");
+
+            ps.executeUpdate();
+            
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void saveUserRating(Review review, User user, Score score) {
+
+    	try {
+            Connection connection = null;
+
+            Class.forName("com.mysql.jdbc.Driver");
+
+            connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92sanpj","i92sanpj","1234pw2122");
+
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO `ReviewUserRating` VALUES(?,?,?)");
+            
+            	ps.setString(1, review.getId().toString());
+            	ps.setString(2, user.getUuid().toString());
+            	ps.setInt(3, score.getScore());
 
             ps.executeUpdate();
             

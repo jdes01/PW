@@ -2,6 +2,7 @@
 <jsp:useBean  id="User" scope="session" class="refactor.Model.Entities.User"></jsp:useBean>
 <%@ page import="refactor.MainHandler" %>
 <%@ page import="refactor.Model.Entities.Show.Show" %>
+<%@ page import="refactor.Model.Entities.Review" %>
 <%@ page import="java.util.Calendar" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.ArrayList" %>
@@ -16,26 +17,27 @@
 		String nextPage = "../views/show.jsp";
 		String nextPageMessage = null;
 	
-		String title = request.getParameter("title");
-		String category = request.getParameter("category");
+		String showTitle = request.getParameter("showTitle");
+		String title = request.getParameter("reviewTitle");
+		String userMail = request.getParameter("userMail");
+		
+		String stars = request.getParameter("rating");
+		Integer score = Integer.parseInt(stars);
+		if(stars != null && stars.trim().isEmpty()) {
+			score = Integer.parseInt(stars);
+		}
+	
 	
 		MainHandler mainHandler = new MainHandler();
 		
-		if(category == null) {
-			Show show = mainHandler.getShowByTitle(title);
-			if(show.getTitle() == null || show.getTitle() == "") {
-				nextPage = "/index.jsp";
-				nextPageMessage = "No ha sido encontrada ninguna show con ese titulo. ";
-			}
-		} else {
-			nextPage = "../views/shows.jsp";
+		if(score != 0) {
+			Review review = mainHandler.getReviewByTitle(title);
+			mainHandler.rateReviewByUser(review, userMail, score);
 		}
-		
 	%>
 </body>
 </html>
 <jsp:forward page="<%=nextPage%>">
 	    <jsp:param name="error" value="<%=nextPageMessage%>"/>
-	    <jsp:param name="title" value="<%=title %>" />
-	    <jsp:param name="category" value="<%=category %>" />
+	    <jsp:param name="title" value="<%=showTitle %>" />
 </jsp:forward>

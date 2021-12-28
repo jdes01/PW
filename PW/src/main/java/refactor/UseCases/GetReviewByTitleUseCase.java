@@ -11,7 +11,7 @@ public class GetReviewByTitleUseCase {
 
         for(Review review: reviewRepository.getAllReviews()){
 
-            if(review.getTitle() == title){ return review; }
+            if(review.getTitle().contentEquals(title)){ return review; }
         }
         return null;
     }
